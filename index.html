@@ -17,6 +17,7 @@
   --cond:'Barlow Condensed',sans-serif;
   --body:'Barlow',sans-serif;
 }
+html{zoom:1.5}
 html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.75;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 body::after{content:'';position:fixed;width:600px;height:600px;background:radial-gradient(circle,rgba(212,80,10,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
@@ -56,16 +57,13 @@ body::after{content:'';position:fixed;width:600px;height:600px;background:radial
 .hub-link:nth-child(3){animation:fadeUp 0.45s 0.32s ease both}
 .hub-link:nth-child(4){animation:fadeUp 0.45s 0.38s ease both}
 .hub-link:nth-child(5){animation:fadeUp 0.45s 0.44s ease both}
-.hub-link:nth-child(6){animation:fadeUp 0.45s 0.50s ease both}
-.hub-link:nth-child(7){animation:fadeUp 0.45s 0.56s ease both}
-.hub-link:nth-child(8){animation:fadeUp 0.45s 0.62s ease both}
-.social-row{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;animation:fadeUp 0.45s 0.65s ease both}
+.social-row{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;animation:fadeUp 0.45s 0.5s ease both}
 .soc{display:inline-flex;align-items:center;gap:0.4rem;background:var(--card);border:1px solid var(--border);color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;font-family:var(--cond);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s}
 .soc:hover{border-color:var(--orange);color:var(--orange)}
-.hub-creds{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;animation:fadeUp 0.45s 0.7s ease both}
+.hub-creds{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;animation:fadeUp 0.45s 0.55s ease both}
 .cred-badge{display:inline-flex;align-items:center;gap:0.4rem;background:transparent;border:1px solid var(--border);color:var(--muted);padding:0.35rem 0.75rem;font-family:var(--cond);font-size:0.64rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
 .cb-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
-.hub-location{font-family:var(--cond);font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);text-align:center;animation:fadeUp 0.45s 0.75s ease both}
+.hub-location{font-family:var(--cond);font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);text-align:center;animation:fadeUp 0.45s 0.6s ease both}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 </style>
@@ -86,17 +84,6 @@ body::after{content:'';position:fixed;width:600px;height:600px;background:radial
     <a class="hub-link primary" href="editorial_portfolio.html">
       <div class="hl-icon">🎮</div>
       <div class="hl-text"><div class="hl-title">Game Design Portfolio</div><div class="hl-sub">3 shipped titles · Systems · Narrative · QA</div></div>
-      <div class="hl-arrow">↗</div>
-    </a>
-    <div class="links-label">Portfolios</div>
-    <a class="hub-link" href="eva_index.html">
-      <div class="hl-icon">⚡</div>
-      <div class="hl-text"><div class="hl-title">Interactive Portfolio</div><div class="hl-sub">Full multi-page site · Case studies · Story</div></div>
-      <div class="hl-arrow">↗</div>
-    </a>
-    <a class="hub-link" href="https://sites.google.com/view/prayportfolio/home" target="_blank">
-      <div class="hl-icon">🌐</div>
-      <div class="hl-text"><div class="hl-title">Google Sites Portfolio</div><div class="hl-sub">Original portfolio · Project deep-dives</div></div>
       <div class="hl-arrow">↗</div>
     </a>
     <div class="links-label">Documents</div>
