@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pray Cristanto — Game Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:      #F4F0E8;
+  --paper:   #FDFBF7;
+  --ink:     #1A1714;
+  --ink2:    #3C3830;
+  --muted:   #8B8278;
+  --rule:    #D6CFC2;
+  --rule2:   #BEB5A8;
+  --orange:  #D4500A;
+  --orange2: #F06828;
+  --gold:    #C49A2E;
+  --dark:    #151210;
+  --dark2:   #222018;
+  --cream:   #EAE5DA;
+
+  --head:    'Playfair Display', Georgia, serif;
+  --cond:    'Barlow Condensed', sans-serif;
+  --body:    'Barlow', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.75;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ═══════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════ */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width .2s, height .2s, background .2s;
+  mix-blend-mode: multiply;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width .4s, height .4s, border-color .3s;
+  opacity: 0.5;
+}
+body:hover #cursor { opacity:1; }
+
+/* ═══════════════════════════════════════════
+   STICKY PROGRESS — LEFT RAIL
+═══════════════════════════════════════════ */
+#progress-rail {
+  position: fixed;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 50;
+}
+.pr-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.pr-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--rule2);
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.pr-label {
+  font-family: var(--cond);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.pr-item:hover .pr-label { opacity: 1; transform: translateX(0); }
+.pr-item:hover .pr-dot,
+.pr-item.active .pr-dot { background: var(--orange); width: 8px; height: 8px; }
+.pr-item.active .pr-label { opacity: 1; transform: translateX(0); color: var(--orange); }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 5vw;
+  background: rgba(244,240,232,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-wordmark {
+  font-family: var(--head);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav-wordmark span { color: var(--orange); font-style: italic; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-right a {
+  font-family: var(--cond);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-right a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--orange) !important;
+  color: white !important;
+  padding: 0.45rem 1.1rem;
+}
+.nav-cta:hover { background: var(--orange2) !important; }
+
+/* ═══════════════════════════════════════════
+   SECTION LABELS
+═══════════════════════════════════════════ */
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sm-num {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+.sm-rule { flex: 1; max-width: 60px; height: 1px; background: var(--orange); opacity: 0.5; }
+.sm-label {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding-top: 70px;
+}
+.hero-left {
+  background: var(--dark);
+  padding: 6rem 5vw 5rem 8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+/* Background chapter number */
+.hero-left::before {
+  content: '01';
+  position: absolute;
+  font-family: var(--head);
+  font-size: 28vw;
+  font-weight: 900;
+  color: rgba(255,255,255,0.02);
+  bottom: -3vw;
+  right: -2vw;
+  line-height: 1;
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.he-line { width: 30px; height: 1px; background: var(--orange); }
+.he-text {
+  font-family: var(--cond);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.hero-name {
+  font-family: var(--head);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--orange);
+}
+.hero-role {
+  font-family: var(--cond);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 2.5rem;
+}
+.hero-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 380px;
+  line-height: 1.85;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+.hero-desc strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+.hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--cond);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid;
+  transition: all 0.2s;
+  cursor: none;
+}
+.btn-orange { background: var(--orange); border-color: var(--orange); color: white; }
+.btn-orange:hover { background: var(--orange2); border-color: var(--orange2); }
+.btn-ghost { background: transparent; border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); }
+.btn-ghost:hover { border-color: white; color: white; }
+
+/* HERO RIGHT — STATS PANEL */
+.hero-right {
+  background: var(--paper);
+  padding: 6rem 5vw 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid var(--rule);
+  position: relative;
+}
+.hero-stats-title {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.stat-block {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.stat-block:first-of-type { padding-top: 0; }
+.stat-block:last-of-type { border-bottom: none; }
+.sb-number {
+  font-family: var(--head);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.sb-number sup { font-size: 0.45em; color: var(--orange); vertical-align: super; }
+.sb-label {
+  font-family: var(--cond);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sb-detail {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  font-weight: 300;
+}
+/* Accent vertical bar */
+.stat-block::before {
+  content: '';
+  position: absolute;
+  left: -5vw;
+  top: 1.5rem; bottom: 1.5rem;
+  width: 3px;
+  background: transparent;
+  transition: background 0.3s;
+}
+.stat-block:hover::before { background: var(--orange); }
+.stat-block.featured { background: var(--cream); margin: 0 -5vw; padding-left: 5vw; padding-right: 5vw; }
+.stat-block.featured .sb-number { color: var(--orange); }
+
+/* AVAILABLE BADGE */
+.avail-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(42,107,60,0.1);
+  border: 1px solid rgba(42,107,60,0.25);
+  color: #2A6B3C;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  width: fit-content;
+}
+.avail-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: #2A6B3C;
+  border-radius: 50%;
+  animation: pulse-g 2s ease infinite;
+}
+@keyframes pulse-g { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ═══════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════ */
+.marquee-wrap {
+  background: var(--dark);
+  padding: 0.9rem 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.marquee-track {
+  display: flex; gap: 0;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  display: inline-flex; align-items: center;
+  padding: 0 3rem;
+  font-family: var(--cond);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+  gap: 0.8rem;
+}
+.marquee-item .mi-accent { color: var(--orange); }
+.marquee-sep { color: var(--orange); opacity: 0.5; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+#about {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  min-height: 80vh;
+}
+.about-photo-col {
+  position: relative;
+  overflow: hidden;
+  background: var(--dark2);
+}
+.about-photo-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  filter: sepia(0.15);
+}
+.about-photo-empty {
+  width: 100%; height: 100%;
+  min-height: 500px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.8rem;
+}
+.ape-icon { font-size: 3rem; opacity: 0.15; }
+.ape-label {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.8;
+}
+/* Orange overlay strip */
+.about-photo-col::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--orange);
+}
+.about-text-col {
+  padding: 5rem 5vw 5rem 5rem;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-pull-quote {
+  font-family: var(--head);
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+.about-pull-quote em { font-style: italic; color: var(--orange); }
+.about-body p {
+  font-size: 1rem;
+  color: var(--ink2);
+  margin-bottom: 1.1rem;
+  font-weight: 400;
+  line-height: 1.85;
+}
+.about-body p strong { color: var(--ink); font-weight: 600; }
+/* CALLOUT */
+.about-callout {
+  margin: 2rem 0;
+  padding: 1.8rem 2rem;
+  border-left: 4px solid var(--orange);
+  background: rgba(212,80,10,0.04);
+}
+.ac-text {
+  font-family: var(--head);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.6;
+  font-style: italic;
+}
+.ac-attr {
+  font-family: var(--cond);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.8rem;
+}
+/* MINI CREDS */
+.about-cred-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  margin-top: 2rem;
+  border: 1px solid var(--rule);
+}
+.acr-item {
+  background: var(--paper);
+  padding: 0.9rem 1rem;
+}
+.acr-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); margin-bottom: 0.1rem; }
+.acr-org { font-family: var(--cond); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════
+   PROJECTS
+═══════════════════════════════════════════ */
+#projects { padding: 6rem 5vw; background: var(--bg); }
+
+/* RECRUITER SIGNAL BAR */
+.recruiter-signal {
+  background: var(--orange);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+.rs-label {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.rs-items {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+}
+.rs-item {
+  font-family: var(--cond);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.rs-item::before { content: '✓'; font-size: 0.7rem; }
+
+/* PROJECT CARD — Full layout */
+.proj-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.proj-entry:nth-child(even) .proj-media-col { order: 2; }
+.proj-entry:nth-child(even) .proj-content-col { order: 1; }
+.proj-media-col {
+  position: relative;
+  background: var(--dark2);
+  overflow: hidden;
+}
+/* GIF main */
+.proj-gif {
+  aspect-ratio: 16/9;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+.proj-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+.proj-entry:hover .proj-gif img { transform: scale(1.03); }
+.proj-gif-ph {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.5rem;
+}
+.pgp-icon {
+  width: 52px; height: 52px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.3);
+}
+.pgp-text {
+  font-family: var(--cond);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+  text-align: center;
+  line-height: 1.7;
+}
+/* Screenshot strip */
+.proj-shots {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--dark);
+}
+.proj-shot {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #0d0d0d;
+  position: relative;
+}
+.proj-shot img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.proj-shot:hover img { opacity: 1; }
+.proj-shot-ph {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--cond);
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.12);
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 0.5rem;
+}
+/* Content column */
+.proj-content-col {
+  background: var(--paper);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.proj-num-label {
+  font-family: var(--cond);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.proj-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+.proj-tag {
+  font-family: var(--cond);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--rule2);
+  color: var(--muted);
+}
+.proj-tag.hl { background: var(--orange); border-color: var(--orange); color: white; }
+h3.proj-name {
+  font-family: var(--head);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+.proj-logline {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+/* META TABLE */
+.proj-meta-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+  background: var(--rule);
+  margin-bottom: 1.2rem;
+}
+.pmt-cell {
+  background: var(--bg);
+  padding: 0.5rem 0.7rem;
+}
+.pmt-l { font-family: var(--cond); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.pmt-v { font-size: 0.88rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+/* KEY RESULT — high-visibility box */
+.proj-result {
+  background: var(--dark);
+  color: white;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+.pr-icon { color: var(--orange); font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1rem; }
+.pr-body { font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.7); }
+.pr-body strong { color: white; font-weight: 600; }
+/* BULLETS */
+.proj-bullets { list-style: none; margin-bottom: 1.2rem; }
+.proj-bullets li {
+  font-size: 0.9rem;
+  color: var(--ink2);
+  padding: 0.45rem 0 0.45rem 1.2rem;
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 400;
+  line-height: 1.65;
+}
+.proj-bullets li:last-child { border-bottom: none; }
+.proj-bullets li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--orange);
+  font-size: 0.7rem;
+  top: 0.55rem;
+}
+.proj-bullets li strong { color: var(--ink); font-weight: 600; }
+/* CASE STUDY TOGGLE */
+.cs-toggle {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: none; border: 1px solid var(--rule2);
+  padding: 0.55rem 1rem;
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: none;
+  transition: all 0.2s;
+  width: fit-content;
+  margin-top: auto;
+}
+.cs-toggle:hover { border-color: var(--orange); color: var(--orange); }
+.cs-toggle.open { border-color: var(--orange); color: var(--orange); }
+.cs-arrow { transition: transform 0.3s; font-size: 0.6rem; }
+.cs-toggle.open .cs-arrow { transform: rotate(90deg); }
+.case-expand { display: none; margin-top: 1rem; }
+.case-expand.open { display: block; }
+.case-rows { display: flex; flex-direction: column; gap: 1px; background: var(--rule); }
+.case-row { background: var(--paper); padding: 0.8rem 1rem; display: flex; gap: 0.8rem; }
+.cr-lbl {
+  font-family: var(--cond);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  width: 80px;
+  padding-top: 0.1rem;
+}
+.cr-lbl.int { color: #3B82F6; }
+.cr-lbl.proc { color: var(--muted); }
+.cr-lbl.chal { color: #EF4444; }
+.cr-lbl.sol { color: #22C55E; }
+.cr-lbl.out { color: var(--orange); }
+.cr-text { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+.cr-text strong { color: var(--ink); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════════ */
+#skills {
+  background: var(--dark);
+  padding: 6rem 5vw;
+}
+.skills-header { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.skills-header .section-marker .sm-label { color: rgba(255,255,255,0.3); }
+.sh-display {
+  font-family: var(--head);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.sh-display em { font-style: italic; color: var(--orange); }
+.sh-body { font-size: 0.95rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.85; }
+
+/* Skills matrix */
+.skills-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+.skill-card {
+  background: rgba(255,255,255,0.03);
+  padding: 1.5rem;
+  border-top: 2px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+.skill-card:hover { background: rgba(255,255,255,0.06); border-top-color: var(--orange); }
+.sc-name {
+  font-family: var(--cond);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 0.5rem;
+}
+.sc-desc { font-size: 0.9rem; color: rgba(255,255,255,0.3); line-height: 1.7; font-weight: 300; }
+
+/* Tools strip */
+.tools-strip {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-top: 3rem; padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.tool-pill {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3);
+  transition: all 0.15s;
+  cursor: none;
+}
+.tool-pill:hover { border-color: var(--orange); color: var(--orange); }
+
+/* ═══════════════════════════════════════════
+   EXPERIENCE
+═══════════════════════════════════════════ */
+#experience {
+  background: var(--paper);
+  padding: 6rem 5vw;
+  border-top: 1px solid var(--rule);
+}
+.exp-layout { display: grid; grid-template-columns: 240px 1fr; gap: 5rem; }
+.exp-sidebar .section-marker { margin-bottom: 2rem; }
+.exp-sidebar-title {
+  font-family: var(--head);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+.exp-sidebar-title em { font-style: italic; color: var(--orange); }
+.exp-sidebar p { font-size: 0.92rem; color: var(--muted); font-weight: 400; line-height: 1.85; }
+.exp-sidebar a {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 1.5rem;
+  font-family: var(--cond);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212,80,10,0.3);
+  padding-bottom: 0.2rem;
+  transition: border-color 0.2s;
+}
+.exp-sidebar a:hover { border-color: var(--orange); }
+/* Timeline */
+.exp-entries { display: flex; flex-direction: column; }
+.exp-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.exp-row:last-child { border-bottom: none; }
+.exp-row::before {
+  content: '';
+  position: absolute;
+  left: 95px; top: 0; bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+.exp-date {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  padding-top: 0.2rem;
+  text-align: right;
+}
+.exp-content { padding-left: 2rem; }
+.exp-role {
+  font-family: var(--cond);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.exp-company {
+  font-size: 0.8rem;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+.exp-li {
+  font-size: 0.9rem;
+  color: var(--ink2);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--rule);
+  padding-left: 1.1rem;
+  position: relative;
+  font-weight: 400;
+  line-height: 1.65;
+}
+.exp-li:last-of-type { border-bottom: none; }
+.exp-li::before { content: '—'; position: absolute; left: 0; color: var(--rule2); }
+.exp-li strong { color: var(--ink); font-weight: 600; }
+/* Tag strip */
+.exp-tag-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.8rem; }
+.exp-tag {
+  font-family: var(--cond);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════
+   AWARDS
+═══════════════════════════════════════════ */
+#awards {
+  background: var(--dark);
+  padding: 5rem 5vw;
+}
+.awards-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.aw-card {
+  background: rgba(255,255,255,0.02);
+  padding: 1.8rem 1.5rem;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+.aw-card:hover { border-top-color: var(--gold); background: rgba(255,255,255,0.04); }
+.aw-icon { font-size: 1.1rem; margin-bottom: 0.7rem; }
+.aw-name { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 0.25rem; line-height: 1.3; }
+.aw-org { font-family: var(--cond); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.28); text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+#contact {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 60vh;
+}
+.contact-left {
+  background: var(--orange);
+  padding: 6rem 4rem 6rem 5vw;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.contact-left::before {
+  content: '"';
+  position: absolute;
+  font-family: var(--head);
+  font-size: 30rem;
+  color: rgba(255,255,255,0.06);
+  bottom: -6rem; right: -3rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.cl-eyebrow {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.2rem;
+}
+.cl-title {
+  font-family: var(--head);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.cl-sub {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 380px;
+  font-weight: 300;
+  line-height: 1.8;
+}
+.contact-right {
+  background: var(--dark);
+  padding: 6rem 5vw 6rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cr-detail {
+  font-family: var(--cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 0.8rem;
+}
+.cr-email {
+  font-family: var(--head);
+  font-size: clamp(1.2rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  padding-bottom: 0.3rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.2s;
+  letter-spacing: -0.01em;
+}
+.cr-email:hover { border-color: var(--orange); }
+.cr-socials { display: flex; flex-direction: column; gap: 0.6rem; }
+.cr-soc {
+  font-family: var(--cond);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: color 0.2s;
+}
+.cr-soc:hover { color: var(--orange); }
+.cr-soc::before { content: '↗'; font-size: 0.7rem; }
+.cr-phone {
+  font-family: var(--cond);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.25);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+/* Resume CTA */
+.cr-resume-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  margin-top: 1.5rem;
+  background: var(--orange);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--cond);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+  cursor: none;
+  width: fit-content;
+}
+.cr-resume-btn:hover { background: var(--orange2); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.foot-mark {
+  font-family: var(--head);
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.foot-mark span { font-style: italic; color: var(--orange); }
+.foot-links { display: flex; gap: 1.5rem; }
+.foot-links a {
+  font-family: var(--cond);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.foot-links a:hover { color: var(--orange); }
+.foot-copy {
+  font-family: var(--cond);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rule2);
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.06s; }
+.reveal-d2 { transition-delay: 0.12s; }
+.reveal-d3 { transition-delay: 0.18s; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1000px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { border-left: none; border-top: 1px solid var(--rule); }
+  #about { grid-template-columns: 1fr; }
+  .about-photo-col { min-height: 320px; }
+  .about-text-col { padding: 3rem 5vw; }
+  .proj-entry { grid-template-columns: 1fr; }
+  .proj-entry:nth-child(even) .proj-media-col,
+  .proj-entry:nth-child(even) .proj-content-col { order: unset; }
+  .skills-header { grid-template-columns: 1fr; gap: 2rem; }
+  .skills-matrix { grid-template-columns: 1fr 1fr; }
+  .exp-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .exp-row { grid-template-columns: 80px 1fr; }
+  #contact { grid-template-columns: 1fr; }
+  .awards-strip { grid-template-columns: 1fr 1fr; }
+  #progress-rail { display: none; }
+}
+@media (max-width: 600px) {
+  .skills-matrix { grid-template-columns: 1fr; }
+  .awards-strip { grid-template-columns: 1fr; }
+  .about-cred-row { grid-template-columns: 1fr; }
+  .proj-meta-table { grid-template-columns: 1fr; }
+  .nav-right a:not(.nav-cta) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- PROGRESS RAIL -->
+<nav role="navigation" aria-label="Page sections">
+  <div id="progress-rail">
+    <a class="pr-item" href="#hero"><div class="pr-dot"></div><div class="pr-label">Intro</div></a>
+    <a class="pr-item" href="#about"><div class="pr-dot"></div><div class="pr-label">About</div></a>
+    <a class="pr-item" href="#projects"><div class="pr-dot"></div><div class="pr-label">Projects</div></a>
+    <a class="pr-item" href="#skills"><div class="pr-dot"></div><div class="pr-label">Skills</div></a>
+    <a class="pr-item" href="#experience"><div class="pr-dot"></div><div class="pr-label">Experience</div></a>
+    <a class="pr-item" href="#awards"><div class="pr-dot"></div><div class="pr-label">Awards</div></a>
+    <a class="pr-item" href="#contact"><div class="pr-dot"></div><div class="pr-label">Contact</div></a>
+  </div>
+</nav>
+
+<!-- TOP NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(244,240,232,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:1rem 5vw">
+  <a href="#hero" style="font-family:var(--head);font-size:1.05rem;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-0.01em">Pray <em style="font-style:italic;color:var(--orange)">Cristanto</em></a>
+  <div style="display:flex;align-items:center;gap:2rem">
+    <a href="#projects" style="font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Projects</a>
+    <a href="#experience" style="font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Experience</a>
+    <a href="#contact" style="font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--orange);color:white;text-decoration:none;padding:0.45rem 1.1rem;transition:background .2s" onmouseover="this.style.background='var(--orange2)'" onmouseout="this.style.background='var(--orange)'">Hire Me ↗</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="hero" style="display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:62px">
+  <!-- LEFT: IDENTITY -->
+  <div class="hero-left">
+    <div class="hero-eyebrow"><div class="he-line"></div><div class="he-text">Game Designer · Lampung, Indonesia</div></div>
+    <h1 class="hero-name">Pray<br><em>Cristanto</em></h1>
+    <div class="hero-role">Systems · Narrative · QA</div>
+    <p class="hero-desc">
+      Five years designing the <strong>invisible machinery</strong> inside commercial games — economies, branching choices, balancing systems — that reaches <strong>real players</strong> on real platforms.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-orange">See My Work ↓</a>
+      <a href="https://drive.google.com/file/d/1qbcQaEbSyIb17kkB8SyOmUsGzAD8J8VF/view" target="_blank" class="btn btn-ghost">Download CV</a>
+    </div>
+    <div class="avail-badge">Open to Freelance Work</div>
+  </div>
+
+  <!-- RIGHT: STATS PANEL -->
+  <div class="hero-right">
+    <div class="hero-stats-title">By the numbers — verified results</div>
+
+    <div class="stat-block featured">
+      <div class="sb-number">500<sup>K+</sup></div>
+      <div class="sb-label">Organic Downloads</div>
+      <div class="sb-detail">Across 3 shipped titles — zero paid acquisition</div>
+    </div>
+
+    <div class="stat-block">
+      <div class="sb-number">5<sup>+</sup></div>
+      <div class="sb-label">Years Active</div>
+      <div class="sb-detail">PT. Eternaldream Games International, 2019 – present</div>
+    </div>
+
+    <div class="stat-block">
+      <div class="sb-number">47</div>
+      <div class="sb-label">Choice Nodes Designed</div>
+      <div class="sb-detail">The Sun Shines Over Us — 6 verified endings, all accessible</div>
+    </div>
+
+    <div class="stat-block">
+      <div class="sb-number">100<sup>+</sup></div>
+      <div class="sb-label">Events Crafted</div>
+      <div class="sb-detail">Matchmaker Agency — each individually balanced and tested</div>
+    </div>
+
+    <div class="stat-block">
+      <div class="sb-number">2<sup>×</sup></div>
+      <div class="sb-label">Industry Recognition</div>
+      <div class="sb-detail">Google Indie Game Accelerator 2022 · Microsoft Xbox Camp 2024</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game <span class="marquee-sep">·</span> IGDX 2022</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer <span class="marquee-sep">·</span> Gameloft Indonesia 2023</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator <span class="marquee-sep">·</span> Alumni 2022</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp <span class="marquee-sep">·</span> Microsoft Alumni 2024</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 <span class="marquee-sep">·</span> International Finalist</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> 500,000+ Downloads <span class="marquee-sep">·</span> Organic Growth</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android <span class="marquee-sep">·</span> Shipped</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game <span class="marquee-sep">·</span> IGDX 2022</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer <span class="marquee-sep">·</span> Gameloft Indonesia 2023</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator <span class="marquee-sep">·</span> Alumni 2022</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp <span class="marquee-sep">·</span> Microsoft Alumni 2024</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 <span class="marquee-sep">·</span> International Finalist</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> 500,000+ Downloads <span class="marquee-sep">·</span> Organic Growth</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android <span class="marquee-sep">·</span> Shipped</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<section id="about" style="display:grid;grid-template-columns:360px 1fr;border-top:1px solid var(--rule)">
+  <!-- Photo -->
+  <div class="about-photo-col">
+    <img src="about-photo.jpg" alt="Pray Cristanto"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <div class="about-photo-empty" style="display:none">
+      <div class="ape-icon">👤</div>
+      <div class="ape-label">Add your photo:<br><strong>about-photo.jpg</strong><br>same folder as HTML</div>
+    </div>
+  </div>
+  <!-- Text -->
+  <div class="about-text-col">
+    <div class="section-marker reveal">
+      <div class="sm-num">02</div>
+      <div class="sm-rule"></div>
+      <div class="sm-label">About the Designer</div>
+    </div>
+    <div class="about-pull-quote reveal">
+      I design the <em>invisible systems</em> that make players feel something real — and stay up wondering why.
+    </div>
+    <div class="about-body">
+      <p class="reveal">
+        I'm <strong>Pray Cristanto</strong>, a Game Designer based in Lampung, Indonesia, with five years inside a professional studio. My career started as a programmer intern — I built and published a complete mobile game in one month. Then I moved into community management, where I learned how players actually behave (which is almost never what designers predict). Then into design, where both halves finally clicked.
+      </p>
+      <div class="about-callout reveal">
+        <div class="ac-text">"Most people think game design is about ideas. It's really about measurement. When a player says this felt unfair — there's a number somewhere that's wrong. I find that number."</div>
+        <div class="ac-attr">Pray Cristanto · Core Design Philosophy</div>
+      </div>
+      <p class="reveal">
+        My work has reached <strong>500K+ organic downloads</strong> across three commercial titles on PC, mobile, and Nintendo Switch. Google and Microsoft have selected me for accelerator programs — not based on pitch, but on what I've shipped. I was named <strong>Best Game Designer</strong> by Gameloft Indonesia in 2023.
+      </p>
+    </div>
+    <div class="about-cred-row reveal">
+      <div class="acr-item"><div class="acr-name">Google Indie Game Accelerator</div><div class="acr-org">Alumni · 2022</div></div>
+      <div class="acr-item"><div class="acr-name">Xbox Game Camp · Microsoft</div><div class="acr-org">Alumni · 2024</div></div>
+      <div class="acr-item"><div class="acr-name">Best Game Designer</div><div class="acr-org">Gameloft Indonesia · 2023</div></div>
+      <div class="acr-item"><div class="acr-name">Best Narrative Game</div><div class="acr-org">IGDX · 2022</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PROJECTS
+══════════════════════════════════ -->
+<section id="projects" style="background:var(--bg);padding:6rem 5vw;border-top:1px solid var(--rule)">
+
+  <div class="section-marker reveal">
+    <div class="sm-num">03</div><div class="sm-rule"></div><div class="sm-label">Selected Work — 3 Shipped Titles</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3rem">
+    <h2 style="font-family:var(--head);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--ink);letter-spacing:-0.03em;line-height:1" class="reveal">Three games.<br><em style="font-style:italic;color:var(--orange)">Real players.</em></h2>
+    <p style="font-size:0.88rem;color:var(--muted);font-weight:300;line-height:1.8" class="reveal">Every project below is available to download and play today. GIF shows live gameplay — screenshots show key design moments. Click "Full Case Study" to read the full design breakdown.</p>
+  </div>
+
+  <!-- RECRUITER SIGNAL -->
+  <div class="recruiter-signal reveal">
+    <div class="rs-label">Recruiter Checklist</div>
+    <div class="rs-items">
+      <div class="rs-item">Shipped on Steam</div>
+      <div class="rs-item">Nintendo Switch</div>
+      <div class="rs-item">iOS + Android</div>
+      <div class="rs-item">500K+ Downloads</div>
+      <div class="rs-item">Award-Winning</div>
+      <div class="rs-item">Licensed IP Work</div>
+      <div class="rs-item">Documented QA Process</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 1 -->
+  <div class="proj-entry reveal">
+    <div class="proj-media-col">
+      <div class="proj-gif">
+        <img src="tssou-gameplay.gif" alt="The Sun Shines Over Us — gameplay"
+             onerror="this.style.display='none'"/>
+        <div class="proj-gif-ph">
+          <div class="pgp-icon">▶</div>
+          <div class="pgp-text">Add file: <strong>tssou-gameplay.gif</strong><br>Same folder as this HTML</div>
+        </div>
+      </div>
+      <div class="proj-shots">
+        <div class="proj-shot"><img src="tssou-screen1.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">tssou-screen1.jpg</div></div>
+        <div class="proj-shot"><img src="tssou-screen2.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">tssou-screen2.jpg</div></div>
+        <div class="proj-shot"><img src="tssou-screen3.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">tssou-screen3.jpg</div></div>
+      </div>
+    </div>
+    <div class="proj-content-col">
+      <div class="proj-num-label">Project 01 / 03</div>
+      <div class="proj-tags">
+        <span class="proj-tag hl">Visual Novel</span>
+        <span class="proj-tag">Unity · C#</span>
+        <span class="proj-tag">PC · iOS · Android</span>
+      </div>
+      <h3 class="proj-name">The Sun Shines Over Us</h3>
+      <p class="proj-logline">Award-winning narrative game on mental health and bullying. Designed the complete branching choice architecture — 47 nodes, 6 verified endings.</p>
+      <div class="proj-meta-table">
+        <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Game Designer</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">~8 people</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Duration</div><div class="pmt-v">18 months</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Downloads</div><div class="pmt-v">500K+</div></div>
+      </div>
+      <div class="proj-result">
+        <div class="pr-icon">★</div>
+        <div class="pr-body"><strong>Best Narrative Game — IGDX 2022</strong> · Finalist LevelUP KL 2021 · Best Team Gameloft Indonesia 2023</div>
+      </div>
+      <ul class="proj-bullets">
+        <li>Designed <strong>47-node branching system</strong> across 6 endings — all verified accessible through 30+ natural playthroughs</li>
+        <li>Identified path lock-in sending <strong>80% of players to same 2 endings</strong> — rebalanced Act 1 weights to fix</li>
+        <li>Built community from zero, contributing to <strong>500K+ organic downloads</strong> with zero paid spend</li>
+      </ul>
+      <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
+      <div class="case-expand">
+        <div class="case-rows">
+          <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">All <strong>6 endings feel reachable</strong> through natural play — no guide, no dominant path.</div></div>
+          <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped <strong>47 choice nodes in Google Sheets</strong> with weighted values per ending path.</div></div>
+          <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>80% of playtesters hit the same 2 endings.</strong> Early choices locked the path before the midpoint.</div></div>
+          <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Redistributed Act 1 weights — shifted tension to mid-game. <strong>All 6 endings normalized.</strong></div></div>
+          <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Players reported <strong>"my choices actually mattered."</strong> 500K+ downloads, zero paid acquisition.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 -->
+  <div class="proj-entry reveal" style="margin-top:1px">
+    <div class="proj-media-col">
+      <div class="proj-gif">
+        <img src="matchmaker-gameplay.gif" alt="Matchmaker Agency — gameplay"
+             onerror="this.style.display='none'"/>
+        <div class="proj-gif-ph">
+          <div class="pgp-icon">▶</div>
+          <div class="pgp-text">Add file: <strong>matchmaker-gameplay.gif</strong><br>Same folder as this HTML</div>
+        </div>
+      </div>
+      <div class="proj-shots">
+        <div class="proj-shot"><img src="matchmaker-screen1.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">matchmaker-screen1.jpg</div></div>
+        <div class="proj-shot"><img src="matchmaker-screen2.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">matchmaker-screen2.jpg</div></div>
+        <div class="proj-shot"><img src="matchmaker-screen3.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">matchmaker-screen3.jpg</div></div>
+      </div>
+    </div>
+    <div class="proj-content-col">
+      <div class="proj-num-label">Project 02 / 03</div>
+      <div class="proj-tags">
+        <span class="proj-tag hl">Simulation</span>
+        <span class="proj-tag">Unity · Machination</span>
+        <span class="proj-tag">PC · Nintendo Switch</span>
+      </div>
+      <h3 class="proj-name">Matchmaker Agency</h3>
+      <p class="proj-logline">Casual simulation shipped on PC and Nintendo Switch. Designed 100+ hand-crafted events and a 30+ trait compatibility matrix — balanced across 3 full test cycles.</p>
+      <div class="proj-meta-table">
+        <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Lead Designer</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">6 people</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Events Built</div><div class="pmt-v">100+</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Traits Balanced</div><div class="pmt-v">30+</div></div>
+      </div>
+      <div class="proj-result">
+        <div class="pr-icon">★</div>
+        <div class="pr-body"><strong>Best Game Designer — Gameloft Indonesia 2023</strong> · Available on Steam and Nintendo Switch</div>
+      </div>
+      <ul class="proj-bullets">
+        <li>Identified "Adventurer" trait generating matches at <strong>3× expected rate</strong> — rebuilt scoring formula and rebalanced 40+ combinations</li>
+        <li>Redesigned event triggers so players engaged with all <strong>100+ events</strong> rather than skipping them</li>
+        <li>Documented all systems in Google Sheets for <strong>full team reference</strong> — zero tribal knowledge</li>
+      </ul>
+      <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
+      <div class="case-expand">
+        <div class="case-rows">
+          <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Make wait periods <strong>engaging, not empty.</strong> No single trait dominates.</div></div>
+          <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">100+ events using a content framework. Full <strong>30+ trait matrix</strong> in Google Sheets.</div></div>
+          <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text">Players skipping events entirely + <strong>"Adventurer" matching at 3× the expected rate.</strong></div></div>
+          <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Tied early events to familiar characters. <strong>Separated scoring formula — 40+ combos rebalanced.</strong></div></div>
+          <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Wait periods became a feature. <strong>No dominant strategies at ship.</strong> Launched PC + Switch.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 -->
+  <div class="proj-entry reveal" style="margin-top:1px">
+    <div class="proj-media-col">
+      <div class="proj-gif">
+        <img src="virgo-gameplay.gif" alt="Virgo and The Sparklings — gameplay"
+             onerror="this.style.display='none'"/>
+        <div class="proj-gif-ph">
+          <div class="pgp-icon">▶</div>
+          <div class="pgp-text">Add file: <strong>virgo-gameplay.gif</strong><br>Same folder as this HTML</div>
+        </div>
+      </div>
+      <div class="proj-shots">
+        <div class="proj-shot"><img src="virgo-screen1.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">virgo-screen1.jpg</div></div>
+        <div class="proj-shot"><img src="virgo-screen2.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">virgo-screen2.jpg</div></div>
+        <div class="proj-shot"><img src="virgo-screen3.jpg" alt="" onerror="this.style.display='none'"/><div class="proj-shot-ph">virgo-screen3.jpg</div></div>
+      </div>
+    </div>
+    <div class="proj-content-col">
+      <div class="proj-num-label">Project 03 / 03</div>
+      <div class="proj-tags">
+        <span class="proj-tag hl">Licensed IP</span>
+        <span class="proj-tag">Unity</span>
+        <span class="proj-tag">Mobile</span>
+        <span class="proj-tag">Bumi Langit</span>
+      </div>
+      <h3 class="proj-name">Virgo & The Sparklings</h3>
+      <p class="proj-logline">Official game tie-in for Bumi Langit's theatrical release. Adapted a beloved Indonesian comic IP into a mobile visual novel within strict licensed content constraints.</p>
+      <div class="proj-meta-table">
+        <div class="pmt-cell"><div class="pmt-l">Client</div><div class="pmt-v">Bumi Langit</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Platform</div><div class="pmt-v">Mobile</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Type</div><div class="pmt-v">Licensed IP</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Engine</div><div class="pmt-v">Unity</div></div>
+      </div>
+      <div class="proj-result">
+        <div class="pr-icon">★</div>
+        <div class="pr-body"><strong>Official Bumi Langit IP</strong> · Cross-media campaign for Indonesia's leading superhero movie release</div>
+      </div>
+      <ul class="proj-bullets">
+        <li>Designed <strong>dress-up mechanic</strong> ruleset and unlock logic — player agency without touching the protected narrative</li>
+        <li>Built and balanced <strong>point/progression system</strong> — all scenes verified against source material</li>
+        <li>Delivered complete design within <strong>licensed IP constraints</strong> for a major media company</li>
+      </ul>
+      <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
+      <div class="case-expand">
+        <div class="case-rows">
+          <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Satisfy <strong>fans and new players</strong> without distorting the licensed IP.</div></div>
+          <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Designed dress-up ruleset, balanced point system, <strong>verified all scenes against source comic.</strong></div></div>
+          <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>The story is fixed.</strong> Every mechanic must create agency without altering narrative.</div></div>
+          <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Focused design on <strong>spaces the IP didn't define</strong> — between-scene moments + customization.</div></div>
+          <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Complete licensed game delivered for <strong>Bumi Langit</strong>, one of Indonesia's top media companies.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SKILLS
+══════════════════════════════════ -->
+<section id="skills">
+  <div class="skills-header" style="padding:6rem 5vw 0">
+    <div>
+      <div class="section-marker reveal" style="margin-bottom:1.5rem">
+        <div class="sm-num" style="color:rgba(255,255,255,0.4)">04</div>
+        <div class="sm-rule" style="opacity:0.2"></div>
+        <div class="sm-label" style="color:rgba(255,255,255,0.25)">Capabilities</div>
+      </div>
+    </div>
+    <div>
+      <div class="sh-display reveal">What I<br><em>bring.</em></div>
+      <p class="sh-body reveal" style="margin-top:1rem">Six core disciplines, built across three shipped commercial titles. Not theoretical — applied and documented.</p>
+    </div>
+  </div>
+  <div class="skills-matrix" style="margin:3rem 5vw 0;padding-bottom:3rem">
+    <div class="skill-card reveal reveal-d1"><div class="sc-name">Systems Design</div><div class="sc-desc">Economy balancing, trait matrices, progression loops — built in Machination and Google Sheets before touching Unity</div></div>
+    <div class="skill-card reveal reveal-d2"><div class="sc-name">Narrative Mechanics</div><div class="sc-desc">Branching choice architecture where every player decision carries measurable weight. 47-node systems designed and shipped</div></div>
+    <div class="skill-card reveal reveal-d3"><div class="sc-name">Quality Assurance</div><div class="sc-desc">Structured playtesting with documented test cycles — hypothesis, measurement method, resolution criteria per iteration</div></div>
+    <div class="skill-card reveal reveal-d1"><div class="sc-name">Content Review</div><div class="sc-desc">Visual consistency, narrative fidelity, rule-based classification — applied daily across 3 shipped titles and community management</div></div>
+    <div class="skill-card reveal reveal-d2"><div class="sc-name">UX Design</div><div class="sc-desc">Player-first interface thinking — if a mechanic needs a tutorial, the mechanic needs redesigning</div></div>
+    <div class="skill-card reveal reveal-d3"><div class="sc-name">Unity + C#</div><div class="sc-desc">Full pipeline from design spec to prototype. Can build light features independently — not just spec them for a programmer</div></div>
+  </div>
+  <div class="tools-strip" style="padding:0 5vw 5rem">
+    <span class="tool-pill">Unity</span><span class="tool-pill">C#</span><span class="tool-pill">Machination</span><span class="tool-pill">Google Sheets</span><span class="tool-pill">Miro</span><span class="tool-pill">Adobe Premiere</span><span class="tool-pill">Photoshop</span><span class="tool-pill">Audacity</span><span class="tool-pill">Corel Draw</span><span class="tool-pill">Discord</span><span class="tool-pill">Steam</span><span class="tool-pill">Play Store</span><span class="tool-pill">App Store</span><span class="tool-pill">Nintendo Switch</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     EXPERIENCE
+══════════════════════════════════ -->
+<section id="experience">
+  <div class="exp-inner">
+    <div class="exp-layout">
+      <div class="exp-sidebar">
+        <div class="section-marker reveal"><div class="sm-num">05</div><div class="sm-rule"></div><div class="sm-label">Work History</div></div>
+        <div class="exp-sidebar-title reveal">Where<br>I've <em>been.</em></div>
+        <p class="reveal">Single employer, 5 years, three distinct roles — programmer, community manager, game designer. Each one built on the last.</p>
+        <a href="https://drive.google.com/file/d/1qbcQaEbSyIb17kkB8SyOmUsGzAD8J8VF/view" target="_blank" class="reveal">Download Full CV ↗</a>
+      </div>
+      <div class="exp-entries">
+        <div class="exp-row reveal">
+          <div class="exp-date">Aug 2021<br>— Present</div>
+          <div class="exp-content current">
+            <div class="exp-role">Game Designer</div>
+            <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
+            <div class="exp-li">Shipped <strong>3 commercial titles</strong> across PC, mobile, and Nintendo Switch as systems + narrative designer</div>
+            <div class="exp-li">Led all balance design on Matchmaker Agency as <strong>lead designer from mid-production</strong></div>
+            <div class="exp-li">Designed 47-node branching system — <strong>identified and resolved path lock-in</strong> sending 80% of players to same 2 of 6 endings</div>
+            <div class="exp-li">Ran structured playtesting with documented cycles — <strong>every iteration has a hypothesis and resolution criteria</strong></div>
+            <div class="exp-tag-row"><span class="exp-tag">Systems</span><span class="exp-tag">QA</span><span class="exp-tag">Narrative</span><span class="exp-tag">Unity</span><span class="exp-tag">Machination</span></div>
+          </div>
+        </div>
+        <div class="exp-row reveal">
+          <div class="exp-date">Jan 2020<br>— Jul 2022</div>
+          <div class="exp-content">
+            <div class="exp-role">Community Manager</div>
+            <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
+            <div class="exp-li">Built player community from <strong>zero to 500K+ organic downloads</strong> across X, Instagram, Facebook, Discord</div>
+            <div class="exp-li">Classified and reviewed user-generated content daily — <strong>consistent rule-based decisions</strong> mirroring content evaluation roles</div>
+            <div class="exp-li">Delivered structured player feedback analysis directly informing <strong>post-launch design updates</strong></div>
+            <div class="exp-tag-row"><span class="exp-tag">Community</span><span class="exp-tag">Content Review</span><span class="exp-tag">Premiere</span><span class="exp-tag">Photoshop</span></div>
+          </div>
+        </div>
+        <div class="exp-row reveal">
+          <div class="exp-date">Jun 2019<br>— Jan 2020</div>
+          <div class="exp-content">
+            <div class="exp-role">Programmer Intern + QA</div>
+            <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
+            <div class="exp-li">Ran structured manual testing — documented bugs against expected behavior using <strong>defined test protocols</strong></div>
+            <div class="exp-li"><strong>Built and published a complete mobile game</strong> on Google Play Store within one month, independently</div>
+            <div class="exp-tag-row"><span class="exp-tag">Unity</span><span class="exp-tag">C#</span><span class="exp-tag">Manual QA</span><span class="exp-tag">Android</span></div>
+          </div>
+        </div>
+        <!-- Education -->
+        <div class="exp-row reveal">
+          <div class="exp-date">2016–2021</div>
+          <div class="exp-content">
+            <div class="exp-role">Education</div>
+            <div class="exp-company" style="color:var(--muted)">Indonesia Teknokrat University · Lampung</div>
+            <div class="exp-li"><strong>Bachelor of Informatics Engineering</strong> · GPA 3.48 / 4.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     AWARDS
+══════════════════════════════════ -->
+<section id="awards" style="background:var(--dark);padding:5rem 5vw">
+  <div class="section-marker reveal" style="margin-bottom:2.5rem">
+    <div class="sm-num" style="color:rgba(255,255,255,0.4)">06</div>
+    <div class="sm-rule" style="opacity:0.2"></div>
+    <div class="sm-label" style="color:rgba(255,255,255,0.25)">Recognition</div>
+  </div>
+  <div class="awards-strip">
+    <div class="aw-card reveal reveal-d1"><div class="aw-icon">🚀</div><div class="aw-name">Google Indie Game Accelerator Alumni</div><div class="aw-org">Google · 2022</div></div>
+    <div class="aw-card reveal reveal-d2"><div class="aw-icon">💡</div><div class="aw-name">Xbox Game Camp Alumni</div><div class="aw-org">Microsoft · 2024</div></div>
+    <div class="aw-card reveal reveal-d3"><div class="aw-icon">🏆</div><div class="aw-name">Best Game Designer</div><div class="aw-org">Gameloft Indonesia · 2023</div></div>
+    <div class="aw-card reveal reveal-d4" style="transition-delay:0.24s"><div class="aw-icon">🎖️</div><div class="aw-name">Best Narrative Game</div><div class="aw-org">IGDX · 2022</div></div>
+    <div class="aw-card reveal reveal-d1"><div class="aw-icon">🌏</div><div class="aw-name">International Finalist</div><div class="aw-org">LevelUP KL · 2021</div></div>
+    <div class="aw-card reveal reveal-d2"><div class="aw-icon">🎯</div><div class="aw-name">Best Pitch</div><div class="aw-org">Selasar Game Design POV · 2023</div></div>
+    <div class="aw-card reveal reveal-d3"><div class="aw-icon">📐</div><div class="aw-name">Foundations of UX Design</div><div class="aw-org">Coursera</div></div>
+    <div class="aw-card reveal reveal-d4" style="transition-delay:0.24s"><div class="aw-icon">🌟</div><div class="aw-name">Future of Game Design</div><div class="aw-org">MDEC Malaysia</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section id="contact" style="display:grid;grid-template-columns:1fr 1fr;min-height:60vh">
+  <div class="contact-left">
+    <div class="cl-eyebrow">07 / Let's Work Together</div>
+    <div class="cl-title">Ready to<br>build something.</div>
+    <p class="cl-sub">Available for freelance game design, QA testing, and content evaluation. Remote-first. I respond within 24 hours.</p>
+  </div>
+  <div class="contact-right">
+    <div class="cr-detail">Primary Contact</div>
+    <a class="cr-email" href="mailto:praycristanto@gmail.com">praycristanto@gmail.com</a>
+    <div class="cr-socials">
+      <a class="cr-soc" href="https://linkedin.com/in/praycristanto" target="_blank">LinkedIn</a>
+      <a class="cr-soc" href="https://x.com/praycristanto" target="_blank">X / Twitter</a>
+      <a class="cr-soc" href="https://instagram.com/praycristan" target="_blank">Instagram</a>
+      <a class="cr-soc" href="https://sites.google.com/view/prayportfolio" target="_blank">Google Sites Portfolio</a>
+    </div>
+    <a class="cr-resume-btn" href="https://drive.google.com/file/d/1qbcQaEbSyIb17kkB8SyOmUsGzAD8J8VF/view" target="_blank">↗ Download Full Resume PDF</a>
+    <div class="cr-phone">+62 822 7911 7619 · Lampung, Indonesia · Open to remote worldwide</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-mark">Pray <span>Cristanto</span></div>
+  <div class="foot-links">
+    <a href="#hero">Top</a><a href="#projects">Projects</a><a href="#about">About</a>
+    <a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </div>
+  <div class="foot-copy">Game Designer · Lampung, ID · Available for Remote Work</div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+function animRing(){
+  rx += (mx-rx)*0.1; ry += (my-ry)*0.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,[onclick]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='52px';ring.style.height='52px';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';});
+});
+
+/* ── SCROLL REVEAL ── */
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(e=>{
+  e.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('visible'); obs.unobserve(x.target); } });
+},{threshold:0.07});
+reveals.forEach(el=>obs.observe(el));
+
+/* ── PROGRESS RAIL ── */
+const sections = ['hero','about','projects','skills','experience','awards','contact'];
+const railItems = document.querySelectorAll('.pr-item');
+window.addEventListener('scroll',()=>{
+  let cur2='hero';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && window.scrollY >= el.offsetTop - 200) cur2=id;
+  });
+  railItems.forEach(item=>{
+    const href=item.getAttribute('href').replace('#','');
+    item.classList.toggle('active', href===cur2);
+  });
+},{passive:true});
+
+/* ── CASE STUDY TOGGLE ── */
+function toggleCS(btn){
+  const body = btn.nextElementSibling;
+  const open = body.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.querySelector('.cs-arrow').textContent = open ? '▼' : '▶';
+  btn.childNodes.forEach(n=>{
+    if(n.nodeType===3 && n.textContent.trim())
+      n.textContent = open ? ' Close Case Study' : ' Full Case Study';
+  });
+}
+</script>
+</body>
+</html>
