@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pray Cristanto — Game Designer</title>
+<meta name="description" content="Pray Cristanto — Game Designer. 500K+ downloads. Google & Microsoft alumni. Available for freelance."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#111009;--card:#1A1814;--border:#2E2B22;--text:#E8E2D8;
+  --muted:#6B6558;--dim:#3D3A30;--orange:#D4500A;--orange2:#F06828;
+  --gold:#C49A2E;--green:#2E7A46;
+  --head:'Playfair Display',Georgia,serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.75;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;width:600px;height:600px;background:radial-gradient(circle,rgba(212,80,10,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+.hub{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1.5rem;max-width:520px;margin:0 auto}
+.avail{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(46,122,70,0.12);border:1px solid rgba(46,122,70,0.28);color:#4ABA72;padding:0.35rem 0.9rem;border-radius:100px;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.8rem;animation:fadeDown 0.5s ease both}
+.avail::before{content:'';width:6px;height:6px;background:#4ABA72;border-radius:50%;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hub-name{font-family:var(--head);font-size:clamp(2.8rem,10vw,4.2rem);font-weight:900;color:var(--text);letter-spacing:-0.03em;line-height:1;text-align:center;margin-bottom:0.4rem;animation:fadeDown 0.5s 0.05s ease both}
+.hub-name em{font-style:italic;color:var(--orange)}
+.hub-role{font-family:var(--cond);font-size:0.82rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:1.5rem;animation:fadeDown 0.5s 0.1s ease both}
+.hub-rule{width:40px;height:2px;background:var(--orange);margin:0 auto 1.8rem;animation:fadeDown 0.5s 0.12s ease both}
+.stats-row{display:flex;gap:0;border:1px solid var(--border);margin-bottom:2.5rem;width:100%;animation:fadeDown 0.5s 0.15s ease both}
+.stat{flex:1;padding:0.8rem 0.5rem;border-right:1px solid var(--border);text-align:center;display:flex;flex-direction:column;gap:0.2rem}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--head);font-size:1.4rem;font-weight:900;color:var(--text);letter-spacing:-0.04em;line-height:1}
+.stat-n sup{font-size:0.6em;color:var(--orange)}
+.stat-l{font-family:var(--cond);font-size:0.55rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.links{display:flex;flex-direction:column;gap:0.6rem;width:100%;margin-bottom:2rem}
+.hub-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:border-color 0.2s,background 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.hub-link::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--orange);transform:scaleY(0);transition:transform 0.2s;transform-origin:center}
+.hub-link:hover{border-color:var(--orange);background:rgba(212,80,10,0.06);transform:translateX(4px)}
+.hub-link:hover::before{transform:scaleY(1)}
+.hub-link.primary{border-color:var(--orange);background:rgba(212,80,10,0.08)}
+.hub-link.primary::before{transform:scaleY(1)}
+.hl-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--border);flex-shrink:0;font-size:0.95rem;transition:background 0.2s}
+.hub-link.primary .hl-icon{background:var(--orange)}
+.hub-link:hover .hl-icon{background:rgba(212,80,10,0.25)}
+.hub-link.primary:hover .hl-icon{background:var(--orange2)}
+.hl-text{flex:1}
+.hl-title{font-family:var(--cond);font-size:0.88rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);margin-bottom:0.15rem;line-height:1.2}
+.hl-sub{font-family:var(--cond);font-size:0.68rem;font-weight:600;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase}
+.hl-arrow{font-family:var(--cond);font-size:0.75rem;color:var(--muted);transition:color 0.2s,transform 0.2s;flex-shrink:0}
+.hub-link:hover .hl-arrow{color:var(--orange);transform:translate(3px,-2px)}
+.links-label{font-family:var(--cond);font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);margin:0.6rem 0 0.2rem;padding-left:0.2rem}
+.hub-link:nth-child(1){animation:fadeUp 0.45s 0.2s ease both}
+.hub-link:nth-child(2){animation:fadeUp 0.45s 0.26s ease both}
+.hub-link:nth-child(3){animation:fadeUp 0.45s 0.32s ease both}
+.hub-link:nth-child(4){animation:fadeUp 0.45s 0.38s ease both}
+.hub-link:nth-child(5){animation:fadeUp 0.45s 0.44s ease both}
+.hub-link:nth-child(6){animation:fadeUp 0.45s 0.50s ease both}
+.hub-link:nth-child(7){animation:fadeUp 0.45s 0.56s ease both}
+.hub-link:nth-child(8){animation:fadeUp 0.45s 0.62s ease both}
+.social-row{display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;animation:fadeUp 0.45s 0.65s ease both}
+.soc{display:inline-flex;align-items:center;gap:0.4rem;background:var(--card);border:1px solid var(--border);color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;font-family:var(--cond);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s}
+.soc:hover{border-color:var(--orange);color:var(--orange)}
+.hub-creds{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;animation:fadeUp 0.45s 0.7s ease both}
+.cred-badge{display:inline-flex;align-items:center;gap:0.4rem;background:transparent;border:1px solid var(--border);color:var(--muted);padding:0.35rem 0.75rem;font-family:var(--cond);font-size:0.64rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.cb-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.hub-location{font-family:var(--cond);font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);text-align:center;animation:fadeUp 0.45s 0.75s ease both}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="hub">
+  <div class="avail">Available for Freelance Work</div>
+  <h1 class="hub-name">Pray <em>Cristanto</em></h1>
+  <div class="hub-role">Game Designer · QA · Content Reviewer</div>
+  <div class="hub-rule"></div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n">500<sup>K+</sup></div><div class="stat-l">Downloads</div></div>
+    <div class="stat"><div class="stat-n">5<sup>+</sup></div><div class="stat-l">Years</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Titles Shipped</div></div>
+    <div class="stat"><div class="stat-n">2<sup>x</sup></div><div class="stat-l">G + MS Alumni</div></div>
+  </div>
+  <div class="links">
+    <a class="hub-link primary" href="editorial_portfolio.html">
+      <div class="hl-icon">🎮</div>
+      <div class="hl-text"><div class="hl-title">Game Design Portfolio</div><div class="hl-sub">3 shipped titles · Systems · Narrative · QA</div></div>
+      <div class="hl-arrow">↗</div>
+    </a>
+    <div class="links-label">Portfolios</div>
+    <a class="hub-link" href="eva_index.html">
+      <div class="hl-icon">⚡</div>
+      <div class="hl-text"><div class="hl-title">Interactive Portfolio</div><div class="hl-sub">Full multi-page site · Case studies · Story</div></div>
+      <div class="hl-arrow">↗</div>
+    </a>
+    <a class="hub-link" href="https://sites.google.com/view/prayportfolio/home" target="_blank">
+      <div class="hl-icon">🌐</div>
+      <div class="hl-text"><div class="hl-title">Google Sites Portfolio</div><div class="hl-sub">Original portfolio · Project deep-dives</div></div>
+      <div class="hl-arrow">↗</div>
+    </a>
+    <div class="links-label">Documents</div>
+    <a class="hub-link" href="https://drive.google.com/file/d/1qbcQaEbSyIb17kkB8SyOmUsGzAD8J8VF/view" target="_blank">
+      <div class="hl-icon">📄</div>
+      <div class="hl-text"><div class="hl-title">Download Resume / CV</div><div class="hl-sub">PDF · ATS-optimized · Updated 2025</div></div>
+      <div class="hl-arrow">↗</div>
+    </a>
+    <div class="links-label">Contact</div>
+    <a class="hub-link" href="mailto:praycristanto@gmail.com">
+      <div class="hl-icon">✉️</div>
+      <div class="hl-text"><div class="hl-title">Send Me an Email</div><div class="hl-sub">praycristanto@gmail.com · Reply within 24h</div></div>
+      <div class="hl-arrow">↗</div>
+    </a>
+    <a class="hub-link" href="https://linkedin.com/in/praycristanto" target="_blank">
+      <div class="hl-icon">💼</div>
+      <div class="hl-text"><div class="hl-title">LinkedIn Profile</div><div class="hl-sub">Work history · Endorsements · Connect</div></div>
+      <div class="hl-arrow">↗</div>
+    </a>
+  </div>
+  <div class="social-row">
+    <a class="soc" href="https://x.com/praycristanto" target="_blank">𝕏 Twitter</a>
+    <a class="soc" href="https://instagram.com/praycristan" target="_blank">Instagram</a>
+    <a class="soc" href="https://facebook.com/profile.php?id=100012085545322" target="_blank">Facebook</a>
+  </div>
+  <div class="hub-creds">
+    <div class="cred-badge"><div class="cb-dot"></div>Google IGA Alumni 2022</div>
+    <div class="cred-badge"><div class="cb-dot"></div>Xbox Game Camp 2024</div>
+    <div class="cred-badge"><div class="cb-dot"></div>Best Game Designer 2023</div>
+    <div class="cred-badge"><div class="cb-dot"></div>Best Narrative IGDX 2022</div>
+  </div>
+  <div class="hub-location">Lampung, Indonesia · Open to Remote Work Worldwide</div>
+</div>
+</body>
+</html>
