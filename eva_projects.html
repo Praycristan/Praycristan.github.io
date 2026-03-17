@@ -123,6 +123,9 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.reveal{animation:revealFallback 0s 1.5s forwards}
+.reveal.visible{animation:none}
+@keyframes revealFallback{to{opacity:1;transform:translateY(0)}}
 @media(max-width:768px){.case-grid{grid-template-columns:1fr}.proj-meta-bar{flex-direction:column;width:100%}.proj-meta-item{border-right:none;border-bottom:1px solid var(--border)}.nav-links{display:none}}
 </style>
 </head>
@@ -335,7 +338,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem
       <span class="proj-tag">Licensed IP</span>
       <span class="proj-tag amber">Mobile / Cross-media</span>
     </div>
-    <h2 class="proj-title">VIRGO &<br>THE SPARKLINGS</h2>
+    <h2 class="proj-title">VIRGO &amp;<br>THE SPARKLINGS</h2>
     <p class="proj-subtitle">Official game tie-in for the Bumi Langit movie. Adapted a beloved Indonesian comic IP into a mobile visual novel with a custom dress-up system.</p>
   </div>
   <div class="proj-meta-bar reveal">
@@ -439,7 +442,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem
 
 <script>
 const els=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.08});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.01,rootMargin:'0px 0px -40px 0px'});
 els.forEach(el=>obs.observe(el));
 
 function toggleCase(btn){
