@@ -17,7 +17,7 @@
   --cond:'Barlow Condensed',sans-serif;
   --body:'Barlow',sans-serif;
 }
-html{zoom:1.5;scroll-behavior:smooth}
+html{zoom:1.2;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.8;overflow-x:hidden}
 
 /* ── PROGRESS RAIL ── */
@@ -125,8 +125,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18p
 .pgp-text{font-family:var(--cond);font-size:0.62rem;color:rgba(255,255,255,0.2);letter-spacing:0.08em;text-align:center;line-height:1.7}
 
 /* Screenshots — always 3 cols, fills space, no gaps */
-.proj-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--dark);flex-shrink:0}
-.proj-shot{aspect-ratio:16/10;overflow:hidden;background:#111;position:relative;cursor:zoom-in}
+.proj-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#000;flex-shrink:0}
+.proj-shot{aspect-ratio:16/10;overflow:hidden;background:#0a0a0a;position:relative;cursor:zoom-in}
 .proj-shot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.78;transition:opacity 0.2s,transform 0.3s}
 .proj-shot:hover img{opacity:1;transform:scale(1.06)}
 .proj-shot::after{content:'⊕';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:1.5rem;color:white;pointer-events:none;transition:transform 0.2s;text-shadow:0 0 8px rgba(0,0,0,0.6)}
@@ -192,38 +192,45 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.4rem,2.2vw,2rem);font-wei
 .exp-sidebar a:hover{border-color:var(--orange)}
 .exp-entries{display:flex;flex-direction:column}
 
-/* 3-column: [date 90px] [1px divider] [content flex] */
+/* 3-column: [date 90px] [gap 24px for line] [content flex] */
 .exp-row{
   display:grid;
-  grid-template-columns:90px 1px 1fr;
+  grid-template-columns:90px 1fr;
   gap:0;
   padding:2rem 0;
   border-bottom:1px solid var(--rule);
-  align-items:start;
+  position:relative;
 }
 .exp-row:last-child{border-bottom:none}
+/* Vertical line drawn as a pseudo on the row itself */
+.exp-row::after{
+  content:'';
+  position:absolute;
+  left:102px;
+  top:0; bottom:0;
+  width:1px;
+  background:var(--rule);
+}
 
 .exp-date{
   font-family:var(--cond);font-size:0.68rem;font-weight:600;
   color:var(--muted);letter-spacing:0.05em;line-height:1.6;
-  padding-top:0.15rem;text-align:right;padding-right:1.2rem;
+  padding-top:0.15rem;text-align:right;padding-right:1rem;
+  position:relative;z-index:1;
 }
-/* The vertical line — exactly 1px wide, full row height */
-.exp-sep{
-  width:1px;background:var(--rule);
-  align-self:stretch;position:relative;
-  flex-shrink:0;
-}
-/* Orange dot at the top of each row's separator */
-.exp-sep::before{
+/* Hide the old sep element */
+.exp-sep{display:none}
+/* Orange dot on the line */
+.exp-row::before{
   content:'';
-  position:absolute;top:0.2rem;left:50%;
-  transform:translateX(-50%);
+  position:absolute;
+  left:99px; top:2.25rem;
   width:8px;height:8px;border-radius:50%;
   background:var(--orange);
   border:2px solid var(--paper);
+  z-index:2;
 }
-.exp-content{padding-left:1.6rem}
+.exp-content{padding-left:2rem;position:relative;z-index:1}
 .exp-role{font-family:var(--cond);font-size:1.05rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);margin-bottom:0.15rem}
 .exp-company{font-size:0.82rem;color:var(--orange);font-weight:600;margin-bottom:0.7rem}
 .exp-li{font-size:0.9rem;color:var(--ink2);padding:0.4rem 0 0.4rem 1rem;position:relative;border-bottom:1px solid var(--rule);font-weight:400;line-height:1.7}
@@ -308,7 +315,9 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
   .proj-entry:nth-child(even) .proj-content-col{order:unset}
   .skills-header{grid-template-columns:1fr;gap:1.5rem}
   .skills-matrix{grid-template-columns:1fr 1fr}
-  .exp-row{grid-template-columns:75px 1px 1fr}
+  .exp-row{grid-template-columns:75px 1fr}
+  .exp-row::after{left:87px}
+  .exp-row::before{left:84px}
 }
 @media(max-width:540px){
   html{zoom:1}
@@ -317,9 +326,9 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
   .awards-strip{grid-template-columns:1fr}
   .about-cred-row{grid-template-columns:1fr}
   .proj-meta-table{grid-template-columns:1fr}
-  /* On mobile: stack date above content, hide sep */
+  /* On mobile: stack date above content, hide timeline line */
   .exp-row{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:0}
-  .exp-sep{display:none}
+  .exp-row::after,.exp-row::before{display:none}
   .exp-date{text-align:left;padding-right:0;padding-bottom:0.4rem;border-bottom:2px solid var(--orange);margin-bottom:0.8rem}
   .exp-content{padding-left:0}
   #contact{grid-template-columns:1fr}
@@ -660,7 +669,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
 
       <div class="exp-row reveal">
         <div class="exp-date">Aug 2021<br>— Jan 2026</div>
-        <div class="exp-sep"></div>
         <div class="exp-content">
           <div class="exp-role">Game Designer</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
@@ -674,7 +682,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
 
       <div class="exp-row reveal">
         <div class="exp-date">Jan 2020<br>— Jul 2022</div>
-        <div class="exp-sep"></div>
         <div class="exp-content">
           <div class="exp-role">Community Manager</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
@@ -687,7 +694,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
 
       <div class="exp-row reveal">
         <div class="exp-date">Jun 2019<br>— Jan 2020</div>
-        <div class="exp-sep"></div>
         <div class="exp-content">
           <div class="exp-role">Programmer Intern + QA</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
@@ -699,7 +705,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
 
       <div class="exp-row reveal">
         <div class="exp-date">2016–2021</div>
-        <div class="exp-sep"></div>
         <div class="exp-content">
           <div class="exp-role">Education</div>
           <div class="exp-company" style="color:var(--muted)">Indonesia Teknokrat University · Lampung</div>
@@ -739,7 +744,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
   </div>
   <div class="contact-right">
     <div class="cr-detail">Primary Contact</div>
-    <a class="cr-email" href="mailto:praycristanto@gmail.com">praycristanto@gmail.com</a>
+    <a class="cr-email" href="/cdn-cgi/l/email-protection#e79795869e84958e949386899388a7808a868e8bc984888a"><span class="__cf_email__" data-cfemail="bacac8dbc3d9c8d3c9cedbd4ced5faddd7dbd3d694d9d5d7">[email&#160;protected]</span></a>
     <div class="cr-socials">
       <a class="cr-soc" href="https://linkedin.com/in/praycristanto" target="_blank">LinkedIn</a>
       <a class="cr-soc" href="https://x.com/praycristanto" target="_blank">X / Twitter</a>
@@ -768,7 +773,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.4rem 4vw;
   <div id="lightbox-caption"></div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── SCROLL REVEAL ── */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
@@ -811,12 +816,4 @@ function openLightbox(shotEl, caption) {
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeLightboxBg(e) {
-  if(e.target === document.getElementById('lightbox')) closeLightbox();
-}
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
-</script>
-</body>
-</html>
+  docu
