@@ -549,12 +549,14 @@ nav {
 }
 .rs-item::before { content: '✓'; font-size: 0.7rem; }
 
+/* Project list wrapper — keeps nth-child counting correct */
+.proj-list { display: flex; flex-direction: column; gap: 1px; }
+
 /* PROJECT CARD — Full layout */
 .proj-entry {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  margin-bottom: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
 }
@@ -1127,6 +1129,13 @@ footer {
 .reveal-d2 { transition-delay: 0.12s; }
 .reveal-d3 { transition-delay: 0.18s; }
 
+/* Safety net: if JS fails or observer doesn't fire, show everything after 1.5s */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { animation: revealSafe 0s 1.5s forwards; }
+  .reveal.visible { animation: none; }
+}
+@keyframes revealSafe { to { opacity: 1; transform: translateY(0); } }
+
 /* ═══════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════ */
@@ -1137,8 +1146,8 @@ footer {
   .about-photo-col { min-height: 320px; }
   .about-text-col { padding: 3rem 5vw; }
   .proj-entry { grid-template-columns: 1fr; }
-  .proj-entry:nth-child(even) .proj-media-col,
-  .proj-entry:nth-child(even) .proj-content-col { order: unset; }
+  .proj-list .proj-entry:nth-child(even) .proj-media-col,
+  .proj-list .proj-entry:nth-child(even) .proj-content-col { order: unset; }
   .skills-header { grid-template-columns: 1fr; gap: 2rem; }
   .skills-matrix { grid-template-columns: 1fr 1fr; }
   .exp-layout { grid-template-columns: 1fr; gap: 3rem; }
@@ -1332,6 +1341,9 @@ footer {
     </div>
   </div>
 
+  <!-- Projects wrapper — nth-child counts from here so alternating works correctly -->
+  <div class="proj-list">
+
   <!-- PROJECT 1 -->
   <div class="proj-entry reveal">
     <div class="proj-media-col">
@@ -1387,7 +1399,7 @@ footer {
   </div>
 
   <!-- PROJECT 2 -->
-  <div class="proj-entry reveal" style="margin-top:1px">
+  <div class="proj-entry reveal">
     <div class="proj-media-col">
       <div class="proj-gif">
         <img src="matchmaker-gameplay.gif" alt="Matchmaker Agency — gameplay"
@@ -1441,7 +1453,7 @@ footer {
   </div>
 
   <!-- PROJECT 3 -->
-  <div class="proj-entry reveal" style="margin-top:1px">
+  <div class="proj-entry reveal">
     <div class="proj-media-col">
       <div class="proj-gif">
         <img src="virgo-gameplay.gif" alt="Virgo and The Sparklings — gameplay"
@@ -1465,7 +1477,7 @@ footer {
         <span class="proj-tag">Mobile</span>
         <span class="proj-tag">Bumi Langit</span>
       </div>
-      <h3 class="proj-name">Virgo & The Sparklings</h3>
+      <h3 class="proj-name">Virgo &amp; The Sparklings</h3>
       <p class="proj-logline">Official game tie-in for Bumi Langit's theatrical release. Adapted a beloved Indonesian comic IP into a mobile visual novel within strict licensed content constraints.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Client</div><div class="pmt-v">Bumi Langit</div></div>
@@ -1494,6 +1506,8 @@ footer {
       </div>
     </div>
   </div>
+
+  </div><!-- /proj-list -->
 </section>
 
 <!-- ══════════════════════════════════
@@ -1661,7 +1675,7 @@ document.querySelectorAll('a,button,[onclick]').forEach(el=>{
 const reveals = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver(e=>{
   e.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('visible'); obs.unobserve(x.target); } });
-},{threshold:0.07});
+},{threshold:0.01,rootMargin:'0px 0px -40px 0px'});
 reveals.forEach(el=>obs.observe(el));
 
 /* ── PROGRESS RAIL ── */
