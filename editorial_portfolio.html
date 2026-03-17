@@ -31,13 +31,13 @@
   --body:    'Barlow', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { zoom: 1.5; scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 17px;
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.8;
   overflow-x: hidden;
   cursor: none;
 }
@@ -98,7 +98,7 @@ body:hover #cursor { opacity:1; }
 }
 .pr-label {
   font-family: var(--cond);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -129,7 +129,7 @@ nav {
 }
 .nav-wordmark {
   font-family: var(--head);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 900;
   color: var(--ink);
   text-decoration: none;
@@ -139,7 +139,7 @@ nav {
 .nav-right { display: flex; align-items: center; gap: 2rem; }
 .nav-right a {
   font-family: var(--cond);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -166,7 +166,7 @@ nav {
 }
 .sm-num {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -176,7 +176,7 @@ nav {
 .sm-rule { flex: 1; max-width: 60px; height: 1px; background: var(--orange); opacity: 0.5; }
 .sm-label {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -202,7 +202,6 @@ nav {
   position: relative;
   overflow: hidden;
 }
-/* Background chapter number */
 .hero-left::before {
   content: '01';
   position: absolute;
@@ -222,7 +221,7 @@ nav {
 .he-line { width: 30px; height: 1px; background: var(--orange); }
 .he-text {
   font-family: var(--cond);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -251,10 +250,10 @@ nav {
   margin-bottom: 2.5rem;
 }
 .hero-desc {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: rgba(255,255,255,0.6);
   max-width: 380px;
-  line-height: 1.85;
+  line-height: 1.9;
   margin-bottom: 3rem;
   font-weight: 400;
 }
@@ -262,9 +261,9 @@ nav {
 .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.8rem 1.6rem;
+  padding: 0.85rem 1.7rem;
   font-family: var(--cond);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -290,7 +289,7 @@ nav {
 }
 .hero-stats-title {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -318,19 +317,18 @@ nav {
 .sb-number sup { font-size: 0.45em; color: var(--orange); vertical-align: super; }
 .sb-label {
   font-family: var(--cond);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .sb-detail {
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   color: var(--muted);
   margin-top: 0.3rem;
   font-weight: 300;
 }
-/* Accent vertical bar */
 .stat-block::before {
   content: '';
   position: absolute;
@@ -352,7 +350,7 @@ nav {
   color: #2A6B3C;
   padding: 0.4rem 0.9rem;
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -387,7 +385,7 @@ nav {
   display: inline-flex; align-items: center;
   padding: 0 3rem;
   font-family: var(--cond);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -430,14 +428,13 @@ nav {
 .ape-icon { font-size: 3rem; opacity: 0.15; }
 .ape-label {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   color: rgba(255,255,255,0.2);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.8;
 }
-/* Orange overlay strip */
 .about-photo-col::after {
   content: '';
   position: absolute;
@@ -465,14 +462,13 @@ nav {
 }
 .about-pull-quote em { font-style: italic; color: var(--orange); }
 .about-body p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--ink2);
   margin-bottom: 1.1rem;
   font-weight: 400;
-  line-height: 1.85;
+  line-height: 1.9;
 }
 .about-body p strong { color: var(--ink); font-weight: 600; }
-/* CALLOUT */
 .about-callout {
   margin: 2rem 0;
   padding: 1.8rem 2rem;
@@ -481,22 +477,21 @@ nav {
 }
 .ac-text {
   font-family: var(--head);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--ink);
-  line-height: 1.6;
+  line-height: 1.65;
   font-style: italic;
 }
 .ac-attr {
   font-family: var(--cond);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 0.8rem;
 }
-/* MINI CREDS */
 .about-cred-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -509,8 +504,8 @@ nav {
   background: var(--paper);
   padding: 0.9rem 1rem;
 }
-.acr-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); margin-bottom: 0.1rem; }
-.acr-org { font-family: var(--cond); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+.acr-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.1rem; }
+.acr-org { font-family: var(--cond); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
 
 /* ═══════════════════════════════════════════
    PROJECTS
@@ -530,7 +525,7 @@ nav {
 }
 .rs-label {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -542,17 +537,15 @@ nav {
 }
 .rs-item {
   font-family: var(--cond);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   display: flex; align-items: center; gap: 0.5rem;
 }
-.rs-item::before { content: '✓'; font-size: 0.7rem; }
+.rs-item::before { content: '✓'; font-size: 0.75rem; }
 
-/* Project list wrapper — keeps nth-child counting correct */
 .proj-list { display: flex; flex-direction: column; gap: 1px; }
 
-/* PROJECT CARD — Full layout */
 .proj-entry {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -567,7 +560,6 @@ nav {
   background: var(--dark2);
   overflow: hidden;
 }
-/* GIF main */
 .proj-gif {
   aspect-ratio: 16/9;
   position: relative;
@@ -598,13 +590,12 @@ nav {
 }
 .pgp-text {
   font-family: var(--cond);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   color: rgba(255,255,255,0.2);
   letter-spacing: 0.1em;
   text-align: center;
   line-height: 1.7;
 }
-/* Screenshot strip */
 .proj-shots {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -629,13 +620,12 @@ nav {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--cond);
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   color: rgba(255,255,255,0.12);
   letter-spacing: 0.08em;
   text-align: center;
   padding: 0.5rem;
 }
-/* Content column */
 .proj-content-col {
   background: var(--paper);
   padding: 2.5rem;
@@ -644,7 +634,7 @@ nav {
 }
 .proj-num-label {
   font-family: var(--cond);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--muted);
@@ -654,7 +644,7 @@ nav {
 .proj-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
 .proj-tag {
   font-family: var(--cond);
-  font-size: 0.58rem;
+  font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -673,13 +663,12 @@ h3.proj-name {
   margin-bottom: 0.6rem;
 }
 .proj-logline {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--muted);
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 1.85;
   margin-bottom: 1.2rem;
 }
-/* META TABLE */
 .proj-meta-table {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -692,9 +681,8 @@ h3.proj-name {
   background: var(--bg);
   padding: 0.5rem 0.7rem;
 }
-.pmt-l { font-family: var(--cond); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.pmt-v { font-size: 0.88rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
-/* KEY RESULT — high-visibility box */
+.pmt-l { font-family: var(--cond); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.pmt-v { font-size: 0.92rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
 .proj-result {
   background: var(--dark);
   color: white;
@@ -704,36 +692,34 @@ h3.proj-name {
   gap: 0.8rem;
   align-items: flex-start;
 }
-.pr-icon { color: var(--orange); font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1rem; }
-.pr-body { font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.7); }
+.pr-icon { color: var(--orange); font-size: 0.9rem; flex-shrink: 0; margin-top: 0.1rem; }
+.pr-body { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.7); }
 .pr-body strong { color: white; font-weight: 600; }
-/* BULLETS */
 .proj-bullets { list-style: none; margin-bottom: 1.2rem; }
 .proj-bullets li {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--ink2);
-  padding: 0.45rem 0 0.45rem 1.2rem;
+  padding: 0.5rem 0 0.5rem 1.2rem;
   position: relative;
   border-bottom: 1px solid var(--rule);
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 .proj-bullets li:last-child { border-bottom: none; }
 .proj-bullets li::before {
   content: '→';
   position: absolute; left: 0;
   color: var(--orange);
-  font-size: 0.7rem;
-  top: 0.55rem;
+  font-size: 0.75rem;
+  top: 0.6rem;
 }
 .proj-bullets li strong { color: var(--ink); font-weight: 600; }
-/* CASE STUDY TOGGLE */
 .cs-toggle {
   display: flex; align-items: center; gap: 0.6rem;
   background: none; border: 1px solid var(--rule2);
   padding: 0.55rem 1rem;
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -745,7 +731,7 @@ h3.proj-name {
 }
 .cs-toggle:hover { border-color: var(--orange); color: var(--orange); }
 .cs-toggle.open { border-color: var(--orange); color: var(--orange); }
-.cs-arrow { transition: transform 0.3s; font-size: 0.6rem; }
+.cs-arrow { transition: transform 0.3s; font-size: 0.65rem; }
 .cs-toggle.open .cs-arrow { transform: rotate(90deg); }
 .case-expand { display: none; margin-top: 1rem; }
 .case-expand.open { display: block; }
@@ -753,7 +739,7 @@ h3.proj-name {
 .case-row { background: var(--paper); padding: 0.8rem 1rem; display: flex; gap: 0.8rem; }
 .cr-lbl {
   font-family: var(--cond);
-  font-size: 0.58rem;
+  font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -766,7 +752,7 @@ h3.proj-name {
 .cr-lbl.chal { color: #EF4444; }
 .cr-lbl.sol { color: #22C55E; }
 .cr-lbl.out { color: var(--orange); }
-.cr-text { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+.cr-text { font-size: 0.92rem; color: var(--muted); line-height: 1.8; }
 .cr-text strong { color: var(--ink); font-weight: 600; }
 
 /* ═══════════════════════════════════════════
@@ -787,9 +773,8 @@ h3.proj-name {
   line-height: 1;
 }
 .sh-display em { font-style: italic; color: var(--orange); }
-.sh-body { font-size: 0.95rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.85; }
+.sh-body { font-size: 1rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.9; }
 
-/* Skills matrix */
 .skills-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
 .skill-card {
   background: rgba(255,255,255,0.03);
@@ -800,16 +785,15 @@ h3.proj-name {
 .skill-card:hover { background: rgba(255,255,255,0.06); border-top-color: var(--orange); }
 .sc-name {
   font-family: var(--cond);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.7);
   margin-bottom: 0.5rem;
 }
-.sc-desc { font-size: 0.9rem; color: rgba(255,255,255,0.3); line-height: 1.7; font-weight: 300; }
+.sc-desc { font-size: 0.95rem; color: rgba(255,255,255,0.3); line-height: 1.75; font-weight: 300; }
 
-/* Tools strip */
 .tools-strip {
   display: flex; flex-wrap: wrap; gap: 0.5rem;
   margin-top: 3rem; padding-top: 3rem;
@@ -817,7 +801,7 @@ h3.proj-name {
 }
 .tool-pill {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -849,12 +833,12 @@ h3.proj-name {
   margin-bottom: 2rem;
 }
 .exp-sidebar-title em { font-style: italic; color: var(--orange); }
-.exp-sidebar p { font-size: 0.92rem; color: var(--muted); font-weight: 400; line-height: 1.85; }
+.exp-sidebar p { font-size: 0.95rem; color: var(--muted); font-weight: 400; line-height: 1.9; }
 .exp-sidebar a {
   display: inline-flex; align-items: center; gap: 0.4rem;
   margin-top: 1.5rem;
   font-family: var(--cond);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -865,7 +849,6 @@ h3.proj-name {
   transition: border-color 0.2s;
 }
 .exp-sidebar a:hover { border-color: var(--orange); }
-/* Timeline */
 .exp-entries { display: flex; flex-direction: column; }
 .exp-row {
   display: grid;
@@ -885,7 +868,7 @@ h3.proj-name {
 }
 .exp-date {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--muted);
   letter-spacing: 0.06em;
@@ -896,7 +879,7 @@ h3.proj-name {
 .exp-content { padding-left: 2rem; }
 .exp-role {
   font-family: var(--cond);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -904,29 +887,28 @@ h3.proj-name {
   margin-bottom: 0.2rem;
 }
 .exp-company {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--orange);
   font-weight: 600;
   margin-bottom: 0.8rem;
 }
 .exp-li {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--ink2);
-  padding: 0.4rem 0;
+  padding: 0.45rem 0;
   border-bottom: 1px solid var(--rule);
   padding-left: 1.1rem;
   position: relative;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 .exp-li:last-of-type { border-bottom: none; }
 .exp-li::before { content: '—'; position: absolute; left: 0; color: var(--rule2); }
 .exp-li strong { color: var(--ink); font-weight: 600; }
-/* Tag strip */
 .exp-tag-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.8rem; }
 .exp-tag {
   font-family: var(--cond);
-  font-size: 0.58rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -956,9 +938,9 @@ h3.proj-name {
   transition: border-color 0.2s, background 0.2s;
 }
 .aw-card:hover { border-top-color: var(--gold); background: rgba(255,255,255,0.04); }
-.aw-icon { font-size: 1.1rem; margin-bottom: 0.7rem; }
-.aw-name { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 0.25rem; line-height: 1.3; }
-.aw-org { font-family: var(--cond); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.28); text-transform: uppercase; }
+.aw-icon { font-size: 1.2rem; margin-bottom: 0.7rem; }
+.aw-name { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 0.25rem; line-height: 1.3; }
+.aw-org { font-family: var(--cond); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.28); text-transform: uppercase; }
 
 /* ═══════════════════════════════════════════
    CONTACT
@@ -987,7 +969,7 @@ h3.proj-name {
 }
 .cl-eyebrow {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1004,11 +986,11 @@ h3.proj-name {
   margin-bottom: 1rem;
 }
 .cl-sub {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: rgba(255,255,255,0.65);
   max-width: 380px;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 .contact-right {
   background: var(--dark);
@@ -1017,7 +999,7 @@ h3.proj-name {
 }
 .cr-detail {
   font-family: var(--cond);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1041,7 +1023,7 @@ h3.proj-name {
 .cr-socials { display: flex; flex-direction: column; gap: 0.6rem; }
 .cr-soc {
   font-family: var(--cond);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1051,10 +1033,10 @@ h3.proj-name {
   transition: color 0.2s;
 }
 .cr-soc:hover { color: var(--orange); }
-.cr-soc::before { content: '↗'; font-size: 0.7rem; }
+.cr-soc::before { content: '↗'; font-size: 0.75rem; }
 .cr-phone {
   font-family: var(--cond);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: rgba(255,255,255,0.25);
@@ -1062,7 +1044,6 @@ h3.proj-name {
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255,255,255,0.07);
 }
-/* Resume CTA */
 .cr-resume-btn {
   display: inline-flex; align-items: center; gap: 0.6rem;
   margin-top: 1.5rem;
@@ -1071,7 +1052,7 @@ h3.proj-name {
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   font-family: var(--cond);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1093,7 +1074,7 @@ footer {
 }
 .foot-mark {
   font-family: var(--head);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 900;
   color: var(--ink);
   letter-spacing: -0.01em;
@@ -1102,7 +1083,7 @@ footer {
 .foot-links { display: flex; gap: 1.5rem; }
 .foot-links a {
   font-family: var(--cond);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1113,7 +1094,7 @@ footer {
 .foot-links a:hover { color: var(--orange); }
 .foot-copy {
   font-family: var(--cond);
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1129,7 +1110,6 @@ footer {
 .reveal-d2 { transition-delay: 0.12s; }
 .reveal-d3 { transition-delay: 0.18s; }
 
-/* Safety net: if JS fails or observer doesn't fire, show everything after 1.5s */
 @media (prefers-reduced-motion: no-preference) {
   .reveal { animation: revealSafe 0s 1.5s forwards; }
   .reveal.visible { animation: none; }
@@ -1188,9 +1168,9 @@ footer {
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(244,240,232,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:1rem 5vw">
   <a href="#hero" style="font-family:var(--head);font-size:1.05rem;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-0.01em">Pray <em style="font-style:italic;color:var(--orange)">Cristanto</em></a>
   <div style="display:flex;align-items:center;gap:2rem">
-    <a href="#projects" style="font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Projects</a>
-    <a href="#experience" style="font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Experience</a>
-    <a href="#contact" style="font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--orange);color:white;text-decoration:none;padding:0.45rem 1.1rem;transition:background .2s" onmouseover="this.style.background='var(--orange2)'" onmouseout="this.style.background='var(--orange)'">Hire Me ↗</a>
+    <a href="#projects" style="font-family:var(--cond);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Projects</a>
+    <a href="#experience" style="font-family:var(--cond);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">Experience</a>
+    <a href="#contact" style="font-family:var(--cond);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--orange);color:white;text-decoration:none;padding:0.45rem 1.1rem;transition:background .2s" onmouseover="this.style.background='var(--orange2)'" onmouseout="this.style.background='var(--orange)'">Hire Me ↗</a>
   </div>
 </nav>
 
@@ -1198,7 +1178,6 @@ footer {
      HERO
 ══════════════════════════════════ -->
 <section id="hero" style="display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:62px">
-  <!-- LEFT: IDENTITY -->
   <div class="hero-left">
     <div class="hero-eyebrow"><div class="he-line"></div><div class="he-text">Game Designer · Lampung, Indonesia</div></div>
     <h1 class="hero-name">Pray<br><em>Cristanto</em></h1>
@@ -1213,40 +1192,33 @@ footer {
     <div class="avail-badge">Open to Freelance Work</div>
   </div>
 
-  <!-- RIGHT: STATS PANEL -->
   <div class="hero-right">
     <div class="hero-stats-title">By the numbers — verified results</div>
-
     <div class="stat-block featured">
       <div class="sb-number">500<sup>K+</sup></div>
       <div class="sb-label">Organic Downloads</div>
       <div class="sb-detail">Across 3 shipped titles — zero paid acquisition</div>
     </div>
-
     <div class="stat-block">
       <div class="sb-number">5<sup>+</sup></div>
       <div class="sb-label">Years Active</div>
       <div class="sb-detail">PT. Eternaldream Games International, 2019 – 2026</div>
     </div>
-
     <div class="stat-block">
       <div class="sb-number">47</div>
       <div class="sb-label">Choice Nodes Designed</div>
       <div class="sb-detail">The Sun Shines Over Us — 6 verified endings, all accessible</div>
     </div>
-
     <div class="stat-block">
       <div class="sb-number">100<sup>+</sup></div>
       <div class="sb-label">Events Crafted</div>
       <div class="sb-detail">Matchmaker Agency — each individually balanced and tested</div>
     </div>
-
     <div class="stat-block">
       <div class="sb-number">2<sup>×</sup></div>
       <div class="sb-label">Industry Recognition</div>
       <div class="sb-detail">Google Indie Game Accelerator 2022 · Microsoft Xbox Camp 2024</div>
     </div>
-
   </div>
 </section>
 
@@ -1274,7 +1246,6 @@ footer {
      ABOUT
 ══════════════════════════════════ -->
 <section id="about" style="display:grid;grid-template-columns:360px 1fr;border-top:1px solid var(--rule)">
-  <!-- Photo -->
   <div class="about-photo-col">
     <img src="about-photo.jpg" alt="Pray Cristanto"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
@@ -1283,7 +1254,6 @@ footer {
       <div class="ape-label">Add your photo:<br><strong>about-photo.jpg</strong><br>same folder as HTML</div>
     </div>
   </div>
-  <!-- Text -->
   <div class="about-text-col">
     <div class="section-marker reveal">
       <div class="sm-num">02</div>
@@ -1318,16 +1288,14 @@ footer {
      PROJECTS
 ══════════════════════════════════ -->
 <section id="projects" style="background:var(--bg);padding:6rem 5vw;border-top:1px solid var(--rule)">
-
   <div class="section-marker reveal">
     <div class="sm-num">03</div><div class="sm-rule"></div><div class="sm-label">Selected Work — 3 Shipped Titles</div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3rem">
     <h2 style="font-family:var(--head);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--ink);letter-spacing:-0.03em;line-height:1" class="reveal">Three games.<br><em style="font-style:italic;color:var(--orange)">Real players.</em></h2>
-    <p style="font-size:0.88rem;color:var(--muted);font-weight:300;line-height:1.8" class="reveal">Every project below is available to download and play today. GIF shows live gameplay — screenshots show key design moments. Click "Full Case Study" to read the full design breakdown.</p>
+    <p style="font-size:0.95rem;color:var(--muted);font-weight:300;line-height:1.85" class="reveal">Every project below is available to download and play today. GIF shows live gameplay — screenshots show key design moments. Click "Full Case Study" to read the full design breakdown.</p>
   </div>
 
-  <!-- RECRUITER SIGNAL -->
   <div class="recruiter-signal reveal">
     <div class="rs-label">Recruiter Checklist</div>
     <div class="rs-items">
@@ -1341,15 +1309,13 @@ footer {
     </div>
   </div>
 
-  <!-- Projects wrapper — nth-child counts from here so alternating works correctly -->
   <div class="proj-list">
 
   <!-- PROJECT 1 -->
   <div class="proj-entry reveal">
     <div class="proj-media-col">
       <div class="proj-gif">
-        <img src="tssou-gameplay.gif" alt="The Sun Shines Over Us — gameplay"
-             onerror="this.style.display='none'"/>
+        <img src="tssou-gameplay.gif" alt="The Sun Shines Over Us — gameplay" onerror="this.style.display='none'"/>
         <div class="proj-gif-ph">
           <div class="pgp-icon">▶</div>
           <div class="pgp-text">Add file: <strong>tssou-gameplay.gif</strong><br>Same folder as this HTML</div>
@@ -1402,8 +1368,7 @@ footer {
   <div class="proj-entry reveal">
     <div class="proj-media-col">
       <div class="proj-gif">
-        <img src="matchmaker-gameplay.gif" alt="Matchmaker Agency — gameplay"
-             onerror="this.style.display='none'"/>
+        <img src="matchmaker-gameplay.gif" alt="Matchmaker Agency — gameplay" onerror="this.style.display='none'"/>
         <div class="proj-gif-ph">
           <div class="pgp-icon">▶</div>
           <div class="pgp-text">Add file: <strong>matchmaker-gameplay.gif</strong><br>Same folder as this HTML</div>
@@ -1456,8 +1421,7 @@ footer {
   <div class="proj-entry reveal">
     <div class="proj-media-col">
       <div class="proj-gif">
-        <img src="virgo-gameplay.gif" alt="Virgo and The Sparklings — gameplay"
-             onerror="this.style.display='none'"/>
+        <img src="virgo-gameplay.gif" alt="Virgo and The Sparklings — gameplay" onerror="this.style.display='none'"/>
         <div class="proj-gif-ph">
           <div class="pgp-icon">▶</div>
           <div class="pgp-text">Add file: <strong>virgo-gameplay.gif</strong><br>Same folder as this HTML</div>
@@ -1586,7 +1550,6 @@ footer {
             <div class="exp-tag-row"><span class="exp-tag">Unity</span><span class="exp-tag">C#</span><span class="exp-tag">Manual QA</span><span class="exp-tag">Android</span></div>
           </div>
         </div>
-        <!-- Education -->
         <div class="exp-row reveal">
           <div class="exp-date">2016–2021</div>
           <div class="exp-content">
