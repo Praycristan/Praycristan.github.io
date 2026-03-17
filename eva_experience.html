@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Experience — Pray Cristanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070707;--surface:#0e0e0e;--card:#121218;--border:#232323;--red:#CC2929;--red2:#e63535;--amber:#F5A623;--green:#3ecf5e;--text:#D8D4CA;--muted:#5a5a5a;--white:#F0EDE8;--mono:'Share Tech Mono',monospace;--head:'Bebas Neue',cursive;--body:'DM Sans',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:998}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,7,7,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.nav-stripe{height:3px;background:repeating-linear-gradient(135deg,var(--red) 0,var(--red) 5px,transparent 5px,transparent 12px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 5vw}
+.nav-logo{font-family:var(--head);font-size:1.4rem;letter-spacing:0.08em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.logo-code{font-family:var(--mono);font-size:0.65rem;color:var(--red);border:1px solid var(--red);padding:0.15rem 0.4rem;letter-spacing:0.12em}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--red)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--red)}
+.nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.4rem 1rem!important}
+.eva-stripe{height:3px;background:repeating-linear-gradient(135deg,var(--red) 0,var(--red) 5px,transparent 5px,transparent 12px)}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid;cursor:pointer;transition:all 0.2s}
+.btn-white{background:white;border-color:white;color:var(--red)!important}
+.btn-white:hover{background:rgba(255,255,255,0.85)}
+
+/* PAGE HEADER */
+.page-header{padding:9rem 5vw 4rem;background:var(--surface);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.ph-bg{position:absolute;font-family:var(--head);font-size:clamp(8rem,16vw,18rem);color:var(--white);opacity:0.018;bottom:-1rem;right:-1rem;letter-spacing:0.1em;pointer-events:none;line-height:1}
+.ph-classify{font-family:var(--mono);font-size:0.65rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.ph-classify::before{content:'▶';font-size:0.5rem}
+h1.ph-title{font-family:var(--head);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:0.05em;color:var(--white);line-height:0.95;margin-bottom:1rem}
+h1.ph-title span{color:var(--red)}
+.ph-sub{font-size:0.9rem;color:var(--muted);font-family:var(--mono);letter-spacing:0.06em}
+
+/* MAIN LAYOUT */
+.exp-layout{display:grid;grid-template-columns:1fr 300px;gap:0;padding:5rem 5vw;align-items:start;max-width:1400px;margin:0 auto}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2.5rem}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:0;width:1px;background:var(--border)}
+
+.tl-entry{position:relative;margin-bottom:4rem}
+.tl-entry::before{content:'';position:absolute;left:-2.5rem;top:8px;width:10px;height:10px;background:var(--red);border:2px solid var(--bg)}
+.tl-entry.current::before{background:var(--red);box-shadow:0 0 0 4px rgba(204,41,41,0.2);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(204,41,41,0.2)}50%{box-shadow:0 0 0 8px rgba(204,41,41,0.05)}}
+
+.tl-date{font-family:var(--mono);font-size:0.62rem;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem}
+.tl-role{font-family:var(--head);font-size:2rem;letter-spacing:0.05em;color:var(--white);line-height:1;margin-bottom:0.2rem}
+.tl-company{font-family:var(--mono);font-size:0.72rem;color:var(--amber);letter-spacing:0.08em;margin-bottom:1.2rem}
+
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem}
+.tl-bullets li{font-size:0.88rem;color:var(--muted);padding-left:1.4rem;position:relative;line-height:1.65;font-weight:300}
+.tl-bullets li::before{content:'—';position:absolute;left:0;color:var(--border)}
+.tl-bullets li strong{color:var(--text);font-weight:500}
+
+.tl-tags{display:flex;gap:0.5rem;flex-wrap:wrap}
+.tl-tag{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.5rem;border:1px solid var(--border);color:var(--muted)}
+
+/* SECTION DIVIDER */
+.tl-divider{position:relative;margin:3rem 0 3rem -2.5rem;padding-left:2.5rem;height:1px;background:var(--border)}
+.tl-divider-label{position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;background:var(--bg);padding:0 0.5rem}
+
+/* EDUCATION BLOCK */
+.edu-block{margin-bottom:3rem}
+.edu-eyebrow{font-family:var(--mono);font-size:0.62rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.edu-eyebrow::before{content:'';width:8px;height:1px;background:var(--red)}
+.edu-item{padding:1.5rem;border-left:2px solid var(--red);background:rgba(204,41,41,0.04);margin-bottom:1rem}
+.edu-degree{font-family:var(--head);font-size:1.3rem;letter-spacing:0.05em;color:var(--white);margin-bottom:0.2rem}
+.edu-school{font-size:0.88rem;color:var(--muted);margin-bottom:0.4rem}
+.edu-dates{font-family:var(--mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.1em}
+.edu-gpa{display:inline-block;font-family:var(--mono);font-size:0.65rem;color:var(--amber);border:1px solid rgba(245,166,35,0.3);padding:0.2rem 0.6rem;margin-top:0.5rem;letter-spacing:0.1em}
+
+/* SIDEBAR */
+.exp-sidebar{padding-left:3rem;border-left:1px solid var(--border);position:sticky;top:100px}
+
+/* SKILLS */
+.sb-section{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border)}
+.sb-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.sb-label{font-family:var(--mono);font-size:0.6rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.sb-label::before{content:'';width:8px;height:1px;background:var(--red)}
+
+.skills-2col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.skill-row{background:var(--card);padding:0.65rem 0.8rem;display:flex;align-items:center;gap:0.6rem;transition:background 0.15s}
+.skill-row:hover{background:#16161c}
+.skill-dot{width:4px;height:4px;background:var(--red);flex-shrink:0}
+.skill-name{font-size:0.8rem;color:var(--text);font-weight:400}
+
+/* CERT GRID */
+.cert-grid{display:flex;flex-direction:column;gap:0.8rem}
+.cert-item{display:flex;gap:0.8rem;align-items:flex-start}
+.cert-dot{width:5px;height:5px;background:var(--amber);margin-top:0.6rem;flex-shrink:0}
+.cert-text{font-size:0.82rem;color:var(--text)}
+.cert-sub{font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.06em}
+
+/* TOOLS GRID */
+.tools-grid{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tool-tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;padding:0.2rem 0.5rem;border:1px solid var(--border);color:var(--muted);transition:border-color 0.2s,color 0.2s}
+.tool-tag:hover{border-color:var(--red);color:var(--red)}
+
+/* CONTACT STRIP */
+#contact-strip{background:var(--red);padding:4rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.contact-strip-left .small{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.5rem}
+.contact-strip-left h2{font-family:var(--head);font-size:clamp(2rem,5vw,4rem);letter-spacing:0.05em;color:var(--white);line-height:1}
+.contact-strip-right{display:flex;flex-direction:column;gap:0.8rem}
+.contact-strip-email{font-family:var(--mono);font-size:1rem;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:0.2rem;letter-spacing:0.05em}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 5vw;position:relative}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--head);font-size:1.3rem;letter-spacing:0.08em;color:var(--white)}
+.footer-logo span{color:var(--red)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-family:var(--mono);font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--red)}
+.footer-copy{font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.exp-layout{grid-template-columns:1fr;padding:3rem 5vw}.exp-sidebar{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:3rem;position:static}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-stripe"></div>
+  <div class="nav-inner">
+    <a class="nav-logo" href="eva_index.html">PRAY<span class="logo-code">GD-03</span></a>
+    <ul class="nav-links">
+      <li><a href="eva_index.html">Home</a></li>
+      <li><a href="eva_about.html">About</a></li>
+      <li><a href="eva_projects.html">Projects</a></li>
+      <li><a href="eva_experience.html" class="active">Experience</a></li>
+      <li><a href="mailto:praycristanto@gmail.com" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-bg">SYNC</div>
+  <div class="ph-classify">SYNC RECORD / FIELD LOG / 5 YEARS ACTIVE / 3 TITLES SHIPPED</div>
+  <h1 class="ph-title">WHERE I'VE<br>BEEN. WHAT<br>I <span>BUILT.</span></h1>
+  <p class="ph-sub">EMPLOYMENT HISTORY / PT. ETERNALDREAM GAMES INTERNATIONAL / 2019 — PRESENT</p>
+</div>
+
+<div class="exp-layout">
+  <!-- TIMELINE -->
+  <div>
+    <div class="timeline">
+
+      <!-- CURRENT ROLE -->
+      <div class="tl-entry current reveal">
+        <div class="tl-date">Aug 2021 — Present · 3+ years</div>
+        <div class="tl-role">GAME DESIGNER</div>
+        <div class="tl-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
+        <ul class="tl-bullets">
+          <li>Designed and shipped systems for <strong>3 commercial titles</strong> across PC, iOS, Android, and Nintendo Switch — including economy design, trait balancing, narrative branching, and progression architecture</li>
+          <li>Led all systems design on Matchmaker Agency as <strong>lead designer from mid-production</strong>, taking over when the project needed someone to own the balance layer</li>
+          <li>Designed The Sun Shines Over Us's <strong>47-node choice system</strong>, identifying and resolving a path lock-in that was sending 80% of players to the same 2 of 6 endings</li>
+          <li>Ran structured playtesting with documented test cycles — each iteration had a clear hypothesis, a measurement method, and a resolution criteria before it started</li>
+          <li>Collaborated with writers, artists, and programmers to spec designs before they reached production, reducing rework across all three projects</li>
+          <li>Applied visual and narrative content review skills to verify quality at every stage — same systematic approach required in content evaluation roles</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tl-tag">Game Design</span>
+          <span class="tl-tag">Systems Balancing</span>
+          <span class="tl-tag">QA</span>
+          <span class="tl-tag">Unity</span>
+          <span class="tl-tag">Machination</span>
+          <span class="tl-tag">Google Sheets</span>
+        </div>
+      </div>
+
+      <!-- COMMUNITY MANAGER -->
+      <div class="tl-entry reveal">
+        <div class="tl-date">Jan 2020 — Jul 2022 · 2.5 years</div>
+        <div class="tl-role">COMMUNITY MANAGER</div>
+        <div class="tl-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
+        <ul class="tl-bullets">
+          <li>Built the player community for The Sun Shines Over Us from <strong>zero across X, Instagram, Facebook, and Discord</strong> — contributing to 500K+ organic downloads with zero paid acquisition</li>
+          <li>Monitored and classified user-generated content daily against platform guidelines — requiring consistent, rule-based moderation decisions that directly mirror content evaluation workflows</li>
+          <li>Analyzed player feedback across platforms and delivered structured summaries to the design team, directly influencing post-launch updates and design decisions</li>
+          <li>Developed gamification strategies grounded in observed player behavioral patterns, increasing engagement and retention metrics</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tl-tag">Community Building</span>
+          <span class="tl-tag">Content Classification</span>
+          <span class="tl-tag">Player Analysis</span>
+          <span class="tl-tag">Social Media</span>
+          <span class="tl-tag">Adobe Premiere</span>
+          <span class="tl-tag">Photoshop</span>
+        </div>
+      </div>
+
+      <!-- INTERN -->
+      <div class="tl-entry reveal">
+        <div class="tl-date">Jun 2019 — Jan 2020 · 8 months</div>
+        <div class="tl-role">PROGRAMMER INTERN<br>+ QA TESTER</div>
+        <div class="tl-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
+        <ul class="tl-bullets">
+          <li>Ran structured manual software testing across builds — systematically identifying and logging bugs against expected behavior using defined test protocols</li>
+          <li><strong>Built and published a complete mobile game</strong> on Google Play Store within one month, working independently from concept to submission</li>
+          <li>Learned the full game production pipeline from the inside — the foundation for every design decision that came after</li>
+        </ul>
+        <div class="tl-tags">
+          <span class="tl-tag">Unity</span>
+          <span class="tl-tag">C#</span>
+          <span class="tl-tag">Manual QA</span>
+          <span class="tl-tag">Google Play</span>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="tl-divider"><span class="tl-divider-label">Education</span></div>
+
+      <!-- EDUCATION -->
+      <div class="tl-entry reveal">
+        <div class="tl-date">Aug 2016 — Dec 2021</div>
+        <div class="edu-block">
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Informatics Engineering</div>
+            <div class="edu-school">Indonesia Teknokrat University, Lampung</div>
+            <div class="edu-dates">Aug 2016 — Dec 2021</div>
+            <div class="edu-gpa">GPA: 3.48 / 4.00</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="exp-sidebar">
+
+    <!-- CORE SKILLS -->
+    <div class="sb-section">
+      <div class="sb-label">Core Skills</div>
+      <div class="skills-2col">
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Systems Design</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Economy Balancing</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Quality Assurance</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Playtesting</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Narrative Design</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Branching Logic</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Content Review</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">UX Design</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Unity + C#</div></div>
+        <div class="skill-row"><div class="skill-dot"></div><div class="skill-name">Community Mgmt</div></div>
+      </div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="sb-section">
+      <div class="sb-label">Tools</div>
+      <div class="tools-grid">
+        <span class="tool-tag">Unity</span>
+        <span class="tool-tag">C#</span>
+        <span class="tool-tag">Google Sheets</span>
+        <span class="tool-tag">Machination</span>
+        <span class="tool-tag">Miro</span>
+        <span class="tool-tag">Adobe Premiere</span>
+        <span class="tool-tag">Adobe Photoshop</span>
+        <span class="tool-tag">Audacity</span>
+        <span class="tool-tag">Corel Draw</span>
+        <span class="tool-tag">Discord</span>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="sb-section">
+      <div class="sb-label">Recognitions</div>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div><div class="cert-text">Google Indie Game Accelerator</div><div class="cert-sub">Alumni · 2022</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div><div class="cert-text">Xbox Game Camp</div><div class="cert-sub">Microsoft Alumni · 2024</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot" style="background:var(--red)"></div>
+          <div><div class="cert-text">Best Game Designer</div><div class="cert-sub">Gameloft Indonesia · 2023</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot" style="background:var(--red)"></div>
+          <div><div class="cert-text">Best Narrative Game</div><div class="cert-sub">IGDX · 2022</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot" style="background:var(--red)"></div>
+          <div><div class="cert-text">International Finalist</div><div class="cert-sub">LevelUP KL · 2021</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot" style="background:var(--muted)"></div>
+          <div><div class="cert-text">UX Design Foundations</div><div class="cert-sub">Coursera</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD -->
+    <div class="sb-section">
+      <div class="sb-label">Resume</div>
+      <a href="https://drive.google.com/file/d/1qbcQaEbSyIb17kkB8SyOmUsGzAD8J8VF/view" target="_blank" style="font-family:var(--mono);font-size:0.7rem;color:var(--red);text-decoration:none;letter-spacing:0.08em;border:1px solid var(--red);padding:0.6rem 1rem;display:inline-block;transition:background 0.2s" onmouseover="this.style.background='rgba(204,41,41,0.1)'" onmouseout="this.style.background='transparent'">↗ Download Full CV</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div id="contact-strip">
+  <div class="contact-strip-left">
+    <div class="small">Open to Opportunities</div>
+    <h2>Hire me for<br>your project.</h2>
+  </div>
+  <div class="contact-strip-right">
+    <a class="contact-strip-email" href="mailto:praycristanto@gmail.com">praycristanto@gmail.com</a>
+    <a class="btn btn-white" href="mailto:praycristanto@gmail.com">Get In Touch ↗</a>
+  </div>
+</div>
+
+<footer>
+  <div class="eva-stripe" style="position:absolute;top:0;left:0;right:0;height:3px"></div>
+  <div class="footer-inner">
+    <div class="footer-logo">PRAY<span>.</span></div>
+    <div class="footer-links">
+      <a href="eva_index.html">Home</a>
+      <a href="eva_about.html">About</a>
+      <a href="eva_projects.html">Projects</a>
+    </div>
+    <div class="footer-copy">GAME DESIGNER / LAMPUNG, ID / AVAILABLE FOR REMOTE WORK</div>
+  </div>
+</footer>
+
+<script>
+const els=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.08});
+els.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

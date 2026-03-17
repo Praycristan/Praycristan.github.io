@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Projects — Pray Cristanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070707;--surface:#0e0e0e;--card:#121218;--border:#232323;--red:#CC2929;--red2:#e63535;--amber:#F5A623;--green:#3ecf5e;--text:#D8D4CA;--muted:#5a5a5a;--white:#F0EDE8;--mono:'Share Tech Mono',monospace;--head:'Bebas Neue',cursive;--body:'DM Sans',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:998}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,7,7,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.nav-stripe{height:3px;background:repeating-linear-gradient(135deg,var(--red) 0,var(--red) 5px,transparent 5px,transparent 12px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 5vw}
+.nav-logo{font-family:var(--head);font-size:1.4rem;letter-spacing:0.08em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.logo-code{font-family:var(--mono);font-size:0.65rem;color:var(--red);border:1px solid var(--red);padding:0.15rem 0.4rem;letter-spacing:0.12em}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--red)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--red)}
+.nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.4rem 1rem!important}
+.eva-stripe{height:3px;background:repeating-linear-gradient(135deg,var(--red) 0,var(--red) 5px,transparent 5px,transparent 12px)}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid;cursor:pointer;transition:all 0.2s}
+.btn-white{background:white;border-color:white;color:var(--red)!important}
+.btn-white:hover{background:rgba(255,255,255,0.85);transform:translateY(-2px)}
+
+/* PAGE HEADER */
+.page-header{padding:9rem 5vw 4rem;background:var(--surface);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.ph-bg{position:absolute;font-family:var(--head);font-size:clamp(8rem,16vw,18rem);color:var(--white);opacity:0.018;bottom:-1rem;right:-1rem;letter-spacing:0.1em;pointer-events:none;line-height:1}
+.ph-classify{font-family:var(--mono);font-size:0.65rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.ph-classify::before{content:'▶';font-size:0.5rem}
+h1.ph-title{font-family:var(--head);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:0.05em;color:var(--white);line-height:0.95;margin-bottom:1rem}
+h1.ph-title span{color:var(--red)}
+.ph-sub{font-size:0.9rem;color:var(--muted);font-family:var(--mono);letter-spacing:0.06em}
+
+/* PROJECT SECTIONS */
+.project-section{padding:5rem 5vw;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.project-section:nth-child(even){background:var(--surface)}
+.proj-bg-num{position:absolute;font-family:var(--head);font-size:clamp(10rem,20vw,22rem);color:var(--white);opacity:0.015;bottom:-2rem;right:-1rem;letter-spacing:0.1em;pointer-events:none;line-height:1}
+
+/* PROJECT HEADER */
+.proj-header{margin-bottom:3rem}
+.proj-file-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.proj-file-code{font-family:var(--mono);font-size:0.65rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;border:1px solid var(--red);padding:0.2rem 0.6rem}
+.proj-tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.5rem;border:1px solid var(--border);color:var(--muted)}
+.proj-tag.amber{border-color:rgba(245,166,35,0.4);color:var(--amber)}
+h2.proj-title{font-family:var(--head);font-size:clamp(3rem,7vw,6.5rem);letter-spacing:0.04em;color:var(--white);line-height:0.9;margin-bottom:0.8rem}
+.proj-subtitle{font-size:1rem;color:var(--muted);font-weight:300;max-width:600px;margin-bottom:2rem;line-height:1.7}
+
+/* META BAR */
+.proj-meta-bar{display:flex;gap:0;border:1px solid var(--border);width:fit-content;margin-bottom:3rem;flex-wrap:wrap}
+.proj-meta-item{padding:0.8rem 1.5rem;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:0.15rem}
+.proj-meta-item:last-child{border-right:none}
+.pmi-label{font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase}
+.pmi-val{font-size:0.82rem;color:var(--text);font-weight:500}
+
+/* MEDIA STRIP */
+.media-strip{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:2.5rem}
+.media-main{grid-row:1;grid-column:1}
+.media-thumbs{display:flex;flex-direction:column;gap:4px}
+.media-placeholder{background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.media-placeholder img{width:100%;height:100%;object-fit:cover;display:block}
+.media-placeholder.no-img img{display:none}
+.media-placeholder-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;text-align:center;padding:0.5rem;pointer-events:none}
+.media-placeholder:not(.no-img) .media-placeholder-label{display:none}
+.media-main .media-placeholder{aspect-ratio:16/9;min-height:220px}
+.media-thumb{flex:1;min-height:68px}
+@media(max-width:768px){.media-strip{grid-template-columns:1fr}.media-thumbs{flex-direction:row}}
+
+/* CASE STUDY TOGGLE */
+.case-toggle{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.5rem;cursor:pointer;background:none;border:1px solid var(--border);padding:0.7rem 1.2rem;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:border-color 0.2s,color 0.2s;width:fit-content}
+.case-toggle:hover{border-color:var(--red);color:var(--red)}
+.case-toggle .toggle-arrow{display:inline-block;transition:transform 0.3s;font-size:0.7rem}
+.case-toggle.open{border-color:var(--red);color:var(--red)}
+.case-toggle.open .toggle-arrow{transform:rotate(90deg)}
+.case-wrap{display:none;margin-bottom:0}
+.case-wrap.open{display:block}
+
+/* CASE STUDY GRID */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:2rem}
+.case-block{background:var(--card);padding:1.5rem}
+.case-block.full{grid-column:1 / -1}
+.cb-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.cb-label::before{content:'';width:10px;height:1px}
+.cb-label.intention{color:#6b9fff}.cb-label.intention::before{background:#6b9fff}
+.cb-label.process{color:var(--muted)}.cb-label.process::before{background:var(--muted)}
+.cb-label.challenge{color:#ff6b6b}.cb-label.challenge::before{background:#ff6b6b}
+.cb-label.solution{color:var(--green)}.cb-label.solution::before{background:var(--green)}
+.cb-label.outcome{color:var(--amber)}.cb-label.outcome::before{background:var(--amber)}
+.case-block p{font-size:0.88rem;color:var(--muted);line-height:1.75;font-weight:300}
+.case-block p strong{color:var(--text);font-weight:500}
+
+/* DELIVERABLES */
+.deliverables{background:rgba(204,41,41,0.05);border:1px solid rgba(204,41,41,0.2);border-left:3px solid var(--red);padding:1.5rem 2rem;margin-bottom:2rem}
+.del-label{font-family:var(--mono);font-size:0.62rem;color:var(--red);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1rem}
+.del-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.del-list li{font-size:0.88rem;color:var(--text);padding-left:1.4rem;position:relative;line-height:1.6}
+.del-list li::before{content:'→';position:absolute;left:0;color:var(--red);font-size:0.8rem}
+
+/* AWARD BAR */
+.award-bar{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.2)}
+.award-bar-icon{color:var(--amber);font-size:1rem}
+.award-bar-text{font-family:var(--mono);font-size:0.7rem;color:var(--amber);letter-spacing:0.08em}
+
+/* CONTACT STRIP */
+#contact-strip{background:var(--red);padding:4rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.contact-strip-left .small{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.5rem}
+.contact-strip-left h2{font-family:var(--head);font-size:clamp(2rem,5vw,4rem);letter-spacing:0.05em;color:var(--white);line-height:1}
+.contact-strip-right{display:flex;flex-direction:column;gap:0.8rem}
+.contact-strip-email{font-family:var(--mono);font-size:1rem;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:0.2rem;letter-spacing:0.05em}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 5vw;position:relative}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--head);font-size:1.3rem;letter-spacing:0.08em;color:var(--white)}
+.footer-logo span{color:var(--red)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-family:var(--mono);font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--red)}
+.footer-copy{font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.case-grid{grid-template-columns:1fr}.proj-meta-bar{flex-direction:column;width:100%}.proj-meta-item{border-right:none;border-bottom:1px solid var(--border)}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-stripe"></div>
+  <div class="nav-inner">
+    <a class="nav-logo" href="eva_index.html">PRAY<span class="logo-code">GD-03</span></a>
+    <ul class="nav-links">
+      <li><a href="eva_index.html">Home</a></li>
+      <li><a href="eva_about.html">About</a></li>
+      <li><a href="eva_projects.html" class="active">Projects</a></li>
+      <li><a href="eva_experience.html">Experience</a></li>
+      <li><a href="mailto:praycristanto@gmail.com" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-bg">OPS</div>
+  <div class="ph-classify">OPERATIONS LOG / 3 ACTIVE RECORDS / ALL TITLES SHIPPED</div>
+  <h1 class="ph-title">PROJECTS<br>THAT <span>SHIPPED.</span></h1>
+  <p class="ph-sub">EACH ENTRY BELOW IS A REAL GAME WITH REAL PLAYERS — NOT A CONCEPT, NOT A JAM PROJECT</p>
+</div>
+
+<!-- PROJECT 1: TSSOU -->
+<div class="project-section" id="tssou">
+  <div class="proj-bg-num">01</div>
+  <div class="proj-header reveal">
+    <div class="proj-file-row">
+      <span class="proj-file-code">OPS-001</span>
+      <span class="proj-tag">Unity · C#</span>
+      <span class="proj-tag">Visual Novel</span>
+      <span class="proj-tag amber">PC · iOS · Android</span>
+    </div>
+    <h2 class="proj-title">THE SUN<br>SHINES<br>OVER US</h2>
+    <p class="proj-subtitle">Award-winning visual novel about mental health and bullying. 500K+ organic downloads. Best Narrative Game, IGDX 2022.</p>
+  </div>
+  <div class="proj-meta-bar reveal">
+    <div class="proj-meta-item"><div class="pmi-label">Role</div><div class="pmi-val">Game Designer</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Team Size</div><div class="pmi-val">~8 people</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Duration</div><div class="pmi-val">~18 months</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Engine</div><div class="pmi-val">Unity + C#</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Downloads</div><div class="pmi-val">500K+</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Endings</div><div class="pmi-val">6 verified</div></div>
+  </div>
+  <!-- MEDIA STRIP -->
+  <div class="media-strip reveal">
+    <div class="media-main">
+      <div class="media-placeholder" title="Replace src with your gameplay GIF or screenshot">
+        <img src="tssou-gameplay.gif" alt="The Sun Shines Over Us — gameplay" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ Drop gameplay GIF here: tssou-gameplay.gif ]</div>
+      </div>
+    </div>
+    <div class="media-thumbs">
+      <div class="media-placeholder media-thumb">
+        <img src="tssou-screen1.jpg" alt="TSSOU screenshot 1" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ tssou-screen1.jpg ]</div>
+      </div>
+      <div class="media-placeholder media-thumb">
+        <img src="tssou-screen2.jpg" alt="TSSOU screenshot 2" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ tssou-screen2.jpg ]</div>
+      </div>
+      <div class="media-placeholder media-thumb">
+        <img src="tssou-screen3.jpg" alt="TSSOU screenshot 3" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ tssou-screen3.jpg ]</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="case-toggle reveal" onclick="toggleCase(this)">
+    <span class="toggle-arrow">▶</span> Read Full Case Study
+  </button>
+  <div class="case-wrap">
+    <div class="case-grid">
+      <div class="case-block">
+        <div class="cb-label intention">Intention</div>
+        <p>Design a branching choice system where all <strong>6 endings feel reachable and earned</strong> through natural play — no single "correct" path, no endings that require a guide.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label process">Process</div>
+        <p>Mapped <strong>47 choice nodes</strong> in Google Sheets, assigning weighted values per ending path. Ran 30+ full playthroughs to verify each ending was accessible before submission.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label challenge">Challenge</div>
+        <p>Playtesting showed <strong>80% of players landed on the same 2 endings</strong>. Early Act 1 choices were so heavily weighted they locked the player's path before the midpoint — the other 4 endings were effectively unreachable.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label solution">Solution</div>
+        <p>Redistributed point weights across Act 1 — reduced early-choice influence, shifted narrative tension to mid-game decisions instead. Rebalanced until <strong>all 6 endings registered in natural playthroughs</strong>.</p>
+      </div>
+      <div class="case-block full">
+        <div class="cb-label outcome">Outcome</div>
+        <p>All 6 endings became accessible through normal play. Players consistently cited that <strong>"my choices actually mattered"</strong> — the exact feeling the narrative was built to create. The game reached 500K+ organic downloads with zero paid acquisition, and was recognized as Best Narrative Game at IGDX 2022.</p>
+      </div>
+    </div>
+  </div>
+  <div class="deliverables reveal">
+    <div class="del-label">What was delivered</div>
+    <ul class="del-list">
+      <li>Full branching choice system — 47 nodes, 6 distinct endings, all verified accessible through 30+ playthroughs</li>
+      <li>Act 1 point weight rebalance — identified and resolved the path lock-in causing 80% of players to hit the same two endings</li>
+      <li>Monetization strategy reviewed and implemented with player trust as the primary constraint</li>
+      <li>Community built across X, Instagram, Facebook, and Discord from zero — supporting 500K+ organic downloads</li>
+    </ul>
+  </div>
+  <div class="award-bar reveal">
+    <span class="award-bar-icon">⬡</span>
+    <span class="award-bar-text">Best Narrative Game — IGDX 2022 · Finalist LevelUP KL 2021 · Best Team — Gameloft Game Design Connect 3, 2023</span>
+  </div>
+</div>
+
+<!-- PROJECT 2: MATCHMAKER -->
+<div class="project-section" id="matchmaker">
+  <div class="proj-bg-num">02</div>
+  <div class="proj-header reveal">
+    <div class="proj-file-row">
+      <span class="proj-file-code">OPS-002</span>
+      <span class="proj-tag">Unity · Machination</span>
+      <span class="proj-tag">Simulation</span>
+      <span class="proj-tag amber">PC · Nintendo Switch</span>
+    </div>
+    <h2 class="proj-title">MATCHMAKER<br>AGENCY</h2>
+    <p class="proj-subtitle">Casual simulation game — run a matchmaking agency, manage characters, unlock special clients. Shipped on PC and Nintendo Switch.</p>
+  </div>
+  <div class="proj-meta-bar reveal">
+    <div class="proj-meta-item"><div class="pmi-label">Role</div><div class="pmi-val">Lead Designer</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Team Size</div><div class="pmi-val">6 people</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Duration</div><div class="pmi-val">~12 months</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Tools</div><div class="pmi-val">Unity · Sheets · Miro</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Events Built</div><div class="pmi-val">100+</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Traits Balanced</div><div class="pmi-val">30+</div></div>
+  </div>
+  <!-- MEDIA STRIP -->
+  <div class="media-strip reveal">
+    <div class="media-main">
+      <div class="media-placeholder" title="Replace with Matchmaker gameplay GIF">
+        <img src="matchmaker-gameplay.gif" alt="Matchmaker Agency — gameplay" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ Drop gameplay GIF here: matchmaker-gameplay.gif ]</div>
+      </div>
+    </div>
+    <div class="media-thumbs">
+      <div class="media-placeholder media-thumb">
+        <img src="matchmaker-screen1.jpg" alt="Matchmaker screenshot 1" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ matchmaker-screen1.jpg ]</div>
+      </div>
+      <div class="media-placeholder media-thumb">
+        <img src="matchmaker-screen2.jpg" alt="Matchmaker screenshot 2" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ matchmaker-screen2.jpg ]</div>
+      </div>
+      <div class="media-placeholder media-thumb">
+        <img src="matchmaker-screen3.jpg" alt="Matchmaker screenshot 3" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ matchmaker-screen3.jpg ]</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="case-toggle reveal" onclick="toggleCase(this)">
+    <span class="toggle-arrow">▶</span> Read Full Case Study
+  </button>
+  <div class="case-wrap">
+    <div class="case-grid">
+      <div class="case-block">
+        <div class="cb-label intention">Intention</div>
+        <p>Make wait periods between matches feel <strong>engaging, not empty</strong>. Build a trait-compatibility system where no single character combination dominates the outcome.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label process">Process</div>
+        <p>Designed <strong>100+ random events</strong> using a structured content framework (setup → reaction → outcome). Built a full 30+ trait interaction matrix in Google Sheets with positive, neutral, and negative scores per pairing.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label challenge">Challenge</div>
+        <p>Two simultaneous problems: (1) Players were <strong>skipping events in early testing</strong> — engagement was near zero. (2) The "Adventurer" trait was generating successful matches at <strong>3× the expected rate</strong>, breaking the balance.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label solution">Solution</div>
+        <p>(1) Restructured event triggers — early events now feature <strong>already-familiar characters</strong>, increasing engagement through familiarity. (2) Rebuilt the scoring formula to separate base compatibility from trait bonuses. Rebalanced <strong>40+ combinations across 3 test cycles</strong> until all traits normalized.</p>
+      </div>
+      <div class="case-block full">
+        <div class="cb-label outcome">Outcome</div>
+        <p>Post-fix playtests showed players actively reading events rather than dismissing them. The wait period became a <strong>feature, not a problem</strong>. No single trait dominated at ship. Matchmaker Agency launched on PC and Nintendo Switch with a fully balanced system across 30+ traits, 20+ items, and 8 locations — all documented in Google Sheets for team reference.</p>
+      </div>
+    </div>
+  </div>
+  <div class="deliverables reveal">
+    <div class="del-label">What was delivered</div>
+    <ul class="del-list">
+      <li>100+ random events — designed, written, paced, and balanced for variety across the full game session</li>
+      <li>Full trait compatibility matrix — 30+ traits, positive/neutral/negative scores per pairing, balanced across 3 test cycles</li>
+      <li>Complete item and location economy — no dominant strategies at ship</li>
+      <li>Special character trigger system — specced with unlock conditions and rarity logic, handed off for programmer implementation</li>
+      <li>All systems fully documented in Google Sheets for whole-team reference</li>
+    </ul>
+  </div>
+  <div class="award-bar reveal">
+    <span class="award-bar-icon">⬡</span>
+    <span class="award-bar-text">Best Game Designer — Gameloft Game Design Connect 3, 2023 · Available on Steam and Nintendo Switch</span>
+  </div>
+</div>
+
+<!-- PROJECT 3: VIRGO -->
+<div class="project-section" id="virgo">
+  <div class="proj-bg-num">03</div>
+  <div class="proj-header reveal">
+    <div class="proj-file-row">
+      <span class="proj-file-code">OPS-003</span>
+      <span class="proj-tag">Unity</span>
+      <span class="proj-tag">Licensed IP</span>
+      <span class="proj-tag amber">Mobile / Cross-media</span>
+    </div>
+    <h2 class="proj-title">VIRGO &<br>THE SPARKLINGS</h2>
+    <p class="proj-subtitle">Official game tie-in for the Bumi Langit movie. Adapted a beloved Indonesian comic IP into a mobile visual novel with a custom dress-up system.</p>
+  </div>
+  <div class="proj-meta-bar reveal">
+    <div class="proj-meta-item"><div class="pmi-label">Role</div><div class="pmi-val">Game Designer</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Client</div><div class="pmi-val">Bumi Langit</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Platform</div><div class="pmi-val">Mobile</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Context</div><div class="pmi-val">Movie campaign tie-in</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">Engine</div><div class="pmi-val">Unity</div></div>
+    <div class="proj-meta-item"><div class="pmi-label">IP Status</div><div class="pmi-val">Official Licensed</div></div>
+  </div>
+  <!-- MEDIA STRIP -->
+  <div class="media-strip reveal">
+    <div class="media-main">
+      <div class="media-placeholder" title="Replace with Virgo gameplay GIF">
+        <img src="virgo-gameplay.gif" alt="Virgo and The Sparklings — gameplay" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ Drop gameplay GIF here: virgo-gameplay.gif ]</div>
+      </div>
+    </div>
+    <div class="media-thumbs">
+      <div class="media-placeholder media-thumb">
+        <img src="virgo-screen1.jpg" alt="Virgo screenshot 1" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ virgo-screen1.jpg ]</div>
+      </div>
+      <div class="media-placeholder media-thumb">
+        <img src="virgo-screen2.jpg" alt="Virgo screenshot 2" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ virgo-screen2.jpg ]</div>
+      </div>
+      <div class="media-placeholder media-thumb">
+        <img src="virgo-screen3.jpg" alt="Virgo screenshot 3" onerror="this.parentElement.classList.add('no-img')"/>
+        <div class="media-placeholder-label">[ virgo-screen3.jpg ]</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="case-toggle reveal" onclick="toggleCase(this)">
+    <span class="toggle-arrow">▶</span> Read Full Case Study
+  </button>
+  <div class="case-wrap">
+    <div class="case-grid">
+      <div class="case-block">
+        <div class="cb-label intention">Intention</div>
+        <p>Adapt a beloved Indonesian comic IP into a mobile visual novel that satisfies both <strong>existing fans and new players</strong> — without distorting source material or losing the characters that fans care about.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label process">Process</div>
+        <p>Served as the bridge between IP and mechanics. Designed the dress-up system ruleset, built and balanced the point/progression system in Google Sheets, and reviewed all adapted scenes against the source comic for fidelity.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label challenge">Challenge</div>
+        <p>Working inside a licensed IP means <strong>the story is fixed</strong>. Every mechanic had to create player agency and engagement without touching the protected narrative. No dramatic restructuring. No character motivation changes.</p>
+      </div>
+      <div class="case-block">
+        <div class="cb-label solution">Solution</div>
+        <p>Focused design energy entirely on the <strong>spaces the IP didn't define</strong> — between-scene moments, the customization layer, and reward pacing. Designed player agency where the story allowed it without pulling against the source material.</p>
+      </div>
+      <div class="case-block full">
+        <div class="cb-label outcome">Outcome</div>
+        <p>Delivered a complete mobile game <strong>for a major licensed IP from a major Indonesian media company</strong>. The dress-up mechanic and point system were fully designed, tested, and shipped within the constraints of the licensed property. All adapted scenes were verified against source material before production lock.</p>
+      </div>
+    </div>
+  </div>
+  <div class="deliverables reveal">
+    <div class="del-label">What was delivered</div>
+    <ul class="del-list">
+      <li>Dress-up mechanic — full ruleset, unlock logic, edge-case QA, and constraint documentation</li>
+      <li>Point and progression system — designed and balanced for full game flow</li>
+      <li>Story fidelity review — all adapted scenes verified against source comic material</li>
+      <li>Complete design delivered within licensed IP constraints for Bumi Langit, one of Indonesia's leading media companies</li>
+    </ul>
+  </div>
+  <div class="award-bar reveal">
+    <span class="award-bar-icon">⬡</span>
+    <span class="award-bar-text">Official Bumi Langit IP · Cross-media campaign tie-in for theatrical release · Available on mobile</span>
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div id="contact-strip">
+  <div class="contact-strip-left">
+    <div class="small">Available for Freelance</div>
+    <h2>Ready to build<br>the next one.</h2>
+  </div>
+  <div class="contact-strip-right">
+    <a class="contact-strip-email" href="mailto:praycristanto@gmail.com">praycristanto@gmail.com</a>
+    <a class="btn btn-white" href="mailto:praycristanto@gmail.com">Get In Touch ↗</a>
+  </div>
+</div>
+
+<footer>
+  <div class="eva-stripe" style="position:absolute;top:0;left:0;right:0;height:3px"></div>
+  <div class="footer-inner">
+    <div class="footer-logo">PRAY<span>.</span></div>
+    <div class="footer-links">
+      <a href="eva_index.html">Home</a>
+      <a href="eva_about.html">About</a>
+      <a href="eva_experience.html">Experience</a>
+    </div>
+    <div class="footer-copy">GAME DESIGNER / LAMPUNG, ID / AVAILABLE FOR REMOTE WORK</div>
+  </div>
+</footer>
+
+<script>
+const els=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.08});
+els.forEach(el=>obs.observe(el));
+
+function toggleCase(btn){
+  const wrap=btn.nextElementSibling;
+  const isOpen=wrap.classList.contains('open');
+  wrap.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.querySelector('.toggle-arrow').textContent=isOpen?'▶':'▼';
+  const label=btn.querySelector('span:last-child')||btn;
+  btn.childNodes.forEach(n=>{if(n.nodeType===3)n.textContent=isOpen?' Read Full Case Study':' Close Case Study'});
+}
+</script>
+</body>
+</html>

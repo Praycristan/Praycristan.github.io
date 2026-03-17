@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About — Pray Cristanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070707;--surface:#0e0e0e;--card:#121218;--border:#232323;--red:#CC2929;--red2:#e63535;--amber:#F5A623;--green:#3ecf5e;--text:#D8D4CA;--muted:#5a5a5a;--white:#F0EDE8;--mono:'Share Tech Mono',monospace;--head:'Bebas Neue',cursive;--body:'DM Sans',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:998}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,7,7,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.nav-stripe{height:3px;background:repeating-linear-gradient(135deg,var(--red) 0,var(--red) 5px,transparent 5px,transparent 12px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 5vw}
+.nav-logo{font-family:var(--head);font-size:1.4rem;letter-spacing:0.08em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
+.logo-code{font-family:var(--mono);font-size:0.65rem;color:var(--red);border:1px solid var(--red);padding:0.15rem 0.4rem;letter-spacing:0.12em}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--red)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--red)}
+.nav-cta{background:var(--red)!important;color:var(--white)!important;padding:0.4rem 1rem!important}
+
+/* PAGE HEADER */
+.page-header{padding:9rem 5vw 4rem;background:var(--surface);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.ph-bg{position:absolute;font-family:var(--head);font-size:clamp(8rem,16vw,18rem);color:var(--white);opacity:0.018;bottom:-1rem;right:-1rem;letter-spacing:0.1em;pointer-events:none;line-height:1}
+.ph-classify{font-family:var(--mono);font-size:0.65rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.ph-classify::before{content:'▶';font-size:0.5rem}
+h1.ph-title{font-family:var(--head);font-size:clamp(3.5rem,8vw,7rem);letter-spacing:0.05em;color:var(--white);line-height:0.95;margin-bottom:1rem}
+h1.ph-title span{color:var(--red)}
+.ph-sub{font-size:0.9rem;color:var(--muted);font-family:var(--mono);letter-spacing:0.06em}
+
+/* DOSSIER LAYOUT */
+.dossier{display:grid;grid-template-columns:1fr 320px;gap:0;align-items:start}
+.dossier-main{padding:5rem 4rem 5rem 5vw;border-right:1px solid var(--border)}
+.dossier-sidebar{padding:5rem 5vw 5rem 2.5rem;position:sticky;top:80px}
+
+/* CHAPTER SYSTEM */
+.chapter{margin-bottom:4rem}
+.chapter-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.chapter-num{font-family:var(--mono);font-size:0.62rem;color:var(--red);letter-spacing:0.15em;text-transform:uppercase}
+.chapter-line{flex:1;height:1px;background:var(--border);max-width:40px}
+.chapter-title{font-family:var(--head);font-size:1.8rem;letter-spacing:0.06em;color:var(--white)}
+.chapter-body p{color:var(--muted);font-weight:300;margin-bottom:1rem;font-size:0.95rem;line-height:1.85}
+.chapter-body p strong{color:var(--text);font-weight:500}
+.chapter-body p em{color:var(--amber);font-style:normal}
+
+/* QUOTE BLOCK */
+.chapter-quote{margin:2rem 0;padding:1.5rem;border-left:3px solid var(--red);background:rgba(204,41,41,0.05)}
+.chapter-quote p{font-size:1.1rem;color:var(--text);font-weight:300;line-height:1.8;font-style:italic;margin:0}
+.chapter-quote .quote-attr{font-family:var(--mono);font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.8rem}
+
+/* CAPABILITIES TABLE */
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:1.5rem}
+.cap-item{background:var(--card);padding:1.2rem;border-left:2px solid transparent;transition:border-color 0.2s}
+.cap-item:hover{border-left-color:var(--red)}
+.cap-name{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem}
+.cap-desc{font-size:0.82rem;color:var(--muted);font-weight:300;line-height:1.6}
+
+/* SIDEBAR BLOCKS */
+.sidebar-block{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border)}
+.sidebar-block:last-child{border-bottom:none}
+.sb-label{font-family:var(--mono);font-size:0.6rem;color:var(--red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.sb-label::before{content:'';width:8px;height:1px;background:var(--red)}
+
+/* PROFILE CARD */
+.profile-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;text-align:center;margin-bottom:1.5rem;position:relative}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.profile-avatar{width:80px;height:80px;border-radius:50%;border:2px solid var(--red);margin:0 auto 1rem;background:var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:2.2rem;color:var(--red)}
+.profile-name{font-family:var(--head);font-size:1.5rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.2rem}
+.profile-role{font-family:var(--mono);font-size:0.65rem;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase}
+.profile-divider{width:100%;height:1px;background:var(--border);margin:1rem 0}
+.profile-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem}
+.profile-row-label{font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+.profile-row-val{font-size:0.82rem;color:var(--text)}
+.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:0.4rem;animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* CERT LIST */
+.cert-list{display:flex;flex-direction:column;gap:0.8rem}
+.cert-item{display:flex;gap:0.8rem;align-items:flex-start}
+.cert-mark{width:6px;height:6px;background:var(--amber);margin-top:0.55rem;flex-shrink:0}
+.cert-text{font-size:0.82rem;color:var(--text)}
+.cert-org{font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em}
+
+/* CONTACT STRIP */
+#contact-strip{background:var(--red);padding:4rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.contact-strip-left .small{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.5rem}
+.contact-strip-left h2{font-family:var(--head);font-size:clamp(2rem,5vw,4rem);letter-spacing:0.05em;color:var(--white);line-height:1}
+.contact-strip-right{display:flex;flex-direction:column;gap:0.8rem}
+.contact-strip-email{font-family:var(--mono);font-size:1rem;color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:0.2rem;letter-spacing:0.05em}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid;cursor:pointer;transition:all 0.2s}
+.btn-white{background:white;border-color:white;color:var(--red)!important}
+.btn-white:hover{background:rgba(255,255,255,0.85);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2rem 5vw;position:relative}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--head);font-size:1.3rem;letter-spacing:0.08em;color:var(--white)}
+.footer-logo span{color:var(--red)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-family:var(--mono);font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.footer-links a:hover{color:var(--red)}
+.footer-copy{font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em}
+
+/* STRIPE */
+.eva-stripe{height:3px;background:repeating-linear-gradient(135deg,var(--red) 0,var(--red) 5px,transparent 5px,transparent 12px)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .dossier{grid-template-columns:1fr}
+  .dossier-main{padding:3rem 5vw;border-right:none;border-bottom:1px solid var(--border)}
+  .dossier-sidebar{padding:3rem 5vw;position:static}
+  .cap-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-stripe"></div>
+  <div class="nav-inner">
+    <a class="nav-logo" href="eva_index.html">PRAY<span class="logo-code">GD-03</span></a>
+    <ul class="nav-links">
+      <li><a href="eva_index.html">Home</a></li>
+      <li><a href="eva_about.html" class="active">About</a></li>
+      <li><a href="eva_projects.html">Projects</a></li>
+      <li><a href="eva_experience.html">Experience</a></li>
+      <li><a href="mailto:praycristanto@gmail.com" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-bg">ABOUT</div>
+  <div class="ph-classify">PERSONNEL FILE / CLASSIFICATION: PUBLIC / FILE-REF: PC-2019</div>
+  <h1 class="ph-title">THE PERSON<br>BEHIND THE<br><span>SYSTEMS.</span></h1>
+  <p class="ph-sub">PRAY CRISTANTO / GAME DESIGNER / LAMPUNG, INDONESIA / EST. 2019</p>
+</div>
+
+<!-- DOSSIER LAYOUT -->
+<div class="dossier">
+  <!-- MAIN CONTENT -->
+  <div class="dossier-main">
+
+    <!-- CHAPTER 1: ORIGIN -->
+    <div class="chapter reveal">
+      <div class="chapter-header">
+        <div class="chapter-num">LOG-001</div>
+        <div class="chapter-line"></div>
+        <div class="chapter-title">THE BEGINNING</div>
+      </div>
+      <div class="chapter-body">
+        <p>
+          I didn't get into game design because I wanted a career. I got into it because
+          a game once made me cry — and I needed to understand how that was possible.
+          How a sequence of rules and choices could reach through a screen and make a person
+          feel something that lingered for days.
+        </p>
+        <p>
+          Growing up in Lampung, I spent more time inside games than outside them. Not to escape —
+          to <strong>understand</strong>. Why does this feel tense? Why did that choice matter?
+          Why do I feel guilty about a decision I made for a fictional character?
+          I became obsessed with the invisible machinery underneath — the systems that produce feeling.
+        </p>
+        <div class="chapter-quote">
+          <p>I'm not interested in making games that are fun. I'm interested in making games that mean something. Fun is a side effect of a system that works.</p>
+          <div class="quote-attr">Pray Cristanto / Personal Design Philosophy</div>
+        </div>
+        <p>
+          In 2019, I got my first chance to work inside a studio — as an intern programmer at
+          Eternal Dream. Within a month, <em>I had published a full mobile game on the Play Store.</em>
+          It wasn't polished. But it was real, it was mine, and it taught me that shipping
+          something imperfect beats designing something perfect that never exists.
+        </p>
+      </div>
+    </div>
+
+    <!-- CHAPTER 2: THE TURN -->
+    <div class="chapter reveal">
+      <div class="chapter-header">
+        <div class="chapter-num">LOG-002</div>
+        <div class="chapter-line"></div>
+        <div class="chapter-title">FINDING THE WORK</div>
+      </div>
+      <div class="chapter-body">
+        <p>
+          Programming taught me how games are built. Community management taught me
+          how players <em>actually behave</em> — which is almost never how designers predict.
+          Both were necessary. Neither was where I belonged.
+        </p>
+        <p>
+          Game design is the intersection of both: you need to think in systems
+          <strong>and</strong> think like a player simultaneously. When I moved into the design
+          role in 2021, it felt like the first time I was using all the parts of my brain at once.
+        </p>
+        <p>
+          The first major project was <em>The Sun Shines Over Us</em> — a visual novel about
+          mental health, bullying, and recovery. Heavy subject matter. We had 6 possible endings.
+          My job was to make every single one of them feel reachable and earned, through 47
+          choice nodes that I mapped, weighted, and verified across 30+ full playthroughs.
+        </p>
+        <p>
+          It reached <strong>500,000 downloads</strong>. Players wrote to us saying it helped them
+          talk to someone they'd been avoiding for years.
+          That's not something you put on a resume. It's something you carry.
+        </p>
+      </div>
+    </div>
+
+    <!-- CHAPTER 3: THE CRAFT -->
+    <div class="chapter reveal">
+      <div class="chapter-header">
+        <div class="chapter-num">LOG-003</div>
+        <div class="chapter-line"></div>
+        <div class="chapter-title">WHAT I ACTUALLY DO</div>
+      </div>
+      <div class="chapter-body">
+        <p>
+          Most people think game design is about coming up with cool ideas.
+          That's maybe 10% of it. The other 90% is <strong>measurement</strong>.
+        </p>
+        <p>
+          When a player says "this feels unfair," there's a number somewhere that's wrong.
+          When they say "this choice didn't matter," there's a weight that needs adjusting.
+          When they say "I couldn't stop playing," there's a loop interval that accidentally
+          hit the right frequency. My job is to find those numbers, understand why they produce
+          the feeling they produce, and make them deliberate.
+        </p>
+        <p>
+          I design in Google Sheets before I design in Unity. I run simulations before I run tests.
+          I ask "what should the player feel here?" before I ask "what mechanic goes here?"
+          The feeling comes first. The system that produces it comes second.
+        </p>
+        <div class="chapter-quote">
+          <p>The best mechanic is one the player never notices — because it's doing exactly what they expected, quietly, every time.</p>
+          <div class="quote-attr">On Invisible Design / Core Principle</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 4: CAPABILITIES -->
+    <div class="chapter reveal">
+      <div class="chapter-header">
+        <div class="chapter-num">LOG-004</div>
+        <div class="chapter-line"></div>
+        <div class="chapter-title">CAPABILITIES ASSESSMENT</div>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-item">
+          <div class="cap-name">Systems Design</div>
+          <div class="cap-desc">Economy balancing, trait matrices, progression loops. Built and iterated in Machination and Google Sheets before touching Unity.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-name">Narrative Mechanics</div>
+          <div class="cap-desc">Branching choice architecture — 47-node systems where every path is weighted, tested, and verified reachable without outside help.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-name">Quality Assurance</div>
+          <div class="cap-desc">Structured playtesting with documented test cycles. I find the number that's wrong before players do.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-name">UX Design</div>
+          <div class="cap-desc">Player-first interface thinking. If a mechanic needs a tutorial to make sense, the mechanic needs redesigning.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-name">Unity + C#</div>
+          <div class="cap-desc">Full production pipeline — from design spec to prototype to integration. Can build light features, not just spec them.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-name">Content Review</div>
+          <div class="cap-desc">Visual consistency, narrative fidelity, classification judgment. Applied professionally across 3 shipped titles.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 5: NOW -->
+    <div class="chapter reveal">
+      <div class="chapter-header">
+        <div class="chapter-num">LOG-005</div>
+        <div class="chapter-line"></div>
+        <div class="chapter-title">WHERE I AM NOW</div>
+      </div>
+      <div class="chapter-body">
+        <p>
+          Five years in. Three games shipped. Recognized by Google, Microsoft, and Gameloft —
+          not for a pitch, but for things I actually built and delivered. That distinction matters.
+        </p>
+        <p>
+          I'm available for <em>freelance work</em> in game design, quality assurance,
+          and content evaluation. I work remotely, I work independently, and I work with people
+          who care about what they're making. If that sounds like you, I'd like to hear about it.
+        </p>
+        <p>
+          If you're looking for someone who will show up, think hard, and make things better than
+          they found them — I'm here.
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /dossier-main -->
+
+  <!-- SIDEBAR -->
+  <div class="dossier-sidebar">
+
+    <!-- PROFILE CARD -->
+    <div class="sidebar-block">
+      <div class="profile-card">
+        <div class="profile-avatar">PC</div>
+        <div class="profile-name">PRAY CRISTANTO</div>
+        <div class="profile-role">Game Designer / Content Evaluator</div>
+        <div class="profile-divider"></div>
+        <div class="profile-row">
+          <span class="profile-row-label">Status</span>
+          <span class="profile-row-val"><span class="status-dot"></span>Available</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">Location</span>
+          <span class="profile-row-val">Lampung, ID</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">Active Since</span>
+          <span class="profile-row-val">2019</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">GPA</span>
+          <span class="profile-row-val">3.48 / 4.00</span>
+        </div>
+        <div class="profile-divider"></div>
+        <a href="mailto:praycristanto@gmail.com" style="font-family:var(--mono);font-size:0.7rem;color:var(--red);text-decoration:none;letter-spacing:0.06em">praycristanto@gmail.com</a>
+      </div>
+    </div>
+
+    <!-- RECOGNITIONS -->
+    <div class="sidebar-block">
+      <div class="sb-label">Recognitions</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-mark"></div>
+          <div><div class="cert-text">Best Narrative Game</div><div class="cert-org">IGDX — 2022</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-mark"></div>
+          <div><div class="cert-text">Best Game Designer</div><div class="cert-org">Gameloft Indonesia — 2023</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-mark"></div>
+          <div><div class="cert-text">International Finalist</div><div class="cert-org">LevelUP KL — 2021</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-mark"></div>
+          <div><div class="cert-text">Best Pitch</div><div class="cert-org">Selasar Game Design POV — 2023</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="sidebar-block">
+      <div class="sb-label">Certifications</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-mark" style="background:var(--red)"></div>
+          <div><div class="cert-text">Indie Game Accelerator Alumni</div><div class="cert-org">Google — 2022</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-mark" style="background:var(--red)"></div>
+          <div><div class="cert-text">Xbox Game Camp Alumni</div><div class="cert-org">Microsoft — 2024</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-mark" style="background:var(--red)"></div>
+          <div><div class="cert-text">Foundations of UX Design</div><div class="cert-org">Coursera</div></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-mark" style="background:var(--red)"></div>
+          <div><div class="cert-text">Future of Game Design</div><div class="cert-org">MDEC Malaysia</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="sidebar-block">
+      <div class="sb-label">Connect</div>
+      <div style="display:flex;flex-direction:column;gap:0.6rem">
+        <a href="https://linkedin.com/in/praycristanto" target="_blank" style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--muted)'">↗ LinkedIn</a>
+        <a href="https://x.com/praycristanto" target="_blank" style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--muted)'">↗ X / Twitter</a>
+        <a href="https://sites.google.com/view/prayportfolio" target="_blank" style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--muted)'">↗ Portfolio (Google Sites)</a>
+        <a href="https://drive.google.com/file/d/1qbcQaEbSyIb17kkB8SyOmUsGzAD8J8VF/view" target="_blank" style="font-family:var(--mono);font-size:0.7rem;color:var(--red);text-decoration:none;letter-spacing:0.06em">↗ Download Resume</a>
+      </div>
+    </div>
+
+  </div><!-- /dossier-sidebar -->
+</div><!-- /dossier -->
+
+<!-- CONTACT STRIP -->
+<div id="contact-strip">
+  <div class="contact-strip-left">
+    <div class="small">Freelance Available</div>
+    <h2>Work with<br>me.</h2>
+  </div>
+  <div class="contact-strip-right">
+    <a class="contact-strip-email" href="mailto:praycristanto@gmail.com">praycristanto@gmail.com</a>
+    <a class="btn btn-white" href="mailto:praycristanto@gmail.com">Get In Touch ↗</a>
+  </div>
+</div>
+
+<footer>
+  <div class="eva-stripe" style="position:absolute;top:0;left:0;right:0;height:3px"></div>
+  <div class="footer-inner">
+    <div class="footer-logo">PRAY<span>.</span></div>
+    <div class="footer-links">
+      <a href="eva_index.html">Home</a>
+      <a href="eva_projects.html">Projects</a>
+      <a href="eva_experience.html">Experience</a>
+    </div>
+    <div class="footer-copy">GAME DESIGNER / LAMPUNG, ID / AVAILABLE FOR REMOTE WORK</div>
+  </div>
+</footer>
+
+<script>
+const els=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.08});
+els.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
