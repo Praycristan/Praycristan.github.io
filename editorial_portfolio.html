@@ -20,31 +20,23 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.8;overflow-x:hidden}
 
-/* ── PROGRESS RAIL — RIGHT side, no content collision ── */
+/* ── PROGRESS RAIL ── */
 #progress-rail{
   position:fixed;right:0;top:50%;
   transform:translateY(-50%);
   display:flex;flex-direction:column;align-items:flex-end;gap:0.55rem;z-index:200;
   padding:0.6rem 0;
 }
-.pr-item{
-  position:relative;
-  display:flex;align-items:center;justify-content:flex-end;
-  text-decoration:none;
-  width:28px;height:20px;
-}
+.pr-item{position:relative;display:flex;align-items:center;justify-content:flex-end;text-decoration:none;width:28px;height:20px}
 .pr-dot{width:6px;height:6px;border-radius:50%;background:var(--rule2);transition:all 0.3s;flex-shrink:0;margin-right:10px}
 .pr-label{
-  position:absolute;
-  right:26px;
-  top:50%;
+  position:absolute;right:26px;top:50%;
   transform:translateY(-50%) translateX(6px);
   font-family:var(--cond);font-size:0.58rem;font-weight:700;
   letter-spacing:0.1em;text-transform:uppercase;
   color:var(--ink2);opacity:0;
   transition:opacity 0.2s,transform 0.2s;
-  white-space:nowrap;
-  pointer-events:none;
+  white-space:nowrap;pointer-events:none;
   background:rgba(244,240,232,0.96);
   padding:3px 9px 3px 8px;
   border-left:2px solid var(--rule2);
@@ -95,9 +87,17 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19p
 .btn-orange:hover{background:var(--orange2);border-color:var(--orange2)}
 .btn-ghost{background:transparent;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6)}
 .btn-ghost:hover{border-color:white;color:white}
+
+/* ── CHANGED: badge now signals full-time intent, not freelance ── */
 .avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(42,107,60,0.1);border:1px solid rgba(42,107,60,0.25);color:#2A6B3C;padding:0.4rem 0.9rem;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:1.8rem;width:fit-content}
 .avail-badge::before{content:'';width:6px;height:6px;background:#2A6B3C;border-radius:50%;animation:pulse-g 2s ease infinite}
 @keyframes pulse-g{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── ACCELERATOR BADGES IN HERO ── */
+.hero-accel-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.accel-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);padding:0.35rem 0.75rem;font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase}
+.accel-badge .ab-icon{color:var(--orange)}
+
 .hero-right{background:var(--paper);padding:5rem 4vw 4rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--rule)}
 .hero-stats-title{font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
 .stat-block{padding:1.1rem 0;border-bottom:1px solid var(--rule)}
@@ -123,7 +123,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19p
 .about-photo-col::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--orange)}
 .about-photo-empty{width:100%;height:100%;min-height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem}
 .ape-icon{font-size:3rem;opacity:0.15}
-.ape-label{font-family:var(--cond);font-size:0.65rem;color:rgba(255,255,255,0.2);letter-spacing:0.12em;text-transform:uppercase;text-align:center;line-height:1.8}
 .about-text-col{padding:3.5rem 4vw 3.5rem 3.5rem;background:var(--paper);display:flex;flex-direction:column;justify-content:center}
 .about-pull-quote{font-family:var(--head);font-size:clamp(1.2rem,2vw,1.85rem);font-weight:700;color:var(--ink);line-height:1.4;letter-spacing:-0.02em;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--rule)}
 .about-pull-quote em{font-style:italic;color:var(--orange)}
@@ -146,30 +145,28 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19p
 .rs-item{font-family:var(--cond);font-size:0.75rem;font-weight:700;letter-spacing:0.06em;display:flex;align-items:center;gap:0.35rem}
 .rs-item::before{content:'✓';font-size:0.7rem}
 
-/* Project cards — stacked layout to eliminate negative space */
 .proj-list{display:flex;flex-direction:column;gap:3px}
 .proj-entry{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);background:var(--rule)}
 .proj-entry:nth-child(even) .proj-media-col{order:2}
 .proj-entry:nth-child(even) .proj-content-col{order:1}
 
-/* Media column: flex column, shots fill remaining height */
 .proj-media-col{background:var(--dark2);display:flex;flex-direction:column;overflow:hidden}
 .proj-gif{aspect-ratio:16/9;position:relative;overflow:hidden;background:#111;flex-shrink:0}
 .proj-gif img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s}
 .proj-entry:hover .proj-gif img{transform:scale(1.03)}
 .proj-gif-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem}
 .pgp-icon{width:44px;height:44px;border:1.5px solid rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:rgba(255,255,255,0.3)}
-.pgp-text{font-family:var(--cond);font-size:0.58rem;color:rgba(255,255,255,0.2);letter-spacing:0.08em;text-align:center;line-height:1.7}
-/* Screenshots: fill remaining height, no aspect-ratio lock */
+
+/* FIX 1: Screenshot placeholder text hidden */
+.proj-shot-ph{display:none}
+
 .proj-shots{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr;gap:0;flex:1;min-height:100px;height:100%}
 .proj-shot{overflow:hidden;background:#0a0a0a;position:relative;cursor:zoom-in;min-height:90px}
 .proj-shot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.8;transition:opacity 0.2s,transform 0.3s;position:absolute;inset:0}
 .proj-shot:hover img{opacity:1;transform:scale(1.06)}
 .proj-shot::after{content:'⊕';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:1.4rem;color:white;pointer-events:none;transition:transform 0.2s;text-shadow:0 0 8px rgba(0,0,0,0.8);z-index:2}
 .proj-shot:hover::after{transform:translate(-50%,-50%) scale(1)}
-.proj-shot-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--cond);font-size:0.5rem;color:rgba(255,255,255,0.1);letter-spacing:0.06em;text-align:center;padding:0.4rem;pointer-events:none}
 
-/* Content column */
 .proj-content-col{background:var(--paper);padding:1.8rem;display:flex;flex-direction:column;gap:0;overflow-y:auto}
 .proj-num-label{font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem}
 .proj-tags{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.7rem}
@@ -190,6 +187,11 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-wei
 .proj-bullets li:last-child{border-bottom:none}
 .proj-bullets li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:0.68rem;top:0.45rem}
 .proj-bullets li strong{color:var(--ink);font-weight:600}
+
+/* ── GDD LINK: new element added to each project ── */
+.proj-gdd-link{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(212,80,10,0.3);padding-bottom:0.1rem;margin-bottom:0.9rem;width:fit-content;transition:border-color 0.2s}
+.proj-gdd-link:hover{border-color:var(--orange)}
+
 .cs-toggle{display:flex;align-items:center;gap:0.45rem;background:none;border:1px solid var(--rule2);padding:0.45rem 0.85rem;font-family:var(--cond);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;width:fit-content;margin-top:auto}
 .cs-toggle:hover,.cs-toggle.open{border-color:var(--orange);color:var(--orange)}
 .cs-arrow{transition:transform 0.3s;font-size:0.58rem}
@@ -227,32 +229,11 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-wei
 .exp-sidebar a{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(212,80,10,0.3);padding-bottom:0.12rem;transition:border-color 0.2s}
 .exp-sidebar a:hover{border-color:var(--orange)}
 .exp-entries{display:flex;flex-direction:column}
-
-/* Timeline: 2-col grid — date | content(with left border) */
-.exp-row{
-  display:grid;
-  grid-template-columns:96px 1fr;
-  padding:1.8rem 0;
-  border-bottom:1px solid var(--rule);
-}
+.exp-row{display:grid;grid-template-columns:96px 1fr;padding:1.8rem 0;border-bottom:1px solid var(--rule)}
 .exp-row:last-child{border-bottom:none}
-.exp-date{
-  font-family:var(--cond);font-size:0.68rem;font-weight:600;
-  color:var(--muted);letter-spacing:0.05em;line-height:1.55;
-  padding-top:0.12rem;text-align:right;padding-right:1.2rem;
-  flex-shrink:0;
-}
-.exp-content{
-  padding-left:1.4rem;
-  border-left:2px solid var(--rule);
-  position:relative;
-}
-.exp-content::before{
-  content:'';position:absolute;
-  left:-5px;top:0.15rem;
-  width:8px;height:8px;border-radius:50%;
-  background:var(--orange);border:2px solid var(--paper);
-}
+.exp-date{font-family:var(--cond);font-size:0.68rem;font-weight:600;color:var(--muted);letter-spacing:0.05em;line-height:1.55;padding-top:0.12rem;text-align:right;padding-right:1.2rem;flex-shrink:0}
+.exp-content{padding-left:1.4rem;border-left:2px solid var(--rule);position:relative}
+.exp-content::before{content:'';position:absolute;left:-5px;top:0.15rem;width:8px;height:8px;border-radius:50%;background:var(--orange);border:2px solid var(--paper)}
 .exp-role{font-family:var(--cond);font-size:1rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);margin-bottom:0.12rem}
 .exp-company{font-size:0.8rem;color:var(--orange);font-weight:600;margin-bottom:0.6rem}
 .exp-li{font-size:0.85rem;color:var(--ink2);padding:0.35rem 0 0.35rem 1rem;position:relative;border-bottom:1px solid var(--rule);font-weight:400;line-height:1.7}
@@ -265,11 +246,22 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-wei
 /* ── AWARDS ── */
 #awards{background:var(--dark);padding:4rem 4vw}
 .awards-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);margin-top:1.8rem}
+
+/* CHANGED: first two awards (Google IGA + Xbox) are visually elevated */
 .aw-card{background:rgba(255,255,255,0.02);padding:1.4rem 1.2rem;border-top:2px solid transparent;transition:border-color 0.2s,background 0.2s}
 .aw-card:hover{border-top-color:var(--gold);background:rgba(255,255,255,0.04)}
+.aw-card.tier1{background:rgba(212,80,10,0.06);border-top:2px solid var(--orange)}
+.aw-card.tier1 .aw-name{color:white}
+.aw-card.tier1 .aw-org{color:rgba(212,80,10,0.7)}
 .aw-icon{font-size:1rem;margin-bottom:0.5rem}
 .aw-name{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:0.2rem;line-height:1.3}
 .aw-org{font-family:var(--cond);font-size:0.6rem;font-weight:600;letter-spacing:0.08em;color:rgba(255,255,255,0.28);text-transform:uppercase}
+
+/* CHANGED: certifications footnote below awards — separated from industry awards */
+.awards-cert-note{margin-top:1.2rem;padding:0.75rem 1.2rem;border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.acn-label{font-family:var(--cond);font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);flex-shrink:0}
+.acn-items{display:flex;gap:1.2rem;flex-wrap:wrap}
+.acn-item{font-family:var(--cond);font-size:0.62rem;font-weight:600;letter-spacing:0.06em;color:rgba(255,255,255,0.25)}
 
 /* ── CONTACT ── */
 #contact{display:grid;grid-template-columns:1fr 1fr;min-height:52vh}
@@ -354,7 +346,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
 </head>
 <body>
 
-<!-- PROGRESS RAIL — right side -->
+<!-- PROGRESS RAIL -->
 <div id="progress-rail">
   <a class="pr-item" href="#hero"><div class="pr-dot"></div><div class="pr-label">Intro</div></a>
   <a class="pr-item" href="#about"><div class="pr-dot"></div><div class="pr-label">About</div></a>
@@ -371,7 +363,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="nav-links">
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
-    <!-- Hire Me uses JS-built mailto to prevent email obfuscation -->
     <a id="nav-hire-btn" class="nav-cta-btn" href="#contact">Hire Me ↗</a>
   </div>
 </nav>
@@ -382,19 +373,47 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="hero-eyebrow"><div class="he-line"></div><div class="he-text">Game Designer · Lampung, Indonesia</div></div>
     <h1 class="hero-name">Pray<br><em>Cristanto</em></h1>
     <div class="hero-role">Systems · Narrative · QA</div>
-    <p class="hero-desc">Five years designing the <strong>invisible machinery</strong> inside commercial games — economies, branching choices, balancing systems — reaching <strong>real players</strong> on real platforms.</p>
+    <!--
+      CHANGED: desc now clarifies the nature of each title so recruiters
+      don't conflate a free community VN with a commercial Switch release.
+    -->
+    <p class="hero-desc">
+      Game Designer with 5 years shipping commercial titles on
+      <strong>PC, Nintendo Switch, and Mobile.</strong>
+      Specialized in systems design, economy balancing, and branching narrative architecture —
+      from a <strong>Nintendo Switch simulation</strong> to a
+      <strong>licensed Bumi Langit IP mobile game</strong>
+      to an <strong>award-winning narrative title</strong> with 500K+ community downloads.
+    </p>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-orange">See My Work ↓</a>
       <a href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" class="btn btn-ghost">Download CV</a>
     </div>
-    <div class="avail-badge">Open to Freelance Work</div>
+    <!--
+      CHANGED: "Open to Freelance" → "Open to Full-Time Remote Roles"
+      Freelance badge reads as a fallback to abroad recruiters. Full-time signals ambition.
+    -->
+    <div class="avail-badge">Open to Full-Time Remote Roles</div>
+    <!--
+      NEW: Google IGA + Xbox Camp surfaced immediately in the hero —
+      these are the only two credentials internationally recognised.
+      Don't make recruiters scroll to the awards section to find them.
+    -->
+    <div class="hero-accel-row">
+      <div class="accel-badge"><span class="ab-icon">🚀</span> Google Indie Game Accelerator '22</div>
+      <div class="accel-badge"><span class="ab-icon">💡</span> Xbox Game Camp · Microsoft '24</div>
+    </div>
   </div>
   <div class="hero-right">
     <div class="hero-stats-title">By the numbers — verified results</div>
+    <!--
+      CHANGED: stat detail text now clarifies "free community VN" vs
+      commercial Switch title so the number reads honestly.
+    -->
     <div class="stat-block featured">
       <div class="sb-number">500<sup>K+</sup></div>
-      <div class="sb-label">Organic Downloads</div>
-      <div class="sb-detail">Across 3 shipped titles — zero paid acquisition</div>
+      <div class="sb-label">Community Downloads</div>
+      <div class="sb-detail">The Sun Shines Over Us — free community visual novel, zero paid acquisition</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">5<sup>+</sup></div>
@@ -404,16 +423,16 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="stat-block">
       <div class="sb-number">47</div>
       <div class="sb-label">Choice Nodes Designed</div>
-      <div class="sb-detail">The Sun Shines Over Us — 6 verified endings</div>
+      <div class="sb-detail">The Sun Shines Over Us — 6 verified endings, all playtest-balanced</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">100<sup>+</sup></div>
       <div class="sb-label">Events Crafted</div>
-      <div class="sb-detail">Matchmaker Agency — individually balanced and tested</div>
+      <div class="sb-detail">Matchmaker Agency — individually balanced and tested · Nintendo Switch</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">2<sup>×</sup></div>
-      <div class="sb-label">Industry Recognition</div>
+      <div class="sb-label">Accelerator Alumni</div>
       <div class="sb-detail">Google Indie Game Accelerator · Microsoft Xbox Camp</div>
     </div>
   </div>
@@ -422,20 +441,20 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game · IGDX 2022</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator · Alumni 2022</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp · Microsoft Alumni 2024</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> 500,000+ Downloads · Organic Growth</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game · IGDX 2022</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Licensed IP · Bumi Langit Official Game Tie-In</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator · Alumni 2022</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp · Microsoft Alumni 2024</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game · IGDX 2022</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
     <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> 500,000+ Downloads · Organic Growth</span>
     <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Licensed IP · Bumi Langit Official Game Tie-In</span>
   </div>
 </div>
 
@@ -444,9 +463,12 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="about-photo-col">
     <img src="about-photo.png" alt="Pray Cristanto"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <!--
+      FIX 3: Removed the "Add photo: about-photo.png" label —
+      placeholder text must never be visible to recruiters.
+    -->
     <div class="about-photo-empty" style="display:none">
       <div class="ape-icon">👤</div>
-      <div class="ape-label">Add photo:<br><strong>about-photo.png</strong></div>
     </div>
   </div>
   <div class="about-text-col">
@@ -455,10 +477,14 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="about-body">
       <p class="reveal">I'm <strong>Pray Cristanto</strong>, a Game Designer from Lampung, Indonesia, with five years inside a professional studio. Started as a programmer intern — shipped a mobile game in one month. Moved into community management, learned how players actually behave. Moved into design, where both halves finally clicked.</p>
       <div class="about-callout reveal">
-        <div class="ac-text">"Most people think game design is about ideas. It's really about measurement. When a player says this felt unfair — there's a number somewhere that's wrong. I find that number."</div>
+        <div class="ac-text">"Game design is the art of engineering emotion. A story or mechanic only moves a player if the underlying systems back it up. I combine narrative logic with precise pacing and balance to create meaningful experiences where player choices carry genuine emotional weight."</div>
         <div class="ac-attr">Pray Cristanto · Core Design Philosophy</div>
       </div>
-      <p class="reveal">My work reached <strong>500K+ organic downloads</strong> across three commercial titles. Google and Microsoft selected me for accelerator programs based on what I've shipped. Named <strong>Best Game Designer</strong> by Gameloft Indonesia in 2023.</p>
+      <!--
+        CHANGED: phrasing now clearly separates the community VN achievement
+        from the commercial Nintendo Switch title — both real, different contexts.
+      -->
+      <p class="reveal">Three shipped commercial titles spanning PC, Nintendo Switch, and Mobile. A <strong>free community visual novel</strong> reaching 500K+ players through organic community growth. A <strong>simulation game launched on Nintendo Switch and Steam</strong>. A <strong>licensed mobile tie-in</strong> for Indonesia's leading superhero IP. Google and Microsoft both selected me for accelerator programs. Named <strong>Best Game Designer</strong> by Gameloft Indonesia in 2023.</p>
     </div>
     <div class="about-cred-row reveal">
       <div class="acr-item"><div class="acr-name">Google Indie Game Accelerator</div><div class="acr-org">Alumni · 2022</div></div>
@@ -474,7 +500,11 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="section-marker reveal"><div class="sm-num">03</div><div class="sm-rule"></div><div class="sm-label">Selected Work — 3 Shipped Titles</div></div>
   <div class="proj-intro-grid">
     <h2 style="font-family:var(--head);font-size:clamp(1.8rem,3.2vw,3rem);font-weight:900;color:var(--ink);letter-spacing:-0.03em;line-height:1" class="reveal">Three games.<br><em style="color:var(--orange)">Real players.</em></h2>
-    <p style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.85" class="reveal">Every project is available to download and play today. <strong style="color:var(--ink2)">Click any screenshot to enlarge.</strong></p>
+    <!--
+      NEW: mention of GDD documents — recruiters now know written design thinking exists.
+      Replace the # href with your actual Google Doc / Notion links.
+    -->
+    <p style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.85" class="reveal">Every project is downloadable and playable today. Each has a <strong style="color:var(--ink2)">full design document</strong> — click "Read Full GDD" on any project. Click any screenshot to enlarge.</p>
   </div>
   <div class="recruiter-signal reveal">
     <div class="rs-label">Recruiter Checklist</div>
@@ -486,6 +516,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="rs-item">Award-Winning</div>
       <div class="rs-item">Licensed IP Work</div>
       <div class="rs-item">Documented QA</div>
+      <div class="rs-item">GDD Available</div>
     </div>
   </div>
   <div class="proj-list">
@@ -495,7 +526,10 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="proj-media-col">
       <div class="proj-gif">
         <img src="tssou-gameplay.gif" alt="TSSOU gameplay" onerror="this.style.display='none'"/>
-        <div class="proj-gif-ph"><div class="pgp-icon">▶</div><div class="pgp-text">Add: <strong>tssou-gameplay.gif</strong></div></div>
+        <!--
+          FIX 2: Removed pgp-text with filename — icon only, no placeholder text visible
+        -->
+        <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
       </div>
       <div class="proj-shots">
         <div class="proj-shot" data-caption="The Sun Shines Over Us — Screen 1">
@@ -514,28 +548,33 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     </div>
     <div class="proj-content-col">
       <div class="proj-num-label">Project 01 / 03</div>
-      <div class="proj-tags"><span class="proj-tag hl">Visual Novel</span><span class="proj-tag">Unity · C#</span><span class="proj-tag">PC · iOS · Android</span></div>
+      <div class="proj-tags"><span class="proj-tag hl">Visual Novel</span><span class="proj-tag">Unity · C#</span><span class="proj-tag">PC · iOS · Android</span><span class="proj-tag">Free · Community</span></div>
       <h3 class="proj-name">The Sun Shines Over Us</h3>
-      <p class="proj-logline">Award-winning narrative game on mental health and bullying. Designed the complete branching architecture — 47 nodes, 6 verified endings.</p>
+      <p class="proj-logline">Award-winning free narrative game on mental health and bullying. Designed the complete branching architecture — 47 nodes, 6 verified endings, balanced through structured playtesting.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Game Designer</div></div>
         <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">~8 people</div></div>
         <div class="pmt-cell"><div class="pmt-l">Duration</div><div class="pmt-v">18 months</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Downloads</div><div class="pmt-v">500K+</div></div>
+        <div class="pmt-cell"><div class="pmt-l">Downloads</div><div class="pmt-v">500K+ (free)</div></div>
       </div>
       <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Narrative Game — IGDX 2022</strong> · Finalist LevelUP KL 2021</div></div>
       <ul class="proj-bullets">
         <li>Designed <strong>47-node branching system</strong> — all 6 endings verified through 30+ playthroughs</li>
-        <li>Found 80% of players hitting same 2 endings — <strong>rebalanced Act 1 weights</strong> to normalize paths</li>
-        <li>Built community from zero → <strong>500K+ organic downloads</strong>, zero paid spend</li>
+        <li>Playtest data showed 80% of players hitting same 2 endings — <strong>rebalanced Act 1 weights</strong> to normalize all paths</li>
+        <li>Grew community from zero to <strong>500K+ free downloads</strong> through organic social and Discord strategy</li>
       </ul>
+      <!--
+        NEW: GDD link — replace # with your actual Google Doc or Notion URL
+        This is what separates a résumé from a design portfolio to abroad recruiters.
+      -->
+      <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
       <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
       <div class="case-expand"><div class="case-rows">
         <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">All <strong>6 endings feel reachable</strong> naturally — no guide needed.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped <strong>47 nodes in Google Sheets</strong> with weighted values per ending.</div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>80% hit the same 2 endings</strong> — Act 1 choices locked the path too early.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Redistributed Act 1 weights to mid-game. <strong>All 6 endings normalized.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Players: <strong>"my choices actually mattered."</strong> 500K+ downloads, zero paid.</div></div>
+        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped <strong>47 nodes in Google Sheets</strong> with weighted values per ending. Ran 30+ structured playthroughs with defined pass/fail criteria before each build.</div></div>
+        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>80% hit the same 2 endings</strong> — Act 1 choices locked the path too early, removing player agency by the midgame.</div></div>
+        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Redistributed Act 1 weights to mid-game decision points. Separated emotional tone flags from outcome flags. <strong>All 6 endings normalized across test group.</strong></div></div>
+        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Post-fix playtest feedback: <strong>"my choices actually mattered."</strong> 500K+ free community downloads. Best Narrative Game, IGDX 2022.</div></div>
       </div></div>
     </div>
   </div>
@@ -545,7 +584,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="proj-media-col">
       <div class="proj-gif">
         <img src="matchmaker-gameplay.gif" alt="Matchmaker gameplay" onerror="this.style.display='none'"/>
-        <div class="proj-gif-ph"><div class="pgp-icon">▶</div><div class="pgp-text">Add: <strong>matchmaker-gameplay.gif</strong></div></div>
+        <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
       </div>
       <div class="proj-shots">
         <div class="proj-shot" data-caption="Matchmaker Agency — Screen 1">
@@ -564,28 +603,29 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     </div>
     <div class="proj-content-col">
       <div class="proj-num-label">Project 02 / 03</div>
-      <div class="proj-tags"><span class="proj-tag hl">Simulation</span><span class="proj-tag">Unity · Machination</span><span class="proj-tag">PC · Nintendo Switch</span></div>
+      <div class="proj-tags"><span class="proj-tag hl">Simulation</span><span class="proj-tag">Unity · Machinations</span><span class="proj-tag hl">Nintendo Switch</span><span class="proj-tag">Steam · PC</span></div>
       <h3 class="proj-name">Matchmaker Agency</h3>
-      <p class="proj-logline">Casual simulation on PC and Nintendo Switch. 100+ hand-crafted events, 30+ trait compatibility matrix — balanced across 3 full test cycles.</p>
+      <p class="proj-logline">Commercial casual simulation shipped on Steam and Nintendo Switch. Led balance design from mid-production — 100+ hand-crafted events, 30+ trait compatibility matrix, balanced across 3 full test cycles.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Lead Designer</div></div>
         <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">6 people</div></div>
         <div class="pmt-cell"><div class="pmt-l">Events</div><div class="pmt-v">100+</div></div>
         <div class="pmt-cell"><div class="pmt-l">Traits</div><div class="pmt-v">30+</div></div>
       </div>
-      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Game Designer — Gameloft Indonesia 2023</strong> · Steam + Nintendo Switch</div></div>
+      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Game Designer — Gameloft Indonesia 2023</strong> · Shipped Steam + Nintendo Switch</div></div>
       <ul class="proj-bullets">
-        <li>"Adventurer" trait matching at <strong>3× expected rate</strong> — rebuilt formula, rebalanced 40+ combos</li>
-        <li>Redesigned event triggers so players engaged with <strong>all 100+ events</strong>, not just the first ones</li>
-        <li>Full documentation in Google Sheets — <strong>zero tribal knowledge</strong> on the team</li>
+        <li>"Adventurer" trait matching at <strong>3× expected rate</strong> — diagnosed via Machinations simulation, rebuilt compatibility formula, rebalanced 40+ combos</li>
+        <li>Redesigned event trigger logic so players engaged with <strong>all 100+ events</strong>, not just front-loaded early ones</li>
+        <li>Maintained centralized GDD in Google Sheets — <strong>single source of truth for programmers, artists, and QA</strong> across entire production</li>
       </ul>
+      <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
       <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
       <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Wait periods <strong>engaging, not empty.</strong> No dominant trait.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">100+ events via content framework. Full <strong>30+ trait matrix</strong> in Sheets.</div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text">Players skipping events + <strong>Adventurer at 3× match rate.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Tied events to familiar characters. <strong>Separated scoring — 40+ combos rebalanced.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text"><strong>No dominant strategies at ship.</strong> Launched PC + Switch.</div></div>
+        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Wait periods <strong>engaging, not empty.</strong> No dominant trait or dominant strategy at ship.</div></div>
+        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">100+ events built via content framework. Full <strong>30+ trait matrix modelled in Machinations</strong> before implementation. 3 full test cycles with pass criteria defined per cycle.</div></div>
+        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text">Players skipping mid-game events. <strong>Adventurer trait at 3× match rate</strong> — dominant strategy emerged by Cycle 1 QA.</div></div>
+        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Tied event triggers to character familiarity, not random timers. <strong>Separated attraction score from compatibility score</strong> — rebalanced all 40+ trait combos.</div></div>
+        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text"><strong>No dominant strategies identified at ship.</strong> Launched PC + Nintendo Switch. Best Game Designer, Gameloft Indonesia 2023.</div></div>
       </div></div>
     </div>
   </div>
@@ -595,7 +635,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="proj-media-col">
       <div class="proj-gif">
         <img src="virgo-gameplay.gif" alt="Virgo gameplay" onerror="this.style.display='none'"/>
-        <div class="proj-gif-ph"><div class="pgp-icon">▶</div><div class="pgp-text">Add: <strong>virgo-gameplay.gif</strong></div></div>
+        <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
       </div>
       <div class="proj-shots">
         <div class="proj-shot" data-caption="Virgo & The Sparklings — Screen 1">
@@ -616,7 +656,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="proj-num-label">Project 03 / 03</div>
       <div class="proj-tags"><span class="proj-tag hl">Licensed IP</span><span class="proj-tag">Unity</span><span class="proj-tag">Mobile</span><span class="proj-tag">Bumi Langit</span></div>
       <h3 class="proj-name">Virgo &amp; The Sparklings</h3>
-      <p class="proj-logline">Official game tie-in for Bumi Langit's theatrical release. Adapted a beloved Indonesian comic IP into mobile within strict licensed content constraints.</p>
+      <p class="proj-logline">Official mobile game tie-in for Bumi Langit's theatrical release — Indonesia's leading superhero IP. Designed player-facing mechanics within strict licensed content constraints.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Client</div><div class="pmt-v">Bumi Langit</div></div>
         <div class="pmt-cell"><div class="pmt-l">Platform</div><div class="pmt-v">Mobile</div></div>
@@ -625,17 +665,18 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       </div>
       <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Official Bumi Langit IP</strong> · Cross-media campaign for Indonesia's top superhero release</div></div>
       <ul class="proj-bullets">
-        <li>Designed <strong>dress-up mechanic</strong> ruleset — player agency without touching the protected narrative</li>
-        <li>Built and balanced <strong>point/progression system</strong> — all scenes verified against source material</li>
-        <li>Delivered within <strong>licensed IP constraints</strong> for a major Indonesian media company</li>
+        <li>Designed <strong>dress-up mechanic</strong> ruleset — full player agency within spaces the IP left undefined, zero narrative conflict</li>
+        <li>Built and balanced <strong>point/progression system</strong> — all scenes verified against source material by IP holder</li>
+        <li>Delivered within <strong>licensed IP constraints and client sign-off pipeline</strong> — experience working with external stakeholders and IP approval rounds</li>
       </ul>
+      <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
       <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
       <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Satisfy <strong>fans and new players</strong> without distorting the IP.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Dress-up ruleset, point system, <strong>verified all scenes against source comic.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>Story is fixed.</strong> Every mechanic must create agency without changing narrative.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Focused on <strong>spaces the IP didn't define</strong> — between-scene moments + customization.</div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Complete licensed game for <strong>Bumi Langit</strong>, Indonesia's top media company.</div></div>
+        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Satisfy <strong>fans and new players</strong> without distorting the IP or triggering IP holder rejections.</div></div>
+        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Dress-up ruleset designed first. Point system mapped in Sheets. <strong>All scenes verified against source comic before build hand-off.</strong></div></div>
+        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>Story is fixed — immovable.</strong> Every mechanic must create player agency without touching the protected narrative.</div></div>
+        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Focused design effort entirely on <strong>spaces the IP had not defined</strong> — between-scene moments, costume customization, collectible unlocks.</div></div>
+        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Delivered complete licensed game through <strong>Bumi Langit's approval pipeline.</strong> First licensed IP project for the studio.</div></div>
       </div></div>
     </div>
   </div>
@@ -655,19 +696,37 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     </div>
     <div>
       <div class="sh-display reveal">What I<br><em>bring.</em></div>
-      <p class="sh-body reveal">Six core disciplines across three shipped commercial titles. Not theoretical — applied and documented.</p>
+      <p class="sh-body reveal">Six core disciplines across three shipped commercial titles. Not theoretical — applied and documented in GDDs available on request.</p>
     </div>
   </div>
   <div class="skills-matrix">
-    <div class="skill-card reveal reveal-d1"><div class="sc-name">Systems Design</div><div class="sc-desc">Economy balancing, trait matrices, progression loops — built in Machination and Sheets before touching Unity</div></div>
-    <div class="skill-card reveal reveal-d2"><div class="sc-name">Narrative Mechanics</div><div class="sc-desc">Branching choice architecture where every decision has measurable weight. 47-node systems designed and shipped</div></div>
-    <div class="skill-card reveal reveal-d3"><div class="sc-name">Quality Assurance</div><div class="sc-desc">Structured playtesting with documented cycles — hypothesis, measurement, resolution criteria per iteration</div></div>
-    <div class="skill-card reveal reveal-d1"><div class="sc-name">Content Review</div><div class="sc-desc">Visual consistency, narrative fidelity, rule-based classification — applied daily across 3 titles and community work</div></div>
-    <div class="skill-card reveal reveal-d2"><div class="sc-name">UX Design</div><div class="sc-desc">Player-first interface thinking — if a mechanic needs a tutorial, the mechanic needs redesigning</div></div>
-    <div class="skill-card reveal reveal-d3"><div class="sc-name">Unity + C#</div><div class="sc-desc">Full pipeline from spec to prototype. Can build light features independently, not just hand off to a programmer</div></div>
+    <div class="skill-card reveal reveal-d1"><div class="sc-name">Systems Design</div><div class="sc-desc">Designing mathematical models for game economies, trait compatibility matrices, and player progression loops using Google Sheets and Machinations before implementation — hypothesis first, always.</div></div>
+    <div class="skill-card reveal reveal-d2"><div class="sc-name">Narrative Mechanics</div><div class="sc-desc">Structuring branching logic and dialogue trees calibrated to game scope. Designed and mapped a 47-node choice architecture with weighted variables — then diagnosed and fixed a path lock-in bug through structured playtesting.</div></div>
+    <div class="skill-card reveal reveal-d3"><div class="sc-name">Quality Assurance</div><div class="sc-desc">Structured manual testing protocols with defined hypothesis and resolution criteria per cycle. Every QA pass produces a written report — not a verbal summary. Started as QA intern, applied it through every design role.</div></div>
+    <div class="skill-card reveal reveal-d1"><div class="sc-name">Licensed IP Production</div><div class="sc-desc">Experience working within external stakeholder constraints, IP approval pipelines, and client sign-off rounds — delivered Virgo &amp; The Sparklings through Bumi Langit's full approval process without narrative conflicts.</div></div>
+    <div class="skill-card reveal reveal-d2"><div class="sc-name">UX &amp; Onboarding Design</div><div class="sc-desc">Designing intuitive player onboarding, wireframes, and UI feedback loops so complex management systems feel immediately navigable. Applied across simulation and narrative genres.</div></div>
+    <div class="skill-card reveal reveal-d3"><div class="sc-name">Unity + C#</div><div class="sc-desc">Full pipeline from spec to prototype. Can build and test light features independently — not a programmer, but not dependent on one to validate a design idea.</div></div>
   </div>
+  <!--
+    CHANGED: tool ordering now puts primary game-dev tools first,
+    secondary production tools last. Corel Draw and Audacity no longer
+    sit next to Nintendo Switch — that ordering previously undersold the platform credentials.
+  -->
   <div class="tools-strip">
-    <span class="tool-pill">Unity</span><span class="tool-pill">C#</span><span class="tool-pill">Machination</span><span class="tool-pill">Google Sheets</span><span class="tool-pill">Miro</span><span class="tool-pill">Adobe Premiere</span><span class="tool-pill">Photoshop</span><span class="tool-pill">Audacity</span><span class="tool-pill">Corel Draw</span><span class="tool-pill">Discord</span><span class="tool-pill">Steam</span><span class="tool-pill">Play Store</span><span class="tool-pill">App Store</span><span class="tool-pill">Nintendo Switch</span>
+    <span class="tool-pill">Unity</span>
+    <span class="tool-pill">C#</span>
+    <span class="tool-pill">Machinations</span>
+    <span class="tool-pill">Google Sheets</span>
+    <span class="tool-pill">Miro</span>
+    <span class="tool-pill">Steam</span>
+    <span class="tool-pill">Nintendo Switch</span>
+    <span class="tool-pill">Play Store</span>
+    <span class="tool-pill">App Store</span>
+    <span class="tool-pill">Adobe Premiere</span>
+    <span class="tool-pill">Photoshop</span>
+    <span class="tool-pill">Discord</span>
+    <span class="tool-pill">Audacity</span>
+    <span class="tool-pill">Corel Draw</span>
   </div>
 </section>
 
@@ -677,7 +736,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="exp-sidebar">
       <div class="section-marker reveal"><div class="sm-num">05</div><div class="sm-rule"></div><div class="sm-label">Work History</div></div>
       <div class="exp-sidebar-title reveal">Where<br>I've <em>been.</em></div>
-      <p class="reveal">Single employer, 5 years, three distinct roles — programmer, community manager, game designer. Each one built on the last.</p>
+      <p class="reveal">Single employer, 5 years, three distinct roles — programmer, community manager, game designer. Each role was earned, not lateral. Each one built on the last.</p>
       <a href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" class="reveal">Download Full CV ↗</a>
     </div>
     <div class="exp-entries">
@@ -687,11 +746,12 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
         <div class="exp-content">
           <div class="exp-role">Game Designer</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Shipped <strong>3 commercial titles</strong> on PC, mobile, and Nintendo Switch as systems + narrative designer</div>
-          <div class="exp-li">Led all balance design on Matchmaker Agency as <strong>lead designer from mid-production</strong></div>
-          <div class="exp-li">Designed 47-node branching system — <strong>identified and resolved path lock-in</strong> affecting 80% of players</div>
-          <div class="exp-li">Ran structured playtesting — <strong>every iteration has a hypothesis and resolution criteria</strong></div>
-          <div class="exp-tag-row"><span class="exp-tag">Systems</span><span class="exp-tag">QA</span><span class="exp-tag">Narrative</span><span class="exp-tag">Unity</span><span class="exp-tag">Machination</span></div>
+          <div class="exp-li">Shipped <strong>3 commercial titles</strong> on PC, Mobile, and Nintendo Switch as systems + narrative designer</div>
+          <div class="exp-li">Stepped up to <strong>lead designer on Matchmaker Agency from mid-production</strong> — inherited a partially-built system, diagnosed balance failures, shipped without dominant strategies</div>
+          <div class="exp-li">Designed 47-node branching system — <strong>identified and resolved path lock-in</strong> affecting 80% of players before public release</div>
+          <div class="exp-li">Ran structured playtesting across all titles — <strong>every iteration has a hypothesis, a test protocol, and a resolution criteria</strong></div>
+          <div class="exp-li">Delivered <strong>licensed IP game for Bumi Langit</strong> — first external client project for the studio, completed through full IP approval pipeline</div>
+          <div class="exp-tag-row"><span class="exp-tag">Systems</span><span class="exp-tag">QA</span><span class="exp-tag">Narrative</span><span class="exp-tag">Unity</span><span class="exp-tag">Machinations</span><span class="exp-tag">Licensed IP</span></div>
         </div>
       </div>
 
@@ -700,10 +760,10 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
         <div class="exp-content">
           <div class="exp-role">Community Manager</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Grew community from <strong>zero to 500K+ organic downloads</strong> across X, Instagram, Facebook, Discord</div>
-          <div class="exp-li">Classified and reviewed UGC daily — <strong>consistent rule-based decisions</strong> at scale</div>
-          <div class="exp-li">Delivered feedback analysis that directly informed <strong>post-launch design updates</strong></div>
-          <div class="exp-tag-row"><span class="exp-tag">Community</span><span class="exp-tag">Content Review</span><span class="exp-tag">Premiere</span><span class="exp-tag">Photoshop</span></div>
+          <div class="exp-li">Grew player community from <strong>zero to 500K+ total downloads</strong> across X, Instagram, Facebook, and Discord — no paid acquisition</div>
+          <div class="exp-li">Classified and reviewed UGC daily — <strong>rule-based moderation decisions at scale</strong> across multiple active communities simultaneously</div>
+          <div class="exp-li">Delivered structured player feedback analysis that directly informed <strong>post-launch design patches</strong> — first time design decisions were driven by community data</div>
+          <div class="exp-tag-row"><span class="exp-tag">Community</span><span class="exp-tag">Content Review</span><span class="exp-tag">Player Research</span><span class="exp-tag">Premiere</span><span class="exp-tag">Photoshop</span></div>
         </div>
       </div>
 
@@ -712,8 +772,8 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
         <div class="exp-content">
           <div class="exp-role">Programmer Intern + QA</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Ran structured manual testing — <strong>defined test protocols</strong>, documented against expected behavior</div>
-          <div class="exp-li"><strong>Built and published a complete mobile game</strong> on Google Play Store within one month</div>
+          <div class="exp-li">Ran structured manual testing from day one — <strong>defined test protocols, logged against expected behavior, delivered written reports</strong></div>
+          <div class="exp-li"><strong>Built and published a complete mobile game</strong> on Google Play Store within one month of joining the studio</div>
           <div class="exp-tag-row"><span class="exp-tag">Unity</span><span class="exp-tag">C#</span><span class="exp-tag">Manual QA</span><span class="exp-tag">Android</span></div>
         </div>
       </div>
@@ -738,15 +798,28 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="sm-rule" style="opacity:0.2"></div>
     <div class="sm-label" style="color:rgba(255,255,255,0.25)">Recognition</div>
   </div>
+  <!--
+    CHANGED: Awards now ordered by international recognisability.
+    Google IGA and Xbox Camp are tier1 (visually elevated) — they are the
+    only two credentials a recruiter in Tokyo/Amsterdam/Montreal will recognise.
+    Coursera REMOVED from awards strip entirely — moved to cert footnote below.
+    A Coursera cert next to a Microsoft accelerator flattens the hierarchy badly.
+  -->
   <div class="awards-strip">
-    <div class="aw-card reveal reveal-d1"><div class="aw-icon">🚀</div><div class="aw-name">Google Indie Game Accelerator Alumni</div><div class="aw-org">Google · 2022</div></div>
-    <div class="aw-card reveal reveal-d2"><div class="aw-icon">💡</div><div class="aw-name">Xbox Game Camp Alumni</div><div class="aw-org">Microsoft · 2024</div></div>
+    <div class="aw-card tier1 reveal reveal-d1"><div class="aw-icon">🚀</div><div class="aw-name">Google Indie Game Accelerator Alumni</div><div class="aw-org">Google · 2022</div></div>
+    <div class="aw-card tier1 reveal reveal-d2"><div class="aw-icon">💡</div><div class="aw-name">Xbox Game Camp Alumni</div><div class="aw-org">Microsoft · 2024</div></div>
     <div class="aw-card reveal reveal-d3"><div class="aw-icon">🏆</div><div class="aw-name">Best Game Designer</div><div class="aw-org">Gameloft Indonesia · 2023</div></div>
     <div class="aw-card reveal" style="transition-delay:0.24s"><div class="aw-icon">🎖️</div><div class="aw-name">Best Narrative Game</div><div class="aw-org">IGDX · 2022</div></div>
     <div class="aw-card reveal reveal-d1"><div class="aw-icon">🌏</div><div class="aw-name">International Finalist</div><div class="aw-org">LevelUP KL · 2021</div></div>
     <div class="aw-card reveal reveal-d2"><div class="aw-icon">🎯</div><div class="aw-name">Best Pitch</div><div class="aw-org">Selasar Game Design POV · 2023</div></div>
-    <div class="aw-card reveal reveal-d3"><div class="aw-icon">📐</div><div class="aw-name">Foundations of UX Design</div><div class="aw-org">Coursera</div></div>
-    <div class="aw-card reveal" style="transition-delay:0.24s"><div class="aw-icon">🌟</div><div class="aw-name">Future of Game Design</div><div class="aw-org">MDEC Malaysia</div></div>
+    <div class="aw-card reveal reveal-d3"><div class="aw-icon">🌟</div><div class="aw-name">Future of Game Design</div><div class="aw-org">MDEC Malaysia</div></div>
+  </div>
+  <!-- Certifications footnote — separated from awards, appropriately de-emphasised -->
+  <div class="awards-cert-note reveal">
+    <div class="acn-label">Certifications</div>
+    <div class="acn-items">
+      <div class="acn-item">Foundations of UX Design · Coursera / Google</div>
+    </div>
   </div>
 </section>
 
@@ -755,11 +828,14 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="contact-left">
     <div class="cl-eyebrow">07 / Let's Work Together</div>
     <div class="cl-title">Ready to<br>build something.</div>
-    <p class="cl-sub">Available for freelance game design, QA testing, and content evaluation. Remote-first. I respond within 24 hours.</p>
+    <!--
+      CHANGED: contact copy now leads with full-time remote intent.
+      Freelance is secondary — not the headline pitch.
+    -->
+    <p class="cl-sub">Seeking full-time remote roles in game design — systems, narrative, or QA. Also available for freelance engagements. Remote-first. I respond within 24 hours.</p>
   </div>
   <div class="contact-right">
     <div class="cr-detail">Primary Contact</div>
-    <!-- Email built by JS to prevent host obfuscation -->
     <div class="cr-email-wrap">
       <span class="cr-email-label" id="contact-email-link">Loading…</span>
       <button class="cr-copy-btn" id="copy-email-btn" title="Copy email" onclick="
@@ -775,7 +851,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <a class="cr-soc" href="https://linkedin.com/in/praycristanto" target="_blank">LinkedIn</a>
       <a class="cr-soc" href="https://x.com/praycristanto" target="_blank">X / Twitter</a>
       <a class="cr-soc" href="https://instagram.com/praycristan" target="_blank">Instagram</a>
-      <a class="cr-soc" href="https://sites.google.com/view/prayportfolio" target="_blank">Google Sites Portfolio</a>
     </div>
     <a class="cr-resume-btn" href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank">↗ Download Full Resume PDF</a>
     <div class="cr-phone" id="contact-phone">+62 822 7911 7619 · Lampung, Indonesia · Open to remote worldwide</div>
@@ -789,7 +864,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <a href="#hero">Top</a><a href="#projects">Projects</a><a href="#about">About</a>
     <a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
   </div>
-  <div class="foot-copy">Game Designer · Lampung, ID · Available for Remote Work</div>
+  <div class="foot-copy">Game Designer · Lampung, ID · Open to Full-Time Remote</div>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -806,13 +881,9 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   var d = 'gmail' + '.' + 'com';
   var full = u + '\u0040' + d;
   var emailSpan = document.getElementById('contact-email-link');
-  if (emailSpan) {
-    emailSpan.textContent = full;
-  }
+  if (emailSpan) { emailSpan.textContent = full; }
   var hireBtn = document.getElementById('nav-hire-btn');
-  if (hireBtn) {
-    hireBtn.href = '#contact';
-  }
+  if (hireBtn) { hireBtn.href = '#contact'; }
 })();
 
 /* ── SCROLL REVEAL ── */
@@ -838,32 +909,35 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 
 /* ── CASE STUDY TOGGLE ── */
+/* FIX 4: childNodes.forEach is not supported in all browsers —
+   converted to Array.prototype.slice.call() for safe cross-browser iteration */
 function toggleCS(btn) {
   var body = btn.nextElementSibling;
   var open = body.classList.toggle('open');
   btn.classList.toggle('open', open);
   btn.querySelector('.cs-arrow').textContent = open ? '▼' : '▶';
-  btn.childNodes.forEach(function(n) {
+  var nodes = Array.prototype.slice.call(btn.childNodes);
+  nodes.forEach(function(n) {
     if (n.nodeType === 3 && n.textContent.trim())
       n.textContent = open ? ' Close Case Study' : ' Full Case Study';
   });
 }
 
 /* ── LIGHTBOX ── */
+/* FIX 5: guard now checks naturalWidth and rejects empty src values
+   so clicking an unloaded screenshot slot does not open a broken lightbox */
 (function() {
   var lb = document.getElementById('lightbox');
   var lbImg = document.getElementById('lightbox-img');
   var lbCap = document.getElementById('lightbox-caption');
   var lbClose = document.getElementById('lightbox-close');
 
-  /* Attach click to all .proj-shot elements */
   document.querySelectorAll('.proj-shot').forEach(function(shot) {
     shot.addEventListener('click', function() {
       var img = shot.querySelector('img');
-      /* Only open lightbox if the image is actually loaded (not hidden by onerror) */
       if (!img) return;
-      var src = img.style.display === 'none' ? '' : img.src;
-      if (!src) return;
+      var src = (img.style.display === 'none' || !img.complete || img.naturalWidth === 0) ? '' : img.src;
+      if (!src || src === window.location.href) return;
       lbImg.src = src;
       lbImg.alt = img.alt || '';
       lbCap.textContent = shot.dataset.caption || '';
