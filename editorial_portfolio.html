@@ -87,13 +87,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19p
 .btn-orange:hover{background:var(--orange2);border-color:var(--orange2)}
 .btn-ghost{background:transparent;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6)}
 .btn-ghost:hover{border-color:white;color:white}
-
-/* ── CHANGED: badge now signals full-time intent, not freelance ── */
 .avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(42,107,60,0.1);border:1px solid rgba(42,107,60,0.25);color:#2A6B3C;padding:0.4rem 0.9rem;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:1.8rem;width:fit-content}
 .avail-badge::before{content:'';width:6px;height:6px;background:#2A6B3C;border-radius:50%;animation:pulse-g 2s ease infinite}
 @keyframes pulse-g{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* ── ACCELERATOR BADGES IN HERO ── */
 .hero-accel-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.2rem}
 .accel-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);padding:0.35rem 0.75rem;font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase}
 .accel-badge .ab-icon{color:var(--orange)}
@@ -156,10 +152,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19p
 .proj-entry:hover .proj-gif img{transform:scale(1.03)}
 .proj-gif-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem}
 .pgp-icon{width:44px;height:44px;border:1.5px solid rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:rgba(255,255,255,0.3)}
-
-/* FIX 1: Screenshot placeholder text hidden */
 .proj-shot-ph{display:none}
-
 .proj-shots{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr;gap:0;flex:1;min-height:100px;height:100%}
 .proj-shot{overflow:hidden;background:#0a0a0a;position:relative;cursor:zoom-in;min-height:90px}
 .proj-shot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.8;transition:opacity 0.2s,transform 0.3s;position:absolute;inset:0}
@@ -187,11 +180,8 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-wei
 .proj-bullets li:last-child{border-bottom:none}
 .proj-bullets li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:0.68rem;top:0.45rem}
 .proj-bullets li strong{color:var(--ink);font-weight:600}
-
-/* ── GDD LINK: new element added to each project ── */
 .proj-gdd-link{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(212,80,10,0.3);padding-bottom:0.1rem;margin-bottom:0.9rem;width:fit-content;transition:border-color 0.2s}
 .proj-gdd-link:hover{border-color:var(--orange)}
-
 .cs-toggle{display:flex;align-items:center;gap:0.45rem;background:none;border:1px solid var(--rule2);padding:0.45rem 0.85rem;font-family:var(--cond);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;width:fit-content;margin-top:auto}
 .cs-toggle:hover,.cs-toggle.open{border-color:var(--orange);color:var(--orange)}
 .cs-arrow{transition:transform 0.3s;font-size:0.58rem}
@@ -246,8 +236,6 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-wei
 /* ── AWARDS ── */
 #awards{background:var(--dark);padding:4rem 4vw}
 .awards-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);margin-top:1.8rem}
-
-/* CHANGED: first two awards (Google IGA + Xbox) are visually elevated */
 .aw-card{background:rgba(255,255,255,0.02);padding:1.4rem 1.2rem;border-top:2px solid transparent;transition:border-color 0.2s,background 0.2s}
 .aw-card:hover{border-top-color:var(--gold);background:rgba(255,255,255,0.04)}
 .aw-card.tier1{background:rgba(212,80,10,0.06);border-top:2px solid var(--orange)}
@@ -256,8 +244,6 @@ h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-wei
 .aw-icon{font-size:1rem;margin-bottom:0.5rem}
 .aw-name{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:0.2rem;line-height:1.3}
 .aw-org{font-family:var(--cond);font-size:0.6rem;font-weight:600;letter-spacing:0.08em;color:rgba(255,255,255,0.28);text-transform:uppercase}
-
-/* CHANGED: certifications footnote below awards — separated from industry awards */
 .awards-cert-note{margin-top:1.2rem;padding:0.75rem 1.2rem;border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .acn-label{font-family:var(--cond);font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);flex-shrink:0}
 .acn-items{display:flex;gap:1.2rem;flex-wrap:wrap}
@@ -372,68 +358,50 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="hero-left">
     <div class="hero-eyebrow"><div class="he-line"></div><div class="he-text">Game Designer · Lampung, Indonesia</div></div>
     <h1 class="hero-name">Pray<br><em>Cristanto</em></h1>
-    <div class="hero-role">Systems · Narrative · QA</div>
-    <!--
-      CHANGED: desc now clarifies the nature of each title so recruiters
-      don't conflate a free community VN with a commercial Switch release.
-    -->
+    <div class="hero-role">Systems · Narrative · Feeling</div>
     <p class="hero-desc">
-      Game Designer with 5 years shipping commercial titles on
-      <strong>PC, Nintendo Switch, and Mobile.</strong>
-      Specialized in systems design, economy balancing, and branching narrative architecture —
-      from a <strong>Nintendo Switch simulation</strong> to a
-      <strong>licensed Bumi Langit IP mobile game</strong>
-      to an <strong>award-winning narrative title</strong> with 500K+ community downloads.
+      I grew up with <strong>To The Moon</strong> and <strong>A Space for the Unbound</strong> —
+      games that felt like someone reached through the screen and said <em>I see you.</em>
+      That's the only reason I do this.<br><br>
+      Three shipped titles. PC, Nintendo Switch, Mobile.
+      But the number I actually track is how many players felt something true.
     </p>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-orange">See My Work ↓</a>
       <a href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" class="btn btn-ghost">Download CV</a>
     </div>
-    <!--
-      CHANGED: "Open to Freelance" → "Open to Full-Time Remote Roles"
-      Freelance badge reads as a fallback to abroad recruiters. Full-time signals ambition.
-    -->
     <div class="avail-badge">Open to Full-Time Remote Roles</div>
-    <!--
-      NEW: Google IGA + Xbox Camp surfaced immediately in the hero —
-      these are the only two credentials internationally recognised.
-      Don't make recruiters scroll to the awards section to find them.
-    -->
     <div class="hero-accel-row">
       <div class="accel-badge"><span class="ab-icon">🚀</span> Google Indie Game Accelerator '22</div>
       <div class="accel-badge"><span class="ab-icon">💡</span> Xbox Game Camp · Microsoft '24</div>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-stats-title">By the numbers — verified results</div>
-    <!--
-      CHANGED: stat detail text now clarifies "free community VN" vs
-      commercial Switch title so the number reads honestly.
-    -->
+    <div class="hero-stats-title">What the work left behind</div>
     <div class="stat-block featured">
       <div class="sb-number">500<sup>K+</sup></div>
       <div class="sb-label">Community Downloads</div>
-      <div class="sb-detail">The Sun Shines Over Us — free community visual novel, zero paid acquisition</div>
+      <div class="sb-detail">The Sun Shines Over Us — free VN. A few players wrote to say it helped them through something hard.</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">5<sup>+</sup></div>
-      <div class="sb-label">Years Active</div>
-      <div class="sb-detail">PT. Eternaldream Games International, 2019 – 2025</div>
+      <div class="sb-label">Years in One Studio</div>
+      <div class="sb-detail">PT. Eternaldream Games International, 2019 – 2025. Three roles. Each one earned.</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">47</div>
-      <div class="sb-label">Choice Nodes Designed</div>
-      <div class="sb-detail">The Sun Shines Over Us — 6 verified endings, all playtest-balanced</div>
+      <div class="sb-label">Choice Nodes</div>
+      <div class="sb-detail">The Sun Shines Over Us — I didn't want to decide how the story ends. So I didn't. Players do.</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">100<sup>+</sup></div>
-      <div class="sb-label">Events Crafted</div>
-      <div class="sb-detail">Matchmaker Agency — individually balanced and tested · Nintendo Switch</div>
+      <div class="sb-label">Hand-Built Events</div>
+      <div class="sb-detail">Matchmaker Agency — each one triggered, tested, and broken before it shipped on Nintendo Switch.</div>
     </div>
     <div class="stat-block">
       <div class="sb-number">2<sup>×</sup></div>
       <div class="sb-label">Accelerator Alumni</div>
-      <div class="sb-detail">Google Indie Game Accelerator · Microsoft Xbox Camp</div>
+      <div class="sb-detail">Google Indie Game Accelerator · Microsoft Xbox Camp. Both selected on the strength of shipped work.</div>
     </div>
   </div>
 </section>
@@ -447,14 +415,14 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
     <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
     <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Licensed IP · Bumi Langit Official Game Tie-In</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Bumi Langit · Licensed IP · Official Mobile Tie-In</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator · Alumni 2022</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp · Microsoft Alumni 2024</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game · IGDX 2022</span>
     <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
     <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
     <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Licensed IP · Bumi Langit Official Game Tie-In</span>
+    <span class="marquee-item"><span class="mi-accent">★</span> Bumi Langit · Licensed IP · Official Mobile Tie-In</span>
   </div>
 </div>
 
@@ -463,28 +431,39 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="about-photo-col">
     <img src="about-photo.png" alt="Pray Cristanto"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-    <!--
-      FIX 3: Removed the "Add photo: about-photo.png" label —
-      placeholder text must never be visible to recruiters.
-    -->
     <div class="about-photo-empty" style="display:none">
       <div class="ape-icon">👤</div>
     </div>
   </div>
   <div class="about-text-col">
-    <div class="section-marker reveal"><div class="sm-num">02</div><div class="sm-rule"></div><div class="sm-label">About the Designer</div></div>
-    <div class="about-pull-quote reveal">I design the <em>invisible systems</em> that make players feel something real.</div>
+    <div class="section-marker reveal"><div class="sm-num">02</div><div class="sm-rule"></div><div class="sm-label">Who I Am</div></div>
+    <div class="about-pull-quote reveal">Most people think game design is about <em>ideas.</em> It's really about measurement.</div>
     <div class="about-body">
-      <p class="reveal">I'm <strong>Pray Cristanto</strong>, a Game Designer from Lampung, Indonesia, with five years inside a professional studio. Started as a programmer intern — shipped a mobile game in one month. Moved into community management, learned how players actually behave. Moved into design, where both halves finally clicked.</p>
+      <p class="reveal">
+        I'm an INFP who ended up building invisible machinery for a living —
+        and I think that's actually the whole point, not a contradiction.
+        I came in through programming, shipped a mobile game in my first month as an intern
+        before I really understood what I was doing. Then two years in community,
+        watching players react to systems that weren't quite right.
+        Then design, where I finally had the tools to fix what I kept seeing break.
+      </p>
       <div class="about-callout reveal">
-        <div class="ac-text">"Game design is the art of engineering emotion. A story or mechanic only moves a player if the underlying systems back it up. I combine narrative logic with precise pacing and balance to create meaningful experiences where player choices carry genuine emotional weight."</div>
-        <div class="ac-attr">Pray Cristanto · Core Design Philosophy</div>
+        <div class="ac-text">"When a player says 'this felt unfair' — there's a number somewhere that's wrong. I find that number. That's all design is. You're not an artist standing above the work. You're a mechanic underneath it, making sure nothing leaks."</div>
+        <div class="ac-attr">On why systems matter more than vision</div>
       </div>
-      <!--
-        CHANGED: phrasing now clearly separates the community VN achievement
-        from the commercial Nintendo Switch title — both real, different contexts.
-      -->
-      <p class="reveal">Three shipped commercial titles spanning PC, Nintendo Switch, and Mobile. A <strong>free community visual novel</strong> reaching 500K+ players through organic community growth. A <strong>simulation game launched on Nintendo Switch and Steam</strong>. A <strong>licensed mobile tie-in</strong> for Indonesia's leading superhero IP. Google and Microsoft both selected me for accelerator programs. Named <strong>Best Game Designer</strong> by Gameloft Indonesia in 2023.</p>
+      <p class="reveal">
+        The games I'm actually chasing are <strong>To The Moon</strong> and
+        <strong>A Space for the Unbound</strong> — small, quiet, honest.
+        The kind that makes you sit with the credits rolling and not want to move yet.
+        I haven't made that game. But every system I balance, every branch I weight,
+        every playtest I run — it's practice for that one.
+      </p>
+      <p class="reveal">
+        I want players to see the world from someone else's eyes and come out of it
+        a little more willing to understand people they don't yet know.
+        That's the ministry underneath the craft.
+        <strong>Rigorous invisible systems, delivering raw visible truth.</strong>
+      </p>
     </div>
     <div class="about-cred-row reveal">
       <div class="acr-item"><div class="acr-name">Google Indie Game Accelerator</div><div class="acr-org">Alumni · 2022</div></div>
@@ -497,17 +476,13 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-marker reveal"><div class="sm-num">03</div><div class="sm-rule"></div><div class="sm-label">Selected Work — 3 Shipped Titles</div></div>
+  <div class="section-marker reveal"><div class="sm-num">03</div><div class="sm-rule"></div><div class="sm-label">Three Games I Shipped</div></div>
   <div class="proj-intro-grid">
     <h2 style="font-family:var(--head);font-size:clamp(1.8rem,3.2vw,3rem);font-weight:900;color:var(--ink);letter-spacing:-0.03em;line-height:1" class="reveal">Three games.<br><em style="color:var(--orange)">Real players.</em></h2>
-    <!--
-      NEW: mention of GDD documents — recruiters now know written design thinking exists.
-      Replace the # href with your actual Google Doc / Notion links.
-    -->
-    <p style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.85" class="reveal">Every project is downloadable and playable today. Each has a <strong style="color:var(--ink2)">full design document</strong> — click "Read Full GDD" on any project. Click any screenshot to enlarge.</p>
+    <p style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.85" class="reveal">All three are playable today. Each has a design document behind it — not a retrospective dressed up as a GDD, but the actual working doc I used during production. <strong style="color:var(--ink2)">Click "Read Full GDD" on any project.</strong> Click any screenshot to enlarge.</p>
   </div>
   <div class="recruiter-signal reveal">
-    <div class="rs-label">Recruiter Checklist</div>
+    <div class="rs-label">Studio Checklist</div>
     <div class="rs-items">
       <div class="rs-item">Shipped on Steam</div>
       <div class="rs-item">Nintendo Switch</div>
@@ -515,7 +490,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="rs-item">500K+ Downloads</div>
       <div class="rs-item">Award-Winning</div>
       <div class="rs-item">Licensed IP Work</div>
-      <div class="rs-item">Documented QA</div>
       <div class="rs-item">GDD Available</div>
     </div>
   </div>
@@ -526,9 +500,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="proj-media-col">
       <div class="proj-gif">
         <img src="tssou-gameplay.gif" alt="TSSOU gameplay" onerror="this.style.display='none'"/>
-        <!--
-          FIX 2: Removed pgp-text with filename — icon only, no placeholder text visible
-        -->
         <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
       </div>
       <div class="proj-shots">
@@ -550,7 +521,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="proj-num-label">Project 01 / 03</div>
       <div class="proj-tags"><span class="proj-tag hl">Visual Novel</span><span class="proj-tag">Unity · C#</span><span class="proj-tag">PC · iOS · Android</span><span class="proj-tag">Free · Community</span></div>
       <h3 class="proj-name">The Sun Shines Over Us</h3>
-      <p class="proj-logline">Award-winning free narrative game on mental health and bullying. Designed the complete branching architecture — 47 nodes, 6 verified endings, balanced through structured playtesting.</p>
+      <p class="proj-logline">A game about bullying and mental health — made because someone in our team needed to make it. My job was to build a branching system where no ending felt like the "right" one, and no player felt their choices were decided before they started.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Game Designer</div></div>
         <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">~8 people</div></div>
@@ -559,22 +530,18 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       </div>
       <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Narrative Game — IGDX 2022</strong> · Finalist LevelUP KL 2021</div></div>
       <ul class="proj-bullets">
-        <li>Designed <strong>47-node branching system</strong> — all 6 endings verified through 30+ playthroughs</li>
-        <li>Playtest data showed 80% of players hitting same 2 endings — <strong>rebalanced Act 1 weights</strong> to normalize all paths</li>
-        <li>Grew community from zero to <strong>500K+ free downloads</strong> through organic social and Discord strategy</li>
+        <li>Built a <strong>47-node branching system</strong> over 18 months — ran 30+ structured playthroughs before each milestone to verify every path held</li>
+        <li>Early playtests showed <strong>80% of players hitting the same two endings</strong> — Act 1 was quietly locking the story. Redistributed the decision weight to midgame. After the fix, all six endings were reached organically.</li>
+        <li>500K+ free downloads through Discord and organic community. A handful of players sent messages saying it helped them talk to someone they'd been avoiding. Those messages are why I still do this.</li>
       </ul>
-      <!--
-        NEW: GDD link — replace # with your actual Google Doc or Notion URL
-        This is what separates a résumé from a design portfolio to abroad recruiters.
-      -->
       <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
       <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
       <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">All <strong>6 endings feel reachable</strong> naturally — no guide needed.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped <strong>47 nodes in Google Sheets</strong> with weighted values per ending. Ran 30+ structured playthroughs with defined pass/fail criteria before each build.</div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>80% hit the same 2 endings</strong> — Act 1 choices locked the path too early, removing player agency by the midgame.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Redistributed Act 1 weights to mid-game decision points. Separated emotional tone flags from outcome flags. <strong>All 6 endings normalized across test group.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Post-fix playtest feedback: <strong>"my choices actually mattered."</strong> 500K+ free community downloads. Best Narrative Game, IGDX 2022.</div></div>
+        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">All <strong>6 endings feel genuinely reachable</strong> — not hidden behind a guide, not decided by Act 1.</div></div>
+        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped <strong>47 nodes in Google Sheets</strong> with weighted outcome values per ending. Defined pass/fail criteria for each playtest cycle before running it.</div></div>
+        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>80% of players hit the same two endings.</strong> Act 1 choices were silently narrowing the story — players lost agency before they realised it.</div></div>
+        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Moved the heaviest decision weight from Act 1 to mid-game. Separated emotional tone flags from outcome flags. <strong>All 6 endings normalised in the next test cycle.</strong></div></div>
+        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Post-fix playtest: "my choices actually mattered." 500K+ free community downloads. Best Narrative Game, IGDX 2022. And a few DMs that meant more than any award.</div></div>
       </div></div>
     </div>
   </div>
@@ -605,7 +572,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="proj-num-label">Project 02 / 03</div>
       <div class="proj-tags"><span class="proj-tag hl">Simulation</span><span class="proj-tag">Unity · Machinations</span><span class="proj-tag hl">Nintendo Switch</span><span class="proj-tag">Steam · PC</span></div>
       <h3 class="proj-name">Matchmaker Agency</h3>
-      <p class="proj-logline">Commercial casual simulation shipped on Steam and Nintendo Switch. Led balance design from mid-production — 100+ hand-crafted events, 30+ trait compatibility matrix, balanced across 3 full test cycles.</p>
+      <p class="proj-logline">A simulation about attraction and compatibility — which sounds light until you're 40 trait combinations deep trying to understand why one personality type keeps winning everything. I stepped into lead design mid-production and had to diagnose the game before I could finish building it.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Lead Designer</div></div>
         <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">6 people</div></div>
@@ -614,18 +581,18 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       </div>
       <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Game Designer — Gameloft Indonesia 2023</strong> · Shipped Steam + Nintendo Switch</div></div>
       <ul class="proj-bullets">
-        <li>"Adventurer" trait matching at <strong>3× expected rate</strong> — diagnosed via Machinations simulation, rebuilt compatibility formula, rebalanced 40+ combos</li>
-        <li>Redesigned event trigger logic so players engaged with <strong>all 100+ events</strong>, not just front-loaded early ones</li>
-        <li>Maintained centralized GDD in Google Sheets — <strong>single source of truth for programmers, artists, and QA</strong> across entire production</li>
+        <li>Discovered "Adventurer" matching at <strong>3× the expected rate</strong> through Machinations simulation — rebuilt the compatibility formula, rebalanced 40+ trait combinations before touching the engine</li>
+        <li>Players were ignoring 80% of the event library because triggers clustered early — <strong>restructured event timing around character familiarity</strong>, not random probability</li>
+        <li>Kept a single centralised GDD in Google Sheets throughout production — <strong>every designer, programmer, and artist reading from the same source</strong>, zero version-conflict incidents</li>
       </ul>
       <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
       <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
       <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Wait periods <strong>engaging, not empty.</strong> No dominant trait or dominant strategy at ship.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">100+ events built via content framework. Full <strong>30+ trait matrix modelled in Machinations</strong> before implementation. 3 full test cycles with pass criteria defined per cycle.</div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text">Players skipping mid-game events. <strong>Adventurer trait at 3× match rate</strong> — dominant strategy emerged by Cycle 1 QA.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Tied event triggers to character familiarity, not random timers. <strong>Separated attraction score from compatibility score</strong> — rebalanced all 40+ trait combos.</div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text"><strong>No dominant strategies identified at ship.</strong> Launched PC + Nintendo Switch. Best Game Designer, Gameloft Indonesia 2023.</div></div>
+        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Waiting feels <strong>like anticipation, not emptiness.</strong> No trait dominates. Every combination has a plausible path to success.</div></div>
+        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Modelled the full <strong>30+ trait matrix in Machinations before implementation.</strong> Built 100+ events via a content framework. Ran 3 full test cycles with written pass criteria per cycle.</div></div>
+        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text">Two problems surfaced in Cycle 1: <strong>players skipping most events</strong>, and Adventurer matching at 3× rate — a dominant strategy that killed strategic variety.</div></div>
+        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Tied event triggers to character familiarity milestones instead of timers. <strong>Separated attraction score from compatibility score</strong> — Adventurer's social appeal no longer overrode long-term compatibility.</div></div>
+        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text"><strong>No dominant strategies at ship.</strong> Launched PC and Nintendo Switch. Best Game Designer, Gameloft Indonesia 2023.</div></div>
       </div></div>
     </div>
   </div>
@@ -656,27 +623,27 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="proj-num-label">Project 03 / 03</div>
       <div class="proj-tags"><span class="proj-tag hl">Licensed IP</span><span class="proj-tag">Unity</span><span class="proj-tag">Mobile</span><span class="proj-tag">Bumi Langit</span></div>
       <h3 class="proj-name">Virgo &amp; The Sparklings</h3>
-      <p class="proj-logline">Official mobile game tie-in for Bumi Langit's theatrical release — Indonesia's leading superhero IP. Designed player-facing mechanics within strict licensed content constraints.</p>
+      <p class="proj-logline">The story was already written. Bumi Langit owned it. My job was to build player agency inside a locked room — mechanics that gave people something to do with a narrative I couldn't change. That turned out to be the most interesting design constraint I've worked inside.</p>
       <div class="proj-meta-table">
         <div class="pmt-cell"><div class="pmt-l">Client</div><div class="pmt-v">Bumi Langit</div></div>
         <div class="pmt-cell"><div class="pmt-l">Platform</div><div class="pmt-v">Mobile</div></div>
         <div class="pmt-cell"><div class="pmt-l">Type</div><div class="pmt-v">Licensed IP</div></div>
         <div class="pmt-cell"><div class="pmt-l">Engine</div><div class="pmt-v">Unity</div></div>
       </div>
-      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Official Bumi Langit IP</strong> · Cross-media campaign for Indonesia's top superhero release</div></div>
+      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Official Bumi Langit IP</strong> · Cross-media tie-in for Indonesia's largest superhero release</div></div>
       <ul class="proj-bullets">
-        <li>Designed <strong>dress-up mechanic</strong> ruleset — full player agency within spaces the IP left undefined, zero narrative conflict</li>
-        <li>Built and balanced <strong>point/progression system</strong> — all scenes verified against source material by IP holder</li>
-        <li>Delivered within <strong>licensed IP constraints and client sign-off pipeline</strong> — experience working with external stakeholders and IP approval rounds</li>
+        <li>Designed a <strong>dress-up mechanic ruleset</strong> that created full player agency in the spaces the IP hadn't defined — zero narrative conflicts in the approval rounds</li>
+        <li>Built and balanced a <strong>point and progression system</strong> — every scene cross-checked against the source comic before build handoff</li>
+        <li>First external licensed client project for the studio — learned to <strong>argue for design decisions with evidence through an IP approval pipeline,</strong> not just instinct</li>
       </ul>
       <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
       <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
       <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Satisfy <strong>fans and new players</strong> without distorting the IP or triggering IP holder rejections.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Dress-up ruleset designed first. Point system mapped in Sheets. <strong>All scenes verified against source comic before build hand-off.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>Story is fixed — immovable.</strong> Every mechanic must create player agency without touching the protected narrative.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Focused design effort entirely on <strong>spaces the IP had not defined</strong> — between-scene moments, costume customization, collectible unlocks.</div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Delivered complete licensed game through <strong>Bumi Langit's approval pipeline.</strong> First licensed IP project for the studio.</div></div>
+        <div class="class-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Satisfy fans who know the IP and players discovering it for the first time — <strong>without rewriting a single line of story.</strong></div></div>
+        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped every scene against the source comic first. Designed the dress-up ruleset and point system in the <strong>narrative gaps — spaces Bumi Langit had not defined.</strong></div></div>
+        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>The story is fixed and immovable.</strong> Every mechanic had to create a sense of agency without touching the protected narrative — or the approval round would reject it.</div></div>
+        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Focused entirely on between-scene moments and costume expression — <strong>what the IP left unsaid became the play space.</strong> Presented every mechanic with a written rationale for approval.</div></div>
+        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Delivered through Bumi Langit's full approval pipeline. <strong>First licensed IP project shipped by the studio.</strong> Taught me that constraints aren't limits — they're the frame.</div></div>
       </div></div>
     </div>
   </div>
@@ -691,27 +658,40 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
       <div class="section-marker reveal">
         <div class="sm-num" style="color:rgba(255,255,255,0.4)">04</div>
         <div class="sm-rule" style="opacity:0.2"></div>
-        <div class="sm-label" style="color:rgba(255,255,255,0.25)">Capabilities</div>
+        <div class="sm-label" style="color:rgba(255,255,255,0.25)">What I Do</div>
       </div>
     </div>
     <div>
-      <div class="sh-display reveal">What I<br><em>bring.</em></div>
-      <p class="sh-body reveal">Six core disciplines across three shipped commercial titles. Not theoretical — applied and documented in GDDs available on request.</p>
+      <div class="sh-display reveal">How I<br><em>think.</em></div>
+      <p class="sh-body reveal">Six things I've actually done across three shipped games. I keep design documents for all of them — ask and I'll share the working files, not just the outcomes.</p>
     </div>
   </div>
   <div class="skills-matrix">
-    <div class="skill-card reveal reveal-d1"><div class="sc-name">Systems Design</div><div class="sc-desc">Designing mathematical models for game economies, trait compatibility matrices, and player progression loops using Google Sheets and Machinations before implementation — hypothesis first, always.</div></div>
-    <div class="skill-card reveal reveal-d2"><div class="sc-name">Narrative Mechanics</div><div class="sc-desc">Structuring branching logic and dialogue trees calibrated to game scope. Designed and mapped a 47-node choice architecture with weighted variables — then diagnosed and fixed a path lock-in bug through structured playtesting.</div></div>
-    <div class="skill-card reveal reveal-d3"><div class="sc-name">Quality Assurance</div><div class="sc-desc">Structured manual testing protocols with defined hypothesis and resolution criteria per cycle. Every QA pass produces a written report — not a verbal summary. Started as QA intern, applied it through every design role.</div></div>
-    <div class="skill-card reveal reveal-d1"><div class="sc-name">Licensed IP Production</div><div class="sc-desc">Experience working within external stakeholder constraints, IP approval pipelines, and client sign-off rounds — delivered Virgo &amp; The Sparklings through Bumi Langit's full approval process without narrative conflicts.</div></div>
-    <div class="skill-card reveal reveal-d2"><div class="sc-name">UX &amp; Onboarding Design</div><div class="sc-desc">Designing intuitive player onboarding, wireframes, and UI feedback loops so complex management systems feel immediately navigable. Applied across simulation and narrative genres.</div></div>
-    <div class="skill-card reveal reveal-d3"><div class="sc-name">Unity + C#</div><div class="sc-desc">Full pipeline from spec to prototype. Can build and test light features independently — not a programmer, but not dependent on one to validate a design idea.</div></div>
+    <div class="skill-card reveal reveal-d1">
+      <div class="sc-name">Systems Design</div>
+      <div class="sc-desc">I build the math before the game is built. Economies, trait matrices, progression curves — modelled in Sheets and Machinations first, because finding the broken number after it's in the engine costs everyone time and goodwill.</div>
+    </div>
+    <div class="skill-card reveal reveal-d2">
+      <div class="sc-name">Narrative Mechanics</div>
+      <div class="sc-desc">Branching dialogue is just a weighted tree. The craft is making every branch feel like it was the only one. I've built a 47-node system and then broken it on purpose during testing — I know where these structures fail before players do.</div>
+    </div>
+    <div class="skill-card reveal reveal-d3">
+      <div class="sc-name">Quality Assurance</div>
+      <div class="sc-desc">I started as QA. I still think like one. Every test cycle I run has a hypothesis before it starts and a written resolution after — not a verbal summary. I don't ship anything I haven't broken first.</div>
+    </div>
+    <div class="skill-card reveal reveal-d1">
+      <div class="sc-name">Licensed IP Production</div>
+      <div class="sc-desc">Working with Bumi Langit meant arguing for every mechanic through a client approval pipeline. You learn fast to separate your instincts from your evidence. That habit travels to any team.</div>
+    </div>
+    <div class="skill-card reveal reveal-d2">
+      <div class="sc-name">UX &amp; Onboarding</div>
+      <div class="sc-desc">The first five minutes of a game are a different design problem than everything after them. I've spent a lot of time on those five minutes — how a player forms their first mental model, and whether it's the right one.</div>
+    </div>
+    <div class="skill-card reveal reveal-d3">
+      <div class="sc-name">Unity + C#</div>
+      <div class="sc-desc">I can prototype my own ideas before involving a programmer. I'm not a programmer — but I know enough to test whether a mechanic actually works, not just whether it sounds good in a doc.</div>
+    </div>
   </div>
-  <!--
-    CHANGED: tool ordering now puts primary game-dev tools first,
-    secondary production tools last. Corel Draw and Audacity no longer
-    sit next to Nintendo Switch — that ordering previously undersold the platform credentials.
-  -->
   <div class="tools-strip">
     <span class="tool-pill">Unity</span>
     <span class="tool-pill">C#</span>
@@ -735,8 +715,8 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
   <div class="exp-layout">
     <div class="exp-sidebar">
       <div class="section-marker reveal"><div class="sm-num">05</div><div class="sm-rule"></div><div class="sm-label">Work History</div></div>
-      <div class="exp-sidebar-title reveal">Where<br>I've <em>been.</em></div>
-      <p class="reveal">Single employer, 5 years, three distinct roles — programmer, community manager, game designer. Each role was earned, not lateral. Each one built on the last.</p>
+      <div class="exp-sidebar-title reveal">One studio.<br><em>Three jobs.</em></div>
+      <p class="reveal">I didn't plan to stay five years. But each role taught me something the next one needed — and I kept needing the next one.</p>
       <a href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" class="reveal">Download Full CV ↗</a>
     </div>
     <div class="exp-entries">
@@ -746,11 +726,11 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
         <div class="exp-content">
           <div class="exp-role">Game Designer</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Shipped <strong>3 commercial titles</strong> on PC, Mobile, and Nintendo Switch as systems + narrative designer</div>
-          <div class="exp-li">Stepped up to <strong>lead designer on Matchmaker Agency from mid-production</strong> — inherited a partially-built system, diagnosed balance failures, shipped without dominant strategies</div>
-          <div class="exp-li">Designed 47-node branching system — <strong>identified and resolved path lock-in</strong> affecting 80% of players before public release</div>
-          <div class="exp-li">Ran structured playtesting across all titles — <strong>every iteration has a hypothesis, a test protocol, and a resolution criteria</strong></div>
-          <div class="exp-li">Delivered <strong>licensed IP game for Bumi Langit</strong> — first external client project for the studio, completed through full IP approval pipeline</div>
+          <div class="exp-li">Shipped <strong>3 commercial titles</strong> as systems and narrative designer — PC, Mobile, and Nintendo Switch</div>
+          <div class="exp-li">Stepped into <strong>lead designer on Matchmaker Agency mid-production</strong> — inherited a partially-built system, diagnosed two balance failures, and shipped without dominant strategies</div>
+          <div class="exp-li">Designed 47-node branching system and <strong>caught the path lock-in bug in playtesting</strong> before it ever reached players</div>
+          <div class="exp-li">Every iteration has a <strong>written hypothesis and resolution criteria</strong> — not just "it felt better this time"</div>
+          <div class="exp-li">Delivered <strong>Virgo &amp; The Sparklings through Bumi Langit's IP approval pipeline</strong> — first licensed external client project the studio had taken on</div>
           <div class="exp-tag-row"><span class="exp-tag">Systems</span><span class="exp-tag">QA</span><span class="exp-tag">Narrative</span><span class="exp-tag">Unity</span><span class="exp-tag">Machinations</span><span class="exp-tag">Licensed IP</span></div>
         </div>
       </div>
@@ -760,9 +740,9 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
         <div class="exp-content">
           <div class="exp-role">Community Manager</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Grew player community from <strong>zero to 500K+ total downloads</strong> across X, Instagram, Facebook, and Discord — no paid acquisition</div>
-          <div class="exp-li">Classified and reviewed UGC daily — <strong>rule-based moderation decisions at scale</strong> across multiple active communities simultaneously</div>
-          <div class="exp-li">Delivered structured player feedback analysis that directly informed <strong>post-launch design patches</strong> — first time design decisions were driven by community data</div>
+          <div class="exp-li">Grew the player community from zero — <strong>500K+ total downloads across X, Instagram, Facebook, and Discord</strong>, no paid acquisition</div>
+          <div class="exp-li">Two years of daily content moderation taught me to make <strong>consistent rule-based decisions at scale</strong> without letting individual cases drift the policy</div>
+          <div class="exp-li">Turned player feedback into structured design briefs that directly shaped <strong>post-launch patches</strong> — the first time community data drove design decisions at the studio</div>
           <div class="exp-tag-row"><span class="exp-tag">Community</span><span class="exp-tag">Content Review</span><span class="exp-tag">Player Research</span><span class="exp-tag">Premiere</span><span class="exp-tag">Photoshop</span></div>
         </div>
       </div>
@@ -772,8 +752,8 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
         <div class="exp-content">
           <div class="exp-role">Programmer Intern + QA</div>
           <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Ran structured manual testing from day one — <strong>defined test protocols, logged against expected behavior, delivered written reports</strong></div>
-          <div class="exp-li"><strong>Built and published a complete mobile game</strong> on Google Play Store within one month of joining the studio</div>
+          <div class="exp-li">First month: <strong>built and published a complete mobile game</strong> on Google Play Store. I didn't fully know what I was doing. It shipped anyway.</div>
+          <div class="exp-li">Ran manual testing with <strong>defined protocols and written reports from day one</strong> — the habit that stayed through every role after</div>
           <div class="exp-tag-row"><span class="exp-tag">Unity</span><span class="exp-tag">C#</span><span class="exp-tag">Manual QA</span><span class="exp-tag">Android</span></div>
         </div>
       </div>
@@ -798,13 +778,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="sm-rule" style="opacity:0.2"></div>
     <div class="sm-label" style="color:rgba(255,255,255,0.25)">Recognition</div>
   </div>
-  <!--
-    CHANGED: Awards now ordered by international recognisability.
-    Google IGA and Xbox Camp are tier1 (visually elevated) — they are the
-    only two credentials a recruiter in Tokyo/Amsterdam/Montreal will recognise.
-    Coursera REMOVED from awards strip entirely — moved to cert footnote below.
-    A Coursera cert next to a Microsoft accelerator flattens the hierarchy badly.
-  -->
   <div class="awards-strip">
     <div class="aw-card tier1 reveal reveal-d1"><div class="aw-icon">🚀</div><div class="aw-name">Google Indie Game Accelerator Alumni</div><div class="aw-org">Google · 2022</div></div>
     <div class="aw-card tier1 reveal reveal-d2"><div class="aw-icon">💡</div><div class="aw-name">Xbox Game Camp Alumni</div><div class="aw-org">Microsoft · 2024</div></div>
@@ -814,7 +787,6 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <div class="aw-card reveal reveal-d2"><div class="aw-icon">🎯</div><div class="aw-name">Best Pitch</div><div class="aw-org">Selasar Game Design POV · 2023</div></div>
     <div class="aw-card reveal reveal-d3"><div class="aw-icon">🌟</div><div class="aw-name">Future of Game Design</div><div class="aw-org">MDEC Malaysia</div></div>
   </div>
-  <!-- Certifications footnote — separated from awards, appropriately de-emphasised -->
   <div class="awards-cert-note reveal">
     <div class="acn-label">Certifications</div>
     <div class="acn-items">
@@ -826,16 +798,12 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-left">
-    <div class="cl-eyebrow">07 / Let's Work Together</div>
-    <div class="cl-title">Ready to<br>build something.</div>
-    <!--
-      CHANGED: contact copy now leads with full-time remote intent.
-      Freelance is secondary — not the headline pitch.
-    -->
-    <p class="cl-sub">Seeking full-time remote roles in game design — systems, narrative, or QA. Also available for freelance engagements. Remote-first. I respond within 24 hours.</p>
+    <div class="cl-eyebrow">07 / Let's Make Something</div>
+    <div class="cl-title">I want to build<br>games that heal.</div>
+    <p class="cl-sub">I'm looking for a studio that cares about the emotional side of games as much as the technical side. Remote works — I'm in Lampung but I keep focused hours and I respond the same day.</p>
   </div>
   <div class="contact-right">
-    <div class="cr-detail">Primary Contact</div>
+    <div class="cr-detail">Write to me directly</div>
     <div class="cr-email-wrap">
       <span class="cr-email-label" id="contact-email-link">Loading…</span>
       <button class="cr-copy-btn" id="copy-email-btn" title="Copy email" onclick="
@@ -864,7 +832,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
     <a href="#hero">Top</a><a href="#projects">Projects</a><a href="#about">About</a>
     <a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
   </div>
-  <div class="foot-copy">Game Designer · Lampung, ID · Open to Full-Time Remote</div>
+  <div class="foot-copy">Game Designer · Lampung, ID · Looking for the studio that cares about both</div>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -875,7 +843,7 @@ footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;
 </div>
 
 <script>
-/* ── EMAIL: built by JS to prevent host email obfuscation ── */
+/* ── EMAIL ── */
 (function() {
   var u = 'praycristanto';
   var d = 'gmail' + '.' + 'com';
@@ -908,9 +876,7 @@ window.addEventListener('scroll', function() {
   });
 }, { passive: true });
 
-/* ── CASE STUDY TOGGLE ── */
-/* FIX 4: childNodes.forEach is not supported in all browsers —
-   converted to Array.prototype.slice.call() for safe cross-browser iteration */
+/* ── CASE STUDY TOGGLE (cross-browser fix) ── */
 function toggleCS(btn) {
   var body = btn.nextElementSibling;
   var open = body.classList.toggle('open');
@@ -923,9 +889,7 @@ function toggleCS(btn) {
   });
 }
 
-/* ── LIGHTBOX ── */
-/* FIX 5: guard now checks naturalWidth and rejects empty src values
-   so clicking an unloaded screenshot slot does not open a broken lightbox */
+/* ── LIGHTBOX (guard against empty slots) ── */
 (function() {
   var lb = document.getElementById('lightbox');
   var lbImg = document.getElementById('lightbox-img');
