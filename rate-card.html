@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>Rate card · Pray Cristanto</title>
+<meta name="description" content="Rates and packages for freelance gameplay and systems design. Pick a package, see the price add up, and send the request."/>
+<meta name="theme-color" content="#3B6DB8"/>
+<meta property="og:title" content="Rate card · Pray Cristanto"/>
+<meta property="og:description" content="Freelance gameplay and systems design for indie teams. Packages, prices and how we would work together."/>
+<meta property="og:type" content="website"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+<link rel="preconnect" href="https://api.fontshare.com"/>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin/>
+<link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500&f[]=satoshi@400,500&display=swap" rel="stylesheet"/>
+<script>document.documentElement.className='js'</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F6F9FD;--surface:#DCE9F8;--surface-2:#C6DAF2;--ink:#16263E;--muted:#41546F;--accent:#3B6DB8;
+  --font:'Satoshi','Helvetica Neue',Arial,sans-serif;--serif:'Gambetta',Georgia,serif;
+  --step-small:clamp(0.875rem,0.85rem + 0.1vw,0.9375rem);
+  --step-body:clamp(1.0625rem,1rem + 0.25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + 0.7vw,1.625rem);
+  --step-h2:clamp(1.75rem,1.2rem + 1.8vw,2.75rem);
+  --step-head:clamp(2rem,1.3rem + 3.2vw,4rem);
+  --gut:clamp(16px,2.4vw,32px);
+  --pad:clamp(24px,5vw,72px);
+  --space:clamp(88px,10vw,168px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--step-body);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+button,input,textarea{font:inherit;color:inherit}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h1,h2,h3,.mark{font-family:var(--serif);font-weight:400;letter-spacing:-0.03em;line-height:1}
+h1{font-size:var(--step-head);max-width:11em}
+h2{font-size:var(--step-h2);max-width:14em}
+.muted{color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;background:var(--accent);color:#fff;font-weight:500;text-decoration:none;padding:.85em 1.4em;border:0;border-radius:0;cursor:pointer;transition:transform .25s var(--ease),background .25s}
+.btn:hover{background:var(--ink);transform:translateY(-2px)}
+.btn:active{transform:none}
+.btn.alt{background:var(--surface-2);color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:#fff}
+.textlink{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.25em;text-decoration-thickness:2px;transition:color .25s}
+.textlink:hover{color:var(--accent)}
+
+/* ── split: the quote sheet never moves, the column beside it scrolls ── */
+.split{display:grid;grid-template-columns:5fr 6fr;min-height:100svh}
+.stage{position:sticky;top:0;height:100svh;background:var(--accent);display:grid;place-items:center;padding:var(--gut)}
+.flow{padding:clamp(20px,3vw,40px) var(--pad) clamp(40px,6vw,80px);min-width:0}
+.flow section{margin-top:var(--space)}
+.flow>header+section{margin-top:clamp(56px,8vw,112px)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.mark{font-size:var(--step-lead);text-decoration:none}
+.top nav{display:flex;gap:clamp(16px,2.4vw,32px);font-size:var(--step-small)}
+.top nav a{text-decoration:none;color:var(--muted);transition:color .25s}
+.top nav a:hover{color:var(--ink)}
+
+/* intro */
+.lead{margin-top:clamp(24px,3vw,40px);max-width:30em;font-size:var(--step-lead);line-height:1.3;letter-spacing:-0.01em}
+.status{margin-top:1.4rem;display:flex;align-items:center;gap:.7rem;color:var(--muted);font-size:var(--step-small)}
+.status::before{content:'';width:.6rem;height:.6rem;background:var(--accent);flex:none}
+.status[data-s="limited"]::before{background:#B7791F}
+.status[data-s="closed"]::before{background:var(--muted)}
+.intro-act{margin-top:2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+
+/* segmented currency control */
+.seg{display:inline-flex;background:var(--surface)}
+.seg button{border:0;background:none;padding:.45em .95em;font-size:var(--step-small);cursor:pointer;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.seg button:not([aria-pressed="true"]):hover{background:var(--surface-2)}
+
+/* bring */
+.bring{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.bring div{background:var(--surface);padding:1.2rem 1.3rem}
+.bring h3{font-size:var(--step-lead);margin-bottom:.4rem}
+.bring p{color:var(--muted);font-size:var(--step-small);line-height:1.5}
+
+/* packages */
+.sub{margin-top:1rem;max-width:34em;color:var(--muted)}
+.grp{margin-top:2.6rem}
+.grp-h{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.grp-h h3{font-size:var(--step-lead)}
+.grp-h button{background:none;border:0;cursor:pointer;font-size:var(--step-small);color:var(--muted);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.25em;text-decoration-thickness:2px}
+.grp-h button:hover{color:var(--accent)}
+.opts{display:grid;gap:var(--gut)}
+.opt{background:var(--surface);transition:background .25s;position:relative}
+.opt:not(.sel):hover{background:#D0E1F5}
+.opt.sel{background:var(--surface-2)}
+.opt-main{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1rem;align-items:start;padding:1.2rem 1.3rem;cursor:pointer}
+.opt-main input{position:absolute;opacity:0;width:1px;height:1px}
+.opt-main:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:-3px}
+.mk{width:1.15rem;height:1.15rem;background:var(--bg);margin-top:.25rem;position:relative;transition:background .25s}
+.sel .mk{background:var(--accent)}
+.sel .mk::after{content:'';position:absolute;inset:.33rem;background:var(--bg)}
+.opt-name{display:block;font-family:var(--serif);font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.1}
+.opt-best{display:block;color:var(--muted);font-size:var(--step-small);margin-top:.35rem;line-height:1.45}
+.opt-p{text-align:right;font-variant-numeric:tabular-nums}
+.opt-p b{display:block;font-weight:500;font-size:var(--step-body);line-height:1.25}
+.opt-p small{display:block;color:var(--muted);font-size:var(--step-small);margin-top:.2rem;max-width:11em;margin-left:auto}
+.inc{padding:0 1.3rem 1.2rem calc(1.3rem + 1.15rem + 1rem)}
+.inc summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5em;font-size:var(--step-small);color:var(--muted)}
+.inc summary::-webkit-details-marker{display:none}
+.inc summary::after{content:'+';color:var(--accent);font-size:1.3em;line-height:1;transition:transform .3s var(--ease)}
+.inc[open] summary::after{transform:rotate(45deg)}
+.inc summary:hover{color:var(--ink)}
+.inc ul{list-style:none;margin-top:.7rem}
+.inc li{position:relative;padding:.2rem 0 .2rem 1.2rem;font-size:var(--step-small);line-height:1.45}
+.inc li::before{content:'';position:absolute;left:0;top:.65em;width:.5rem;height:.5rem;background:var(--accent)}
+.qty{display:flex;align-items:center;gap:.8rem;padding:0 1.3rem 1.2rem calc(1.3rem + 1.15rem + 1rem);font-size:var(--step-small);color:var(--muted)}
+.qty[hidden]{display:none}
+.qty button{width:2.25rem;height:2.25rem;border:0;background:var(--bg);cursor:pointer;font-size:1.2rem;line-height:1;transition:background .25s,color .25s}
+.qty button:hover{background:var(--accent);color:#fff}
+.qty output{min-width:1.6em;text-align:center;color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+/* month */
+.wk{margin-top:2rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:var(--gut)}
+.wk-tabs{display:grid;gap:var(--gut);align-content:start}
+.wk-tabs button{text-align:left;border:0;background:var(--surface);padding:1rem 1.2rem;cursor:pointer;transition:background .25s,color .25s;line-height:1.25}
+.wk-tabs button:hover{background:var(--surface-2)}
+.wk-tabs button[aria-selected="true"]{background:var(--accent);color:#fff}
+.wk-tabs small{display:block;font-size:var(--step-small);opacity:.8;margin-top:.15rem}
+.wk-panel{background:var(--surface-2);padding:clamp(1.4rem,2.4vw,2.2rem);min-height:13rem}
+.wk-panel h3{font-size:var(--step-h2);margin-bottom:.8rem}
+.wk-panel p{max-width:30em}
+.wk-panel.swap{animation:swap .5s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.deliv{margin-top:2rem;display:grid;gap:var(--gut)}
+.deliv div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:var(--gut);background:var(--surface);padding:1rem 1.3rem}
+.deliv div:nth-child(even){background:transparent}
+.deliv b{font-family:var(--serif);font-weight:400;font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.15}
+.deliv p{color:var(--muted);font-size:var(--step-small);line-height:1.5}
+
+/* terms */
+.arr{margin-top:2rem;display:grid}
+.arr div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:var(--gut);padding:1rem 1.3rem}
+.arr div:nth-child(odd){background:var(--surface)}
+.arr dt{font-family:var(--serif);font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.15}
+.arr dd{color:var(--ink);font-size:var(--step-body)}
+.acc{margin-top:2.4rem}
+.acc h3{font-size:var(--step-lead);margin-bottom:1rem}
+.acc details{background:var(--surface);margin-bottom:var(--gut);transition:background .25s}
+.acc details[open]{background:var(--surface-2)}
+.acc summary{list-style:none;cursor:pointer;padding:1rem 1.3rem;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:'+';color:var(--accent);font-size:1.5em;line-height:1;transition:transform .3s var(--ease)}
+.acc details[open] summary::after{transform:rotate(45deg)}
+.acc details p{padding:0 1.3rem 1.2rem;max-width:34em;color:var(--ink)}
+
+/* proof */
+.proof{margin-top:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut)}
+.proof a{text-decoration:none;display:block}
+.proof .pic{aspect-ratio:4/3;background:var(--surface);overflow:hidden}
+.proof img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.proof a:hover img{transform:scale(1.05)}
+.proof b{display:block;margin-top:.7rem;font-family:var(--serif);font-weight:400;font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.1}
+.proof span.n{display:block;color:var(--muted);font-size:var(--step-small);margin-top:.2rem;line-height:1.4}
+
+/* request */
+.hire{margin-top:2rem;display:grid;gap:var(--gut)}
+.hire li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:var(--gut);padding:1rem 1.3rem;background:var(--surface)}
+.hire li:nth-child(even){background:transparent}
+.hire{list-style:none;counter-reset:h}
+.hire b{font-family:var(--serif);font-weight:400;font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.15}
+.hire p{color:var(--muted);font-size:var(--step-small);line-height:1.5}
+form{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.f{display:grid;gap:.4rem;align-content:start}
+.f.wide{grid-column:1 / -1}
+.f label{font-size:var(--step-small);color:var(--muted)}
+.f input,.f textarea{width:100%;border:0;border-radius:0;background:var(--surface);padding:.85rem 1rem;transition:background .25s}
+.f input:focus,.f textarea:focus{outline:3px solid var(--accent);outline-offset:0;background:#fff}
+.f textarea{min-height:7rem;resize:vertical}
+.form-act{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem}
+.hint{color:var(--muted);font-size:var(--step-small);max-width:30em}
+.direct{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:var(--step-body)}
+.direct a[hidden]{display:none}
+
+footer{margin-top:var(--space);padding-top:0}
+footer h2{max-width:13em}
+.foot-links{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;color:var(--muted);font-size:var(--step-small)}
+.foot-links a{text-decoration:none;transition:color .25s}
+.foot-links a:hover{color:var(--accent)}
+
+/* the quote sheet */
+.sheet{background:var(--bg);width:min(100%,460px);max-height:calc(100svh - 2*var(--gut));overflow:auto;padding:52px 32px 52px;clip-path:polygon(0.000% 8px,6.250% 0,12.500% 8px,18.750% 0,25.000% 8px,31.250% 0,37.500% 8px,43.750% 0,50.000% 8px,56.250% 0,62.500% 8px,68.750% 0,75.000% 8px,81.250% 0,87.500% 8px,93.750% 0,100.000% 8px,100.000% calc(100% - 8px),93.750% 100%,87.500% calc(100% - 8px),81.250% 100%,75.000% calc(100% - 8px),68.750% 100%,62.500% calc(100% - 8px),56.250% 100%,50.000% calc(100% - 8px),43.750% 100%,37.500% calc(100% - 8px),31.250% 100%,25.000% calc(100% - 8px),18.750% 100%,12.500% calc(100% - 8px),6.250% 100%,0.000% calc(100% - 8px))}
+.sheet-h{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.sheet-h h2{font-size:var(--step-lead);max-width:none}
+.sheet-note{margin-top:.5rem;color:var(--muted);font-size:var(--step-small)}
+.lines{list-style:none;margin-top:1.6rem;display:grid;gap:1.1rem;min-height:4.5rem}
+.lines li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:baseline}
+.lines li.new{animation:print .6s var(--ease) both;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes print{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.lines .n{line-height:1.3}
+.lines .n small{display:block;color:var(--muted);font-size:var(--step-small);margin-top:.1rem}
+.lines .p{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.lines .empty{display:block;color:var(--muted)}
+.total{margin-top:1.8rem;background:var(--surface);padding:1.1rem 1.3rem}
+.total span{display:block;color:var(--muted);font-size:var(--step-small)}
+.total b{display:block;margin-top:.3rem;font-family:var(--serif);font-weight:400;font-size:var(--step-h2);letter-spacing:-0.03em;line-height:1.02;font-variant-numeric:tabular-nums;text-wrap:balance}
+.sheet-foot{margin-top:1rem;color:var(--muted);font-size:var(--step-small);line-height:1.5}
+.sheet-act{margin-top:1.4rem;display:grid;gap:var(--gut)}
+.sheet-act .btn{width:100%}
+#quoteSlot:empty{display:none}
+#quoteSlot .sheet{width:100%;max-height:none;overflow:visible}
+
+/* mobile quote bar */
+.mbar{display:none}
+
+/* motion */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@keyframes safe{to{opacity:1;transform:none}}
+.js .rv{animation:safe 0s 3s forwards}
+.js .rv.in{animation:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;animation:none;transition:none}
+  .lines li.new,.wk-panel.swap{animation:none}
+  .btn:hover{transform:none}
+}
+
+@media(max-width:900px){
+  .split{display:block}
+  .stage{display:none}
+  .flow{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+  .bring,.proof{grid-template-columns:1fr}
+  .wk{grid-template-columns:1fr}
+  .wk-tabs{grid-template-columns:repeat(4,1fr)}
+  .wk-tabs small{display:none}
+  .deliv div,.arr div,.hire li{grid-template-columns:1fr;gap:.3rem}
+  form{grid-template-columns:1fr}
+  .opt-main{grid-template-columns:auto minmax(0,1fr)}
+  .opt-p{grid-column:2;text-align:left}
+  .opt-p small{margin-left:0;max-width:none}
+  .inc,.qty{padding-left:1.3rem}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--accent);color:#fff;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem var(--gut) calc(.8rem + env(safe-area-inset-bottom,0px));transition:transform .4s var(--ease)}
+  .mbar.off{transform:translateY(110%)}
+  .mbar span{font-size:var(--step-small);display:block;opacity:.85}
+  .mbar b{font-family:var(--serif);font-weight:400;font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.1}
+  .mbar a{background:var(--bg);color:var(--ink);padding:.7em 1.1em;text-decoration:none;font-weight:500;font-size:var(--step-small)}
+}
+</style>
+</head>
+<body>
+<div class="split">
+  <aside class="stage" id="stage" aria-label="Your quote">
+    <div class="sheet" id="quote" tabindex="-1">
+      <div class="sheet-h">
+        <h2>Your quote</h2>
+        <div class="seg" role="group" aria-label="Currency"><button type="button" data-cur="IDR" aria-pressed="true">IDR</button><button type="button" data-cur="USD" aria-pressed="false">USD</button></div>
+      </div>
+      <p class="sheet-note" id="sheetNote">It fills in as you choose.</p>
+      <ul class="lines" id="lines" aria-live="polite"></ul>
+      <div class="total"><span>Estimated total</span><b id="total">—</b></div>
+      <p class="sheet-foot" id="sheetFoot"></p>
+      <div class="sheet-act">
+        <a class="btn" href="#request" id="toRequest">Request this quote</a>
+        <button class="btn alt" type="button" id="copySum">Copy summary</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="flow" id="top">
+    <header class="top">
+      <a class="mark" href="index.html" data-k="brand_name">Pray Cristanto</a>
+      <nav aria-label="Main"><a data-portfolio href="editorial_portfolio.html">Portfolio</a><a href="#request">Hire me</a></nav>
+    </header>
+
+    <section id="intro" aria-labelledby="intro-h">
+      <h1 id="intro-h" data-k="headline">Game design, priced plainly.</h1>
+      <p class="lead" data-k="tagline">I help indie teams turn game ideas into clear, playable and engaging experiences.</p>
+      <p class="status" id="status" data-s="open"><span data-k="status_text">Open for part-time freelance work</span></p>
+      <div class="intro-act">
+        <a class="btn" href="#packages">Build your quote</a>
+        <div class="seg" role="group" aria-label="Currency"><button type="button" data-cur="IDR" aria-pressed="true">IDR</button><button type="button" data-cur="USD" aria-pressed="false">USD</button></div>
+      </div>
+      <div class="bring rv" id="bring"></div>
+    </section>
+
+    <section id="packages" aria-labelledby="pk-h" class="rv">
+      <h2 id="pk-h">Choose what you need.</h2>
+      <p class="sub">Pick one monthly package, add a consultation or project work, and the quote on the sheet adds up as you go.</p>
+      <div class="grp" id="gMonthly"></div>
+      <div class="grp" id="gConsult"></div>
+      <div class="grp" id="gProject"></div>
+    </section>
+
+    <section id="month" aria-labelledby="mo-h" class="rv">
+      <h2 id="mo-h">How a month runs.</h2>
+      <div class="wk" id="wk"></div>
+      <div class="deliv" id="deliv"></div>
+    </section>
+
+    <section id="terms" aria-labelledby="tm-h" class="rv">
+      <h2 id="tm-h">How we would work together.</h2>
+      <dl class="arr" id="arr"></dl>
+      <div class="acc" id="acc"></div>
+    </section>
+
+    <section id="proof" aria-labelledby="pf-h" class="rv">
+      <h2 id="pf-h">Games behind the rates.</h2>
+      <p class="sub" id="expText"></p>
+      <div class="proof" id="proofGrid"></div>
+    </section>
+
+    <section id="quoteSlot" aria-label="Your quote"></section>
+
+    <section id="request" aria-labelledby="rq-h" class="rv">
+      <h2 id="rq-h">Send the request.</h2>
+      <ol class="hire" id="hire"></ol>
+      <form id="reqForm" novalidate>
+        <div class="f"><label for="fName">Your name</label><input id="fName" name="name" autocomplete="name" required/></div>
+        <div class="f"><label for="fStudio">Studio</label><input id="fStudio" name="studio" autocomplete="organization"/></div>
+        <div class="f"><label for="fProject">Game title</label><input id="fProject" name="project"/></div>
+        <div class="f"><label for="fStart">Proposed start date</label><input id="fStart" name="start" type="date"/></div>
+        <div class="f wide"><label for="fMsg">Anything I should know</label><textarea id="fMsg" name="msg"></textarea></div>
+        <div class="form-act">
+          <button class="btn" type="submit">Open email with my quote</button>
+          <p class="hint" id="formHint">This opens your email app with everything above filled in. Nothing is sent until you press send.</p>
+        </div>
+      </form>
+      <p class="direct" id="direct"></p>
+    </section>
+
+    <footer>
+      <h2 id="closing" data-k="closing_line">Let's build something players love to play together.</h2>
+      <nav class="foot-links" aria-label="Footer"><a href="#top">Top</a><a data-portfolio href="editorial_portfolio.html">Portfolio</a><a href="index.html">Links</a><span id="updated"></span></nav>
+    </footer>
+    <noscript><p style="margin-top:2rem">This page needs JavaScript to show the live rates. Email <a class="textlink" href="mailto:praycristanto@gmail.com">praycristanto@gmail.com</a> for the current rate card.</p></noscript>
+  </main>
+</div>
+
+<div class="mbar off" id="mbar"><div><span>Estimated total</span><b id="mTotal">—</b></div><a href="#quote" id="mLink">Review quote</a></div>
+
+<script>
+/* ── GOOGLE SHEET: the only thing you ever paste into this file ─────────────────
+   Open the sheet, copy the part of the address between /d/ and /edit, paste it here.
+   Leave it empty to use the built-in copy of the rates below. */
+var SHEET_ID='1FyqNvbPJcXDrn9K7bQ9551BflrMTVN0vb7AzAq-WMck';
+
+var TABS=['Settings','Packages','Bring','Deliverables','Workflow','Arrangement','Boundaries','Hiring','Work'];
+/* built-in copy of the sheet: shown instantly, and used for any tab the sheet cannot supply */
+var SNAP={"Settings": [{"key": "page_title", "value": "Rate card · Pray Cristanto", "note": "Browser tab title"}, {"key": "brand_name", "value": "Pray Cristanto", "note": "Name in the page header"}, {"key": "headline", "value": "Game design, priced plainly.", "note": "Main headline. Keep it under about 32 characters so it fits on two lines."}, {"key": "tagline", "value": "I help indie teams turn game ideas into clear, playable and engaging experiences.", "note": "One sentence under the headline"}, {"key": "specialty", "value": "Gameplay & systems design for indie game development", "note": "Short descriptor line"}, {"key": "status", "value": "open", "note": "open, limited or closed. Controls the availability line at the top."}, {"key": "status_text", "value": "Open for part-time freelance work", "note": "Text shown next to the availability marker"}, {"key": "currency_default", "value": "IDR", "note": "IDR or USD: which currency visitors see first"}, {"key": "usd_rate", "value": 16500, "note": "IDR per 1 USD. Used only for the approximate USD view. CHECK AND UPDATE THIS."}, {"key": "show_hourly", "value": "no", "note": "yes or no. yes shows the effective hourly cost of each monthly package."}, {"key": "rates_label", "value": "2026 rates in Indonesian rupiah (IDR)", "note": "Small line under the quote total"}, {"key": "rates_updated", "value": "November 2026", "note": "Shown in the footer"}, {"key": "experience_text", "value": "Indie game development experience across game design, systems, UX, QA and community. Project experience includes The Sun Shines Over Us, Matchmaker Agency, Virgo & The Sparklings, Helen, and ongoing independent development work. My approach combines player empathy, practical documentation and iterative design.", "note": "Paragraph above the project images"}, {"key": "closing_line", "value": "Let's build something players love to play together.", "note": "Large closing line in the footer"}, {"key": "email", "value": "praycristanto@gmail.com", "note": "Requests are sent here"}, {"key": "linkedin", "value": "https://linkedin.com/in/praycristanto", "note": "Full URL"}, {"key": "itch", "value": "https://dekiru.itch.io", "note": "Full URL, leave blank to hide"}, {"key": "discord", "value": "", "note": "Discord handle or invite, leave blank to hide"}, {"key": "portfolio_url", "value": "editorial_portfolio.html", "note": "Link back to your portfolio"}, {"key": "resume_url", "value": "https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing", "note": "Link to your CV, leave blank to hide"}], "Packages": [{"id": "designer", "type": "monthly", "name": "Gameplay & Systems Designer", "best_for": "Teams needing consistent design support and feature ownership.", "includes": "Gameplay mechanics; Systems & progression; GDD / feature docs; Balancing recommendations; Playtest review", "price_min": 3500000, "price_max": 3500000, "unit": "month", "hours_cap": 24, "duration": "", "turnaround": "", "active": "yes"}, {"id": "lead", "type": "monthly", "name": "Part-time Design Lead", "best_for": "Teams needing design direction for an agreed area or feature set.", "includes": "Everything in the Designer package; Design priorities; Feature-level direction; Design reviews; Coordination with dev team; Validation of assigned features", "price_min": 4500000, "price_max": 4500000, "unit": "month", "hours_cap": 24, "duration": "", "turnaround": "", "active": "yes"}, {"id": "consult", "type": "consult", "name": "Game Design Consultation", "best_for": "Focused feedback, a second opinion or design problem-solving.", "includes": "1:1 design discussion; Review of a specific mechanic, build or document; Actionable recommendations", "price_min": 350000, "price_max": 500000, "unit": "session", "hours_cap": "", "duration": "1–2 hours", "turnaround": "", "active": "yes"}, {"id": "audit", "type": "project", "name": "Gameplay Audit", "best_for": "Review of an existing playable build.", "includes": "Findings; Prioritized issues; Improvement recommendations", "price_min": 1500000, "price_max": 2500000, "unit": "project", "hours_cap": "", "duration": "", "turnaround": "", "active": "yes"}, {"id": "feature", "type": "project", "name": "Core Mechanics / Feature Design", "best_for": "Design of a defined mechanic or feature.", "includes": "Design brief; Rules; Player flow; Edge cases; Handoff notes", "price_min": 1500000, "price_max": 3000000, "unit": "project", "hours_cap": "", "duration": "", "turnaround": "", "active": "yes"}, {"id": "balance", "type": "project", "name": "Balancing & Progression Review", "best_for": "Tuning of an agreed system.", "includes": "Review of parameters; Progression and balancing recommendations", "price_min": 1500000, "price_max": 3000000, "unit": "project", "hours_cap": "", "duration": "", "turnaround": "", "active": "yes"}], "Bring": [{"title": "Gameplay design", "description": "Core loops, mechanics and player interaction"}, {"title": "Systems & balancing", "description": "Progression, rewards, tuning and game rules"}, {"title": "Player experience", "description": "UX thinking, playtest feedback and friction review"}, {"title": "Design collaboration", "description": "Clear documentation and practical team handoff"}], "Deliverables": [{"label": "Gameplay audit", "text": "Review the current build and identify friction points, unclear rules, pacing issues and opportunities to improve player fun."}, {"label": "Design documentation", "text": "Create or update concise feature documentation: goals, player flow, rules, interactions, edge cases and implementation notes."}, {"label": "Systems & balancing", "text": "Review progression, rewards, difficulty and relevant gameplay parameters; provide recommendations for iteration."}, {"label": "Playtest review", "text": "Observe or participate in agreed playtests, synthesize feedback and recommend prioritized next steps."}], "Workflow": [{"week": "Week 1", "title": "Understand & audit", "description": "Build walkthrough, team alignment, gameplay audit and prioritized improvement list."}, {"week": "Week 2", "title": "Design & propose", "description": "Develop or refine mechanics, player interactions and feature-level design proposals."}, {"week": "Week 3", "title": "Review & tune", "description": "Review implementation, assess balance and document changes or tuning recommendations."}, {"week": "Week 4", "title": "Validate & plan", "description": "Playtest review, summarize findings and agree on the next iteration priorities."}], "Arrangement": [{"label": "Availability", "text": "Part-time, remote; generally available after 7:00 PM (GMT+7), weekdays."}, {"label": "Capacity", "text": "Monthly packages are capped by the stated hours. Work is planned around agreed priorities."}, {"label": "Communication", "text": "Async communication via the team's agreed channel; one scheduled weekly design sync where applicable."}, {"label": "Payment", "text": "Monthly retainer payable in advance. Project-based work follows an agreed milestone schedule."}, {"label": "Scope changes", "text": "New features, major rework or work beyond allocated hours are estimated and quoted separately."}, {"label": "Not included", "text": "Unity programming, art / animation production, full-time QA execution and overall project management."}], "Boundaries": [{"label": "Decision authority", "text": "Design direction and decisions are limited to the features / systems explicitly assigned. Whole-game leadership requires a separately agreed mandate."}, {"label": "Implementation", "text": "The designer provides design direction and handoff documentation. Programming, art, animation and implementation remain with the relevant team members."}, {"label": "Availability", "text": "Work is generally performed after 7:00 PM GMT+7 on weekdays. Response times are asynchronous and not equivalent to daily standby."}, {"label": "Hours", "text": "Retainer hours are a monthly capacity cap, not a guarantee that every possible task will be completed. Priorities and deliverables are agreed at the start of each cycle."}, {"label": "Revisions", "text": "Includes reasonable refinement within the agreed brief. New requirements or substantial scope changes may require a revised estimate."}, {"label": "Payment & cancellation", "text": "Monthly retainer is payable in advance. Payment terms, notice period, ownership and portfolio permissions should be confirmed in a written agreement."}], "Hiring": [{"title": "Send a short brief", "text": "Tell me about the game, the stage it is at and the area where you want design help."}, {"title": "Agree the scope", "text": "We confirm the package, the monthly hour cap and which features or systems are assigned to me."}, {"title": "Confirm in writing", "text": "Payment terms, notice period, ownership and portfolio permissions go into a written agreement."}, {"title": "Start the first cycle", "text": "Priorities and deliverables are agreed at the start of each cycle, and the monthly retainer is paid in advance."}], "Work": [{"title": "The Sun Shines Over Us", "image": "tssou-screen1.jpg", "link": "editorial_portfolio.html#work", "note": "Narrative visual novel, 500K+ free downloads"}, {"title": "Matchmaker Agency", "image": "matchmaker-screen1.jpg", "link": "editorial_portfolio.html#work", "note": "Simulation on Steam and Nintendo Switch"}, {"title": "Virgo & The Sparklings", "image": "virgo-screen1.webp", "link": "editorial_portfolio.html#work", "note": "Licensed IP, mobile"}]};
+var DATA=JSON.parse(JSON.stringify(SNAP));
+
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function num(v){var n=parseFloat(String(v==null?'':v).replace(/,/g,'').replace(/[^0-9.]/g,''));return isFinite(n)?n:0}
+function S(k){var r=DATA.Settings.filter(function(x){return x.key===k})[0];return r?String(r.value==null?'':r.value):''}
+function fresh(l){return l.map(function(r){var o={};for(var k in r)o[k]=r[k];return o})}
+
+/* ── reading the sheet ── */
+function parseCSV(t){
+  var rows=[],row=[],cur='',q=false,i,c;
+  for(i=0;i<t.length;i++){
+    c=t[i];
+    if(q){ if(c==='"'){ if(t[i+1]==='"'){cur+='"';i++} else q=false } else cur+=c }
+    else if(c==='"') q=true;
+    else if(c===','){row.push(cur);cur=''}
+    else if(c==='\n'||c==='\r'){ if(c==='\r'&&t[i+1]==='\n')i++; row.push(cur);rows.push(row);row=[];cur='' }
+    else cur+=c;
+  }
+  if(cur!==''||row.length){row.push(cur);rows.push(row)}
+  return rows;
+}
+function toObjects(rows){
+  while(rows.length&&rows[0].every(function(c){return !String(c).trim()}))rows.shift();
+  if(rows.length<2)return [];
+  var h=rows[0].map(function(x){return String(x).trim().toLowerCase()});
+  return rows.slice(1).filter(function(r){return r.some(function(c){return String(c).trim()})}).map(function(r){
+    var o={};h.forEach(function(k,i){if(k)o[k]=(r[i]==null?'':String(r[i])).trim()});return o;
+  });
+}
+function loadTab(name){
+  var ctl=new AbortController(),t=setTimeout(function(){ctl.abort()},9000);
+  var url='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:csv&headers=1&sheet='+encodeURIComponent(name);
+  return fetch(url,{signal:ctl.signal}).then(function(r){clearTimeout(t);if(!r.ok)throw 0;return r.text()}).then(function(txt){
+    if(/^\s*</.test(txt))throw 0;           /* an HTML error page, not data */
+    var rows=toObjects(parseCSV(txt));
+    if(!rows.length)throw 0;
+    var need=name==='Packages'?['name','price_min']:name==='Settings'?['key','value']:null;
+    if(need&&!need.every(function(k){return k in rows[0]}))throw 0;
+    return {name:name,rows:rows};
+  }).catch(function(){clearTimeout(t);return null});
+}
+
+/* ── state ── */
+var cur='IDR';
+var sel={monthly:null,months:1,items:{}};   /* items: id -> quantity */
+var shown={a:0,b:0};
+var prevKeys={};
+
+function pk(){
+  return DATA.Packages.filter(function(p){return p.name&&String(p.active||'yes').toLowerCase()!=='no'}).map(function(p){
+    var mn=num(p.price_min),mx=num(p.price_max)||mn;
+    return {id:String(p.id||p.name),type:String(p.type||'project').toLowerCase(),name:p.name,best:p.best_for||'',inc:String(p.includes||'').split(';').map(function(s){return s.trim()}).filter(Boolean),min:Math.min(mn,mx),max:Math.max(mn,mx),unit:p.unit||'',hours:num(p.hours_cap),dur:p.duration||'',turn:p.turnaround||''};
+  });
+}
+function byId(id){return pk().filter(function(p){return p.id===id})[0]}
+function rate(){return num(S('usd_rate'))||16500}
+function money(n){return cur==='USD'?'≈ $'+Math.round(n/rate()).toLocaleString('en-US'):'IDR '+Math.round(n).toLocaleString('en-US')}
+function range(a,b){
+  if(a===b)return money(a);
+  if(cur==='USD')return '≈ $'+Math.round(a/rate()).toLocaleString('en-US')+'–'+Math.round(b/rate()).toLocaleString('en-US');
+  return 'IDR '+Math.round(a).toLocaleString('en-US')+'–'+Math.round(b).toLocaleString('en-US');
+}
+function plural(n,w){return n+' '+w+(n===1?'':'s')}
+
+/* ── static copy from Settings ── */
+function bindStatic(){
+  $$('[data-k]').forEach(function(el){var v=S(el.getAttribute('data-k'));if(v)el.textContent=v});
+  var t=S('page_title');if(t)document.title=t;
+  var st=$('#status');st.setAttribute('data-s',(S('status')||'open').toLowerCase());
+  var port=S('portfolio_url');if(port)$$('[data-portfolio]').forEach(function(a){a.href=port});
+  var up=S('rates_updated');$('#updated').textContent=up?'Rates updated '+up:'';
+  var ex=S('experience_text');$('#expText').textContent=ex;$('#proof').hidden=!ex&&!DATA.Work.length;
+  var em=S('email'),li=S('linkedin'),it=S('itch'),dc=S('discord'),rs=S('resume_url'),h='';
+  if(em)h+='<a class="textlink" href="mailto:'+esc(em)+'">'+esc(em)+'</a>';
+  if(li)h+='<a class="textlink" href="'+esc(li)+'" target="_blank" rel="noopener">LinkedIn</a>';
+  if(it)h+='<a class="textlink" href="'+esc(it)+'" target="_blank" rel="noopener">itch.io</a>';
+  if(dc)h+='<span>Discord: '+esc(dc)+'</span>';
+  if(rs)h+='<a class="textlink" href="'+esc(rs)+'" target="_blank" rel="noopener">Download CV</a>';
+  $('#direct').innerHTML=h;
+  var cd=S('currency_default').toUpperCase();if(!sel._cur&&(cd==='USD'||cd==='IDR')){cur=cd;sel._cur=1}
+}
+
+/* ── content blocks ── */
+function renderBlocks(){
+  $('#bring').innerHTML=DATA.Bring.map(function(b){return '<div><h3>'+esc(b.title)+'</h3><p>'+esc(b.description)+'</p></div>'}).join('');
+  $('#deliv').innerHTML=DATA.Deliverables.map(function(d){return '<div><b>'+esc(d.label)+'</b><p>'+esc(d.text)+'</p></div>'}).join('');
+  $('#arr').innerHTML=DATA.Arrangement.map(function(a){return '<div><dt>'+esc(a.label)+'</dt><dd>'+esc(a.text)+'</dd></div>'}).join('');
+  $('#acc').innerHTML=DATA.Boundaries.length?'<h3>Boundaries and assumptions</h3>'+DATA.Boundaries.map(function(b){return '<details name="bound"><summary>'+esc(b.label)+'</summary><p>'+esc(b.text)+'</p></details>'}).join(''):'';
+  $('#hire').innerHTML=DATA.Hiring.map(function(h){return '<li><b>'+esc(h.title)+'</b><p>'+esc(h.text)+'</p></li>'}).join('');
+  $('#proofGrid').innerHTML=DATA.Work.map(function(w){
+    return '<a href="'+esc(w.link||'#')+'"><span class="pic"><img src="'+esc(w.image)+'" alt="" width="800" height="600" loading="lazy" onerror="this.style.display=\'none\'"/></span><b>'+esc(w.title)+'</b><span class="n">'+esc(w.note)+'</span></a>';
+  }).join('');
+  renderWeeks(0);
+}
+var weekIdx=0;
+function renderWeeks(i){
+  weekIdx=Math.min(i,Math.max(DATA.Workflow.length-1,0));
+  var W=DATA.Workflow;if(!W.length){$('#wk').innerHTML='';return}
+  $('#wk').innerHTML='<div class="wk-tabs" role="tablist" aria-label="Weeks of a month">'+W.map(function(w,k){
+    return '<button type="button" role="tab" id="wt'+k+'" aria-selected="'+(k===weekIdx)+'" aria-controls="wp" tabindex="'+(k===weekIdx?0:-1)+'" data-w="'+k+'">'+esc(w.week)+'<small>'+esc(w.title)+'</small></button>';
+  }).join('')+'</div><div class="wk-panel" id="wp" role="tabpanel" aria-labelledby="wt'+weekIdx+'"><h3>'+esc(W[weekIdx].title)+'</h3><p>'+esc(W[weekIdx].description)+'</p></div>';
+}
+function setWeek(i,focus){
+  var W=DATA.Workflow;weekIdx=i;
+  $$('#wk [role=tab]').forEach(function(b,k){b.setAttribute('aria-selected',k===i);b.tabIndex=k===i?0:-1;if(k===i&&focus)b.focus()});
+  var p=$('#wp');p.setAttribute('aria-labelledby','wt'+i);p.innerHTML='<h3>'+esc(W[i].title)+'</h3><p>'+esc(W[i].description)+'</p>';
+  p.classList.remove('swap');void p.offsetWidth;p.classList.add('swap');
+}
+
+/* ── packages ── */
+function perText(p){
+  var t=p.type==='monthly'?'per month':p.type==='consult'?'per session':'per project';
+  var extra=[];
+  if(p.type==='monthly'&&p.hours)extra.push('up to '+p.hours+' hours');
+  if(p.dur)extra.push(p.dur);
+  if(p.turn)extra.push(p.turn);
+  if(p.type==='monthly'&&p.hours&&S('show_hourly').toLowerCase()==='yes'&&p.min)extra.push('about '+money(p.min/p.hours)+' an hour');
+  return t+(extra.length?', '+extra.join(', '):'');
+}
+function optHTML(p){
+  var monthly=p.type==='monthly',checked=monthly?sel.monthly===p.id:p.id in sel.items;
+  var qtyLabel=monthly?'Months':p.type==='consult'?'Sessions':'';
+  var q=monthly?sel.months:(sel.items[p.id]||1);
+  return '<div class="opt'+(checked?' sel':'')+'" data-id="'+esc(p.id)+'"><label class="opt-main"><input type="'+(monthly?'radio':'checkbox')+'" name="'+(monthly?'monthly':'it-'+esc(p.id))+'" value="'+esc(p.id)+'"'+(checked?' checked':'')+'/><span class="mk" aria-hidden="true"></span>'+
+   '<span><span class="opt-name">'+esc(p.name)+'</span><span class="opt-best">'+esc(p.best)+'</span></span>'+
+   '<span class="opt-p"><b>'+range(p.min,p.max)+'</b><small>'+esc(perText(p))+'</small></span></label>'+
+   (p.inc.length?'<details class="inc"><summary>What is included</summary><ul>'+p.inc.map(function(i){return '<li>'+esc(i)+'</li>'}).join('')+'</ul></details>':'')+
+   (qtyLabel?'<div class="qty"'+(checked?'':' hidden')+'><span>'+qtyLabel+'</span><button type="button" data-act="dec" aria-label="Fewer '+qtyLabel.toLowerCase()+'">−</button><output>'+q+'</output><button type="button" data-act="inc" aria-label="More '+qtyLabel.toLowerCase()+'">+</button></div>':'')+'</div>';
+}
+function renderPackages(){
+  var P=pk(),g={monthly:[],consult:[],project:[]};
+  P.forEach(function(p){(g[p.type]||g.project).push(p)});
+  /* drop selections that no longer exist in the sheet */
+  if(sel.monthly&&!byId(sel.monthly))sel.monthly=null;
+  Object.keys(sel.items).forEach(function(k){if(!byId(k))delete sel.items[k]});
+  function grp(el,title,list,clear){
+    el.hidden=!list.length;
+    el.innerHTML=list.length?'<div class="grp-h"><h3>'+title+'</h3>'+(clear?'<button type="button" data-act="clear">No retainer</button>':'')+'</div><div class="opts">'+list.map(optHTML).join('')+'</div>':'';
+  }
+  grp($('#gMonthly'),'Monthly retainer',g.monthly,true);
+  grp($('#gConsult'),'Consultation',g.consult,false);
+  grp($('#gProject'),'Project-based, indicative',g.project,false);
+}
+function syncOpts(){
+  $$('.opt').forEach(function(o){
+    var id=o.getAttribute('data-id'),p=byId(id);if(!p)return;
+    var on=p.type==='monthly'?sel.monthly===id:id in sel.items;
+    o.classList.toggle('sel',on);
+    var inp=$('input',o);inp.checked=on;
+    var q=$('.qty',o);if(q){q.hidden=!on;$('output',q).textContent=p.type==='monthly'?sel.months:(sel.items[id]||1)}
+  });
+}
+
+/* ── the quote ── */
+function lines(){
+  var L=[],m=byId(sel.monthly);
+  if(m)L.push({key:'m:'+m.id,name:m.name,sub:plural(sel.months,'month')+' × '+range(m.min,m.max),min:m.min*sel.months,max:m.max*sel.months});
+  pk().forEach(function(p){
+    if(p.type==='monthly'||!(p.id in sel.items))return;
+    var n=p.type==='consult'?sel.items[p.id]:1;
+    L.push({key:'i:'+p.id,name:p.name,sub:p.type==='consult'?plural(n,'session')+' × '+range(p.min,p.max):'Indicative range',min:p.min*n,max:p.max*n});
+  });
+  return L;
+}
+function renderQuote(){
+  var L=lines(),mn=0,mx=0,ul=$('#lines'),i=0,keys={};
+  L.forEach(function(l){mn+=l.min;mx+=l.max});
+  ul.innerHTML=L.length?L.map(function(l){
+    var isNew=!(l.key in prevKeys);keys[l.key]=1;
+    return '<li class="'+(isNew?'new':'')+'" style="--i:'+(isNew?i++:0)+'"><span class="n">'+esc(l.name)+'<small>'+esc(l.sub)+'</small></span><span class="p">'+range(l.min,l.max)+'</span></li>';
+  }).join(''):'<li><span class="empty">Nothing selected yet. Pick a package to start.</span></li>';
+  prevKeys=keys;
+  $('#sheetNote').textContent=L.length?plural(L.length,'item')+' in this quote.':'It fills in as you choose.';
+  var foot=[];if(S('rates_label'))foot.push(S('rates_label')+'.');
+  if(L.length)foot.push('Indicative: the final price is confirmed in a written agreement.');
+  $('#sheetFoot').textContent=foot.join(' ');
+  animTotal(L.length?mn:null,L.length?mx:null);
+  $('#toRequest').setAttribute('aria-disabled',L.length?'false':'true');
+}
+function totalText(a,b){return a==null?'—':range(a,b)}
+var raf=0;
+function animTotal(a,b){
+  var el=$('#total'),m=$('#mTotal');cancelAnimationFrame(raf);
+  function put(t){el.textContent=t;m.textContent=t}
+  if(a==null||matchMedia('(prefers-reduced-motion: reduce)').matches){shown={a:a||0,b:b||0};put(totalText(a,b));return}
+  var f0=shown.a,f1=shown.b,t0=performance.now(),D=450;
+  (function step(t){
+    var k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);
+    var ca=f0+(a-f0)*e,cb=f1+(b-f1)*e;
+    put(k>=1?range(a,b):range(Math.round(ca),Math.round(cb)));
+    if(k<1)raf=requestAnimationFrame(step);else shown={a:a,b:b};
+  })(t0);
+}
+function summary(){
+  var L=lines();if(!L.length)return '';
+  var mn=0,mx=0;L.forEach(function(l){mn+=l.min;mx+=l.max});
+  var t=['Rate card quote ('+cur+')',''];
+  L.forEach(function(l){t.push('- '+l.name+': '+l.sub+' = '+range(l.min,l.max))});
+  t.push('','Estimated total: '+range(mn,mx));
+  return t.join('\n');
+}
+
+/* ── events ── */
+document.addEventListener('click',function(e){
+  var c=e.target.closest('[data-cur]');
+  if(c){cur=c.getAttribute('data-cur');$$('[data-cur]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-cur')===cur)});renderPackages();renderQuote();return}
+  var a=e.target.closest('[data-act]');
+  if(a){
+    var act=a.getAttribute('data-act'),o=a.closest('.opt'),id=o&&o.getAttribute('data-id');
+    if(act==='clear'){sel.monthly=null}
+    else{
+      var d=act==='inc'?1:-1;
+      if(byId(id).type==='monthly')sel.months=Math.min(12,Math.max(1,sel.months+d));
+      else sel.items[id]=Math.min(20,Math.max(1,(sel.items[id]||1)+d));
+    }
+    syncOpts();renderQuote();return;
+  }
+  var w=e.target.closest('[data-w]');if(w)setWeek(+w.getAttribute('data-w'));
+});
+document.addEventListener('change',function(e){
+  var o=e.target.closest('.opt');if(!o)return;
+  var id=o.getAttribute('data-id'),p=byId(id);
+  if(p.type==='monthly')sel.monthly=id;
+  else if(e.target.checked)sel.items[id]=sel.items[id]||1;else delete sel.items[id];
+  syncOpts();renderQuote();
+});
+document.addEventListener('keydown',function(e){
+  var t=e.target.closest&&e.target.closest('[role=tab]');if(!t)return;
+  var n=DATA.Workflow.length,i=weekIdx;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')i=(i+1)%n;
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')i=(i+n-1)%n;
+  else if(e.key==='Home')i=0;else if(e.key==='End')i=n-1;else return;
+  e.preventDefault();setWeek(i,true);
+});
+$('#copySum').addEventListener('click',function(){
+  var b=this,t=summary();if(!t){b.textContent='Pick a package first';setTimeout(function(){b.textContent='Copy summary'},1800);return}
+  function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy summary'},1800)}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,function(){b.textContent='Copy not allowed here'});else b.textContent='Copy not supported';
+});
+$('#reqForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target,name=f.name.value.trim();
+  if(!name){f.name.focus();$('#formHint').textContent='Please add your name so I know who to reply to.';return}
+  var em=S('email');
+  var parts=['Hi '+(S('brand_name').split(' ')[0]||'')+',','',
+    'Name: '+name,'Studio: '+(f.studio.value.trim()||'-'),'Game: '+(f.project.value.trim()||'-'),'Proposed start: '+(f.start.value||'-'),'',
+    summary()||'(No package selected yet)','',f.msg.value.trim()];
+  var subj='Rate card request'+(f.studio.value.trim()?' · '+f.studio.value.trim():' · '+name);
+  location.href='mailto:'+em+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(parts.join('\n'));
+  $('#formHint').textContent='If your email app did not open, use "Copy summary" on the quote and write to '+em+'.';
+});
+
+/* ── the sheet moves under the choices on a phone ── */
+(function(){
+  var mq=matchMedia('(max-width:900px)'),sheet=$('#quote');
+  function place(){(mq.matches?$('#quoteSlot'):$('#stage')).appendChild(sheet)}
+  mq.addEventListener('change',place);place();
+  var bar=$('#mbar');
+  if('IntersectionObserver' in window){
+    var seen={};
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){seen[x.target.id]=x.isIntersecting});bar.classList.toggle('off',!!(seen.quote||seen.request))},{threshold:.15});
+    io.observe(sheet);io.observe($('#request'));
+  }
+})();
+
+/* ── entrances ── */
+(function(){
+  var els=$$('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+/* ── start: show the built-in copy at once, then swap in the live sheet ── */
+function drawAll(){bindStatic();renderBlocks();renderPackages();renderQuote();$$('[data-cur]').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-cur')===cur)})}
+var firstPk=pk().filter(function(p){return p.type==='monthly'})[0];
+if(firstPk)sel.monthly=firstPk.id;
+drawAll();
+if(SHEET_ID){
+  Promise.all(TABS.map(loadTab)).then(function(res){
+    var got=0;
+    res.forEach(function(r){if(r){DATA[r.name]=r.rows;got++}});
+    console.info('Rate card: '+got+' of '+TABS.length+' tabs read from the Google Sheet'+(got<TABS.length?' (the rest use the built-in copy)':''));
+    if(got){weekIdx=0;drawAll()}
+  });
+}
+</script>
+</body>
+</html>
