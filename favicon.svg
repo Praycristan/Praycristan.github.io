@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Pray Cristanto</title>
+  <rect width="64" height="64" fill="#151210"/>
+  <path fill="#F06828" fill-rule="evenodd" d="M16 10h18c9.4 0 15 5.4 15 13.5S43.400 37 34 37H25v17h-9zm9 8v11h8.500c4.200 0 6.500-2.100 6.500-5.500S37.700 18 33.500 18z"/>
+  <circle cx="53" cy="11" r="4.5" fill="#EAE5DA"/>
+</svg>

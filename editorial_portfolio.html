@@ -3,936 +3,649 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Pray Cristanto — Game Designer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<title>Pray Cristanto — Freelance Gameplay &amp; Systems Designer</title>
+<meta name="description" content="Freelance gameplay and systems designer. Three shipped games, 500K+ downloads, Google and Xbox accelerator alumni."/>
+<meta name="theme-color" content="#F6F9FD"/>
+<meta property="og:title" content="Pray Cristanto — Freelance Gameplay &amp; Systems Designer"/>
+<meta property="og:description" content="Gameplay and systems design. Three shipped games, 500K+ downloads."/>
+<meta property="og:type" content="website"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+<link rel="preconnect" href="https://api.fontshare.com"/>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin/>
+<link href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500&f[]=satoshi@400,500&display=swap" rel="stylesheet"/>
+<script>document.documentElement.className='js'</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F4F0E8;--paper:#FDFBF7;--ink:#1A1714;--ink2:#3C3830;
-  --muted:#8B8278;--rule:#D6CFC2;--rule2:#BEB5A8;
-  --orange:#D4500A;--orange2:#F06828;--gold:#C49A2E;
-  --dark:#151210;--dark2:#222018;--cream:#EAE5DA;
-  --head:'Playfair Display',Georgia,serif;
-  --cond:'Barlow Condensed',sans-serif;
-  --body:'Barlow',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.8;overflow-x:hidden}
+  /* Frieren: white ground, navy ink, one Himmel blue */
+  --bg:#F6F9FD;
+  --surface:#DCE9F8;
+  --surface-2:#C6DAF2;
+  --ink:#16263E;
+  --muted:#41546F;
+  --accent:#3B6DB8;
+  --field:#3B6DB8;
 
-/* ── PROGRESS RAIL ── */
-#progress-rail{
-  position:fixed;right:0;top:50%;
-  transform:translateY(-50%);
-  display:flex;flex-direction:column;align-items:flex-end;gap:0.55rem;z-index:200;
-  padding:0.6rem 0;
+  --font:'Satoshi','Helvetica Neue',Arial,sans-serif;--serif:'Gambetta',Georgia,serif;
+
+  --step-small:clamp(0.875rem,0.85rem + 0.1vw,0.9375rem);
+  --step-body:clamp(1.0625rem,1rem + 0.25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + 0.7vw,1.625rem);
+  --step-head:clamp(2rem,1.3rem + 3.2vw,4rem);
+  --step-display:clamp(3.25rem,9.4vw,10rem);
+
+  --gut:clamp(16px,2.4vw,32px);
+  --gap:clamp(96px,13vw,200px);
+  --ease:cubic-bezier(.16,1,.3,1);
 }
-.pr-item{position:relative;display:flex;align-items:center;justify-content:flex-end;text-decoration:none;width:28px;height:20px}
-.pr-dot{width:6px;height:6px;border-radius:50%;background:var(--rule2);transition:all 0.3s;flex-shrink:0;margin-right:10px}
-.pr-label{
-  position:absolute;right:26px;top:50%;
-  transform:translateY(-50%) translateX(6px);
-  font-family:var(--cond);font-size:0.58rem;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--ink2);opacity:0;
-  transition:opacity 0.2s,transform 0.2s;
-  white-space:nowrap;pointer-events:none;
-  background:rgba(244,240,232,0.96);
-  padding:3px 9px 3px 8px;
-  border-left:2px solid var(--rule2);
-  box-shadow:0 1px 6px rgba(0,0,0,0.08);
-}
-.pr-item:hover .pr-label{opacity:1;transform:translateY(-50%) translateX(0)}
-.pr-item:hover .pr-dot,.pr-item.active .pr-dot{background:var(--orange);width:8px;height:8px}
-.pr-item.active .pr-label{opacity:1;transform:translateY(-50%) translateX(0);color:var(--orange);border-left-color:var(--orange)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--step-body);line-height:1.6;font-weight:400;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3,.bar-mark,.about-quote,.hero-lead{font-family:var(--serif);font-weight:400;letter-spacing:-0.03em;line-height:0.98}
+h2{font-size:var(--step-head)}
+.muted{color:var(--muted)}
 
 /* ── NAV ── */
-.top-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 5vw;
-  background:rgba(244,240,232,0.96);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--rule);
-}
-.nav-logo{font-family:var(--head);font-size:1.2rem;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-0.01em}
-.nav-logo em{font-style:italic;color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:1.8rem}
-.nav-links a{font-family:var(--cond);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
-.nav-links a:hover{color:var(--ink)}
-.nav-cta-btn{background:var(--orange)!important;color:white!important;padding:0.5rem 1.2rem;transition:background 0.2s!important}
-.nav-cta-btn:hover{background:var(--orange2)!important;color:white!important}
-
-/* ── SECTION MARKER ── */
-.section-marker{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem}
-.sm-num{font-family:var(--cond);font-size:0.7rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);flex-shrink:0}
-.sm-rule{flex:1;max-width:60px;height:1px;background:var(--orange);opacity:0.5}
-.sm-label{font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:0 var(--gut)}
+.bar-mark{font-size:var(--step-lead);letter-spacing:-0.03em;text-decoration:none;font-weight:500}
+.bar-links{display:flex;align-items:center;gap:clamp(18px,3vw,40px)}
+.bar-links a{font-size:var(--step-small);text-decoration:none;color:var(--muted);transition:color .25s}
+.bar-links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:.6em;background:var(--accent);font-family:var(--font);font-size:var(--step-body);font-weight:500;color:#fff;text-decoration:none;padding:.8em 1.4em;border:0;border-radius:0;cursor:pointer;transition:transform .25s var(--ease),background .25s}
+.btn:hover{background:var(--ink);transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.bar-links .btn{font-size:var(--step-small);padding:.65em 1.1em;color:#fff}
+.bar-links .btn:hover{color:#fff}
+.textlink{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.25em;text-decoration-thickness:2px;transition:color .25s}
+.textlink:hover{color:var(--accent)}
 
 /* ── HERO ── */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:0;padding-top:70px}
-.hero-left{background:var(--dark);padding:5rem 5vw 4rem 6vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.hero-left::before{content:'01';position:absolute;font-family:var(--head);font-size:28vw;font-weight:900;color:rgba(255,255,255,0.02);bottom:-3vw;right:-2vw;line-height:1;pointer-events:none}
-.hero-eyebrow{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.8rem}
-.he-line{width:30px;height:1px;background:var(--orange)}
-.he-text{font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange)}
-.hero-name{font-family:var(--head);font-size:clamp(2.8rem,5vw,5rem);font-weight:900;color:white;line-height:1;letter-spacing:-0.02em;margin-bottom:0.3rem}
-.hero-name em{font-style:italic;color:var(--orange)}
-.hero-role{font-family:var(--cond);font-size:clamp(0.95rem,1.8vw,1.5rem);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:2rem}
-.hero-desc{font-size:0.95rem;color:rgba(255,255,255,0.6);max-width:400px;line-height:1.9;margin-bottom:2.5rem;font-weight:400}
-.hero-desc strong{color:rgba(255,255,255,0.85);font-weight:600}
-.hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;font-family:var(--cond);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1.5px solid;transition:all 0.2s}
-.btn-orange{background:var(--orange);border-color:var(--orange);color:white}
-.btn-orange:hover{background:var(--orange2);border-color:var(--orange2)}
-.btn-ghost{background:transparent;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6)}
-.btn-ghost:hover{border-color:white;color:white}
-.avail-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(42,107,60,0.1);border:1px solid rgba(42,107,60,0.25);color:#2A6B3C;padding:0.4rem 0.9rem;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:1.8rem;width:fit-content}
-.avail-badge::before{content:'';width:6px;height:6px;background:#2A6B3C;border-radius:50%;animation:pulse-g 2s ease infinite}
-@keyframes pulse-g{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-accel-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.2rem}
-.accel-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);padding:0.35rem 0.75rem;font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase}
-.accel-badge .ab-icon{color:var(--orange)}
+#hero{position:relative;height:100svh;min-height:640px;display:grid;grid-template-columns:47fr 53fr;padding:84px var(--gut) var(--gut) 20px;gap:var(--gut)}
+.hero-photo{position:relative;overflow:hidden;background:var(--surface)}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--focus,50% 30%);filter:saturate(.92);transform:scale(1.06);transition:transform 1.6s var(--ease)}
+.hero-photo.in img{transform:scale(1)}
+.hero-photo::after{content:'';position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to bottom,rgba(246,249,253,0),rgba(246,249,253,.94));pointer-events:none;z-index:2}
+.hero-copy{display:flex;flex-direction:column;justify-content:flex-start;padding-top:clamp(5vh,10vh,16vh);padding-bottom:calc(var(--step-display)*.95 + 2.5rem)}
+.hero-stats{margin-top:auto;display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(1.5rem,4vw,4rem)}
+.hero-stats b{display:block;font-size:var(--step-head);font-weight:400;letter-spacing:-0.04em;line-height:1}
+.hero-stats b i{font-style:normal;color:var(--accent)}
+.hero-stats span{display:block;color:var(--muted);font-size:var(--step-small);margin-top:.4rem}
+.hero-lead{font-size:var(--step-lead);line-height:1.3;letter-spacing:-0.01em;max-width:24em}
+.hero-lead b{font-weight:500}
+.hero-act{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;margin-top:2rem}
+.hero-avail{margin-top:1.6rem;color:var(--muted);font-size:var(--step-small);max-width:34em}
+.hero-name{font-family:var(--serif);position:absolute;left:calc(47% - 9vw);right:var(--gut);bottom:calc(var(--gut) + 4px);z-index:3;font-size:var(--step-display);line-height:.86;letter-spacing:-0.045em;font-weight:400;white-space:nowrap;transform-origin:left bottom;will-change:transform;pointer-events:none}
+.hero-name span{display:inline}
+.hero-name .br{display:none}
 
-.hero-right{background:var(--paper);padding:5rem 4vw 4rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--rule)}
-.hero-stats-title{font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
-.stat-block{padding:1.1rem 0;border-bottom:1px solid var(--rule)}
-.stat-block:last-of-type{border-bottom:none}
-.sb-number{font-family:var(--head);font-size:clamp(2rem,3.2vw,3.2rem);font-weight:900;color:var(--ink);letter-spacing:-0.04em;line-height:1;margin-bottom:0.15rem}
-.sb-number sup{font-size:0.45em;color:var(--orange);vertical-align:super}
-.sb-label{font-family:var(--cond);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
-.sb-detail{font-size:0.78rem;color:var(--muted);margin-top:0.15rem;font-weight:300}
-.stat-block.featured{background:var(--cream);margin:0 -4vw;padding-left:4vw;padding-right:4vw}
-.stat-block.featured .sb-number{color:var(--orange)}
+/* ── STATEMENT (about) ── */
+#about{padding:var(--gap) var(--gut) 0}
+.about-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:start}
+.about-photo{grid-column:1 / span 4;aspect-ratio:4/5;background:var(--surface);overflow:hidden;position:relative}
+.about-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.9)}
+.about-text{grid-column:6 / span 7}
+.about-text h2{margin-bottom:.5em;max-width:12em}
+.about-quote{font-size:clamp(1.375rem,1rem + 1.6vw,2.25rem);line-height:1.18;letter-spacing:-0.02em;max-width:22em;margin-bottom:1.6em}
+.about-body{max-width:36em}
+.about-body p{margin-bottom:1.1em;color:var(--ink)}
+.about-body p.muted{color:var(--muted)}
+.about-body strong{font-weight:500}
+.creds{margin-top:2.4rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);max-width:36em}
+.creds div{background:var(--surface);padding:1.1rem 1.2rem}
+.creds b{display:block;font-weight:500;font-size:var(--step-body);line-height:1.3}
+.creds span{display:block;color:var(--muted);font-size:var(--step-small);margin-top:.25rem}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.more>div{overflow:hidden;min-height:0;visibility:hidden;transition:visibility 0s .6s}
+.more.open{grid-template-rows:1fr}
+.more.open>div{visibility:visible;transition-delay:0s}
+.more-btn{display:inline-flex;align-items:center;gap:.6em;margin-bottom:1.4rem;padding:.7em 1.1em;background:var(--surface-2);color:var(--ink);border:0;border-radius:0;font-family:var(--font);font-size:var(--step-small);font-weight:500;cursor:pointer;transition:background .25s,color .25s}
+.more-btn::after{content:'+';font-size:1.3em;line-height:1;color:var(--accent);transition:transform .3s var(--ease)}
+.more-btn[aria-expanded="true"]::after{transform:rotate(45deg)}
+.more-btn:hover{background:var(--ink);color:var(--bg)}
+@media(prefers-reduced-motion:reduce){.more,.more>div{transition:none}}
 
-/* ── MARQUEE ── */
-.marquee-wrap{background:var(--dark);padding:0.75rem 0;overflow:hidden}
-.marquee-track{display:flex;animation:marquee 30s linear infinite;white-space:nowrap}
-.marquee-item{display:inline-flex;align-items:center;padding:0 2.5rem;font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);flex-shrink:0;gap:0.6rem}
-.marquee-item .mi-accent{color:var(--orange)}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ── WORK ── */
+#work{padding-top:var(--gap)}
+.work-intro{padding:0 var(--gut);display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);margin-bottom:clamp(48px,7vw,96px);align-items:end}
+.work-intro h2{grid-column:1 / span 7}
+.work-intro p{grid-column:9 / span 4;color:var(--muted)}
+.work-intro p b{color:var(--ink);font-weight:500}
 
-/* ── ABOUT ── */
-#about{display:grid;grid-template-columns:300px 1fr;border-top:1px solid var(--rule)}
-.about-photo-col{position:relative;overflow:hidden;background:var(--dark2);min-height:460px}
-.about-photo-col img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;opacity:0.9;filter:sepia(0.1)}
-.about-photo-col::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--orange)}
-.about-photo-empty{width:100%;height:100%;min-height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem}
-.ape-icon{font-size:3rem;opacity:0.15}
-.about-text-col{padding:3.5rem 4vw 3.5rem 3.5rem;background:var(--paper);display:flex;flex-direction:column;justify-content:center}
-.about-pull-quote{font-family:var(--head);font-size:clamp(1.2rem,2vw,1.85rem);font-weight:700;color:var(--ink);line-height:1.4;letter-spacing:-0.02em;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--rule)}
-.about-pull-quote em{font-style:italic;color:var(--orange)}
-.about-body p{font-size:0.9rem;color:var(--ink2);margin-bottom:0.9rem;font-weight:400;line-height:1.85}
-.about-body p strong{color:var(--ink);font-weight:600}
-.about-callout{margin:1.2rem 0;padding:1.2rem 1.5rem;border-left:4px solid var(--orange);background:rgba(212,80,10,0.04)}
-.ac-text{font-family:var(--head);font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.65;font-style:italic}
-.ac-attr{font-family:var(--cond);font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.6rem}
-.about-cred-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);margin-top:1.5rem;border:1px solid var(--rule)}
-.acr-item{background:var(--paper);padding:0.75rem 0.9rem}
-.acr-name{font-size:0.82rem;font-weight:600;color:var(--ink);margin-bottom:0.1rem}
-.acr-org{font-family:var(--cond);font-size:0.6rem;font-weight:600;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase}
+.panel{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--bg)}
+/* the picture sits right and dissolves into the page ground on its left: the further from the title, the clearer */
+.panel-media{position:absolute;top:0;bottom:0;right:0;width:82%;-webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 64%);mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.4) 22%,#000 64%)}
+.panel-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 1.8s var(--ease)}
+.panel.in .panel-media img{transform:scale(1)}
+/* flat scrim in the ground colour, so the title always sits on near-solid ground */
+.panel::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,var(--bg) 0,rgba(246,249,253,.94) 18%,rgba(246,249,253,.55) 40%,rgba(246,249,253,0) 68%)}
+.panel-info{position:absolute;z-index:2;left:var(--gut);right:var(--gut);bottom:clamp(28px,5vw,72px);display:flex;align-items:flex-end;justify-content:space-between;gap:var(--gut)}
+.panel-info .t{font-size:clamp(1.875rem,1rem + 3.9vw,5rem);letter-spacing:-0.035em;line-height:.98;max-width:14em}
+.panel-info .t small{font-size:.5em;color:var(--muted);letter-spacing:-0.02em}
+.panel-meta{display:grid;gap:.15rem;text-align:right;flex:none;font-size:var(--step-body)}
+.panel-meta span:first-child{color:var(--muted);font-size:var(--step-small)}
 
-/* ── PROJECTS ── */
-#projects{padding:4rem 4vw;background:var(--bg);border-top:1px solid var(--rule)}
-.proj-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:2rem}
-.recruiter-signal{background:var(--orange);color:white;padding:0.7rem 1.2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
-.rs-label{font-family:var(--cond);font-size:0.65rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;opacity:0.7;flex-shrink:0}
-.rs-items{display:flex;gap:1.2rem;flex-wrap:wrap}
-.rs-item{font-family:var(--cond);font-size:0.75rem;font-weight:700;letter-spacing:0.06em;display:flex;align-items:center;gap:0.35rem}
-.rs-item::before{content:'✓';font-size:0.7rem}
+.proj{padding:clamp(48px,6vw,96px) var(--gut) 0;display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:start}
+.proj-media{grid-column:1 / span 6;display:grid;gap:var(--gut);position:sticky;top:88px;align-self:start}
+.proj.flip .proj-media{grid-column:7 / span 6;grid-row:1}
+.proj.flip .proj-body{grid-column:1 / span 5;grid-row:1}
+.proj-body{grid-column:8 / span 5}
+.gif{aspect-ratio:16/9;background:var(--surface);overflow:hidden}
+.gif img{width:100%;height:100%;object-fit:cover}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut)}
+.shot{aspect-ratio:4/3;overflow:hidden;background:var(--surface);cursor:zoom-in;position:relative;border:0;padding:0;display:block;width:100%}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),opacity .3s;opacity:.92}
+.shot:hover img{transform:scale(1.06);opacity:1}
+.tags{display:flex;gap:.5rem 1.2rem;flex-wrap:wrap;color:var(--muted);font-size:var(--step-small);margin-bottom:1.2rem}
+.proj-body h3{font-size:var(--step-head);margin-bottom:.35em}
+.logline{margin-bottom:1.6rem;max-width:34em}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);margin-bottom:1.6rem}
+.facts div{background:var(--surface);padding:.8rem 1rem}
+.facts dt{color:var(--muted);font-size:var(--step-small)}
+.facts dd{font-weight:500;line-height:1.3}
+.result{background:var(--surface-2);padding:1.1rem 1.3rem;margin-bottom:1.6rem}
+.result b{font-weight:500;color:var(--accent)}
+.points{list-style:none;margin-bottom:1.6rem}
+.points li{padding:.6rem 0 .6rem 1.4rem;position:relative}
+.points li::before{content:'';position:absolute;left:0;top:1.15em;width:.6rem;height:.6rem;background:var(--accent)}
+.points strong{font-weight:500}
+.proj-links{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:center}
+details.cs{margin-top:1.6rem}
+details.cs summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.6em;padding:.7em 1.1em;background:var(--surface-2);transition:background .25s,color .25s}
+details.cs summary::-webkit-details-marker{display:none}
+details.cs summary::after{content:'+';font-size:1.3em;line-height:1;color:var(--accent);transition:transform .3s var(--ease)}
+details.cs[open] summary::after{transform:rotate(45deg)}
+details.cs summary:hover{background:var(--ink);color:var(--bg)}
+.case{display:grid;gap:var(--gut);margin-top:1rem}
+.case div{background:var(--surface);padding:1rem 1.2rem}
+.case dt{display:inline;color:var(--accent);font-weight:500;margin-right:.6em}
+.case dd{display:inline}
+.case dd strong{font-weight:500}
 
-.proj-list{display:flex;flex-direction:column;gap:3px}
-.proj-entry{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);background:var(--rule)}
-.proj-entry:nth-child(even) .proj-media-col{order:2}
-.proj-entry:nth-child(even) .proj-content-col{order:1}
+/* ── ITCH.IO ── */
+#itch{padding:var(--gap) var(--gut) 0}
+.itch-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end}
+.itch-pic{grid-column:1 / span 7;aspect-ratio:16/10;background:var(--surface);overflow:hidden;position:relative}
+.itch-pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.itch-pic:hover img{transform:scale(1.04)}
+.itch-text{grid-column:9 / span 4}
+.itch-text h2{margin-bottom:.8em}
+.itch-text h3{font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.1;margin-bottom:.5em;color:var(--accent)}
+.itch-text p{margin-bottom:1.6rem}
+.itch-act{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap}
+.itch-act [hidden]{display:none}
 
-.proj-media-col{background:var(--dark2);display:flex;flex-direction:column;overflow:hidden}
-.proj-gif{aspect-ratio:16/9;position:relative;overflow:hidden;background:#111;flex-shrink:0}
-.proj-gif img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s}
-.proj-entry:hover .proj-gif img{transform:scale(1.03)}
-.proj-gif-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem}
-.pgp-icon{width:44px;height:44px;border:1.5px solid rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:rgba(255,255,255,0.3)}
-.proj-shot-ph{display:none}
-.proj-shots{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr;gap:0;flex:1;min-height:100px;height:100%}
-.proj-shot{overflow:hidden;background:#0a0a0a;position:relative;cursor:zoom-in;min-height:90px}
-.proj-shot img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.8;transition:opacity 0.2s,transform 0.3s;position:absolute;inset:0}
-.proj-shot:hover img{opacity:1;transform:scale(1.06)}
-.proj-shot::after{content:'⊕';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:1.4rem;color:white;pointer-events:none;transition:transform 0.2s;text-shadow:0 0 8px rgba(0,0,0,0.8);z-index:2}
-.proj-shot:hover::after{transform:translate(-50%,-50%) scale(1)}
-
-.proj-content-col{background:var(--paper);padding:1.8rem;display:flex;flex-direction:column;gap:0;overflow-y:auto}
-.proj-num-label{font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem}
-.proj-tags{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.7rem}
-.proj-tag{font-family:var(--cond);font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.15rem 0.4rem;border:1px solid var(--rule2);color:var(--muted)}
-.proj-tag.hl{background:var(--orange);border-color:var(--orange);color:white}
-h3.proj-name{font-family:var(--head);font-size:clamp(1.3rem,2vw,1.9rem);font-weight:900;color:var(--ink);letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.4rem}
-.proj-logline{font-size:0.85rem;color:var(--muted);font-weight:400;line-height:1.75;margin-bottom:0.9rem}
-.proj-meta-table{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);background:var(--rule);margin-bottom:0.9rem}
-.pmt-cell{background:var(--bg);padding:0.4rem 0.6rem}
-.pmt-l{font-family:var(--cond);font-size:0.55rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
-.pmt-v{font-size:0.82rem;font-weight:600;color:var(--ink);line-height:1.3}
-.proj-result{background:var(--dark);color:white;padding:0.75rem 1rem;margin-bottom:0.9rem;display:flex;gap:0.6rem;align-items:flex-start}
-.pr-icon{color:var(--orange);font-size:0.8rem;flex-shrink:0;margin-top:0.05rem}
-.pr-body{font-size:0.82rem;line-height:1.6;color:rgba(255,255,255,0.7)}
-.pr-body strong{color:white;font-weight:600}
-.proj-bullets{list-style:none;margin-bottom:0.9rem}
-.proj-bullets li{font-size:0.85rem;color:var(--ink2);padding:0.35rem 0 0.35rem 1rem;position:relative;border-bottom:1px solid var(--rule);font-weight:400;line-height:1.65}
-.proj-bullets li:last-child{border-bottom:none}
-.proj-bullets li::before{content:'→';position:absolute;left:0;color:var(--orange);font-size:0.68rem;top:0.45rem}
-.proj-bullets li strong{color:var(--ink);font-weight:600}
-.proj-gdd-link{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(212,80,10,0.3);padding-bottom:0.1rem;margin-bottom:0.9rem;width:fit-content;transition:border-color 0.2s}
-.proj-gdd-link:hover{border-color:var(--orange)}
-.cs-toggle{display:flex;align-items:center;gap:0.45rem;background:none;border:1px solid var(--rule2);padding:0.45rem 0.85rem;font-family:var(--cond);font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;width:fit-content;margin-top:auto}
-.cs-toggle:hover,.cs-toggle.open{border-color:var(--orange);color:var(--orange)}
-.cs-arrow{transition:transform 0.3s;font-size:0.58rem}
-.cs-toggle.open .cs-arrow{transform:rotate(90deg)}
-.case-expand{display:none;margin-top:0.7rem}
-.case-expand.open{display:block}
-.case-rows{display:flex;flex-direction:column;gap:1px;background:var(--rule)}
-.case-row{background:var(--paper);padding:0.65rem 0.9rem;display:flex;gap:0.7rem}
-.cr-lbl{font-family:var(--cond);font-size:0.58rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;flex-shrink:0;width:68px;padding-top:0.1rem}
-.cr-lbl.int{color:#3B82F6}.cr-lbl.proc{color:var(--muted)}.cr-lbl.chal{color:#EF4444}.cr-lbl.sol{color:#22C55E}.cr-lbl.out{color:var(--orange)}
-.cr-text{font-size:0.82rem;color:var(--muted);line-height:1.75}
-.cr-text strong{color:var(--ink);font-weight:600}
+/* ── STATEMENT NUMBERS ── */
+#numbers{padding:var(--gap) var(--gut);display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end}
+#numbers h2{grid-column:1 / span 8;font-size:clamp(2.75rem,7.4vw,8rem);line-height:.92;letter-spacing:-0.045em}
+#numbers p{grid-column:9 / span 4;font-size:var(--step-lead);line-height:1.3;color:var(--muted);letter-spacing:-0.01em}
+#numbers b{font-weight:500;color:var(--ink)}
+#numbers .acc{color:var(--accent)}
 
 /* ── SKILLS ── */
-#skills{background:var(--dark);padding:4.5rem 4vw}
-.skills-header{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:end;margin-bottom:2.5rem}
-.sh-display{font-family:var(--head);font-size:clamp(2rem,4vw,3.8rem);font-weight:900;color:white;letter-spacing:-0.03em;line-height:1}
-.sh-display em{font-style:italic;color:var(--orange)}
-.sh-body{font-size:0.9rem;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.9;margin-top:0.7rem}
-.skills-matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.05)}
-.skill-card{background:rgba(255,255,255,0.03);padding:1.3rem;border-top:2px solid transparent;transition:background 0.2s,border-color 0.2s}
-.skill-card:hover{background:rgba(255,255,255,0.06);border-top-color:var(--orange)}
-.sc-name{font-family:var(--cond);font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.4rem}
-.sc-desc{font-size:0.85rem;color:rgba(255,255,255,0.3);line-height:1.75;font-weight:300}
-.tools-strip{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.07)}
-.tool-pill{font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);transition:all 0.15s}
-.tool-pill:hover{border-color:var(--orange);color:var(--orange)}
+#skills{padding:0 var(--gut) var(--gap)}
+.skills-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);margin-bottom:clamp(40px,5vw,72px);align-items:end}
+.skills-head h2{grid-column:1 / span 6}
+.skills-head p{grid-column:8 / span 5;color:var(--muted)}
+.skill-grid{display:grid;gap:var(--gut)}
+.skill{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);padding:clamp(1.4rem,2.4vw,2.4rem) clamp(1rem,2vw,2rem);transition:background .3s}
+.skill:nth-child(odd){background:var(--surface)}
+.skill:hover{background:var(--surface-2)}
+.skill h3{grid-column:1 / span 4;font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.1}
+.skill p{grid-column:6 / span 7;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:clamp(32px,4vw,56px);color:var(--muted);font-size:var(--step-small)}
+.tools span{white-space:nowrap}
 
-/* ── EXPERIENCE ── */
-#experience{background:var(--paper);padding:4.5rem 4vw;border-top:1px solid var(--rule)}
-.exp-layout{display:grid;grid-template-columns:200px 1fr;gap:4rem}
-.exp-sidebar-title{font-family:var(--head);font-size:clamp(1.6rem,2.5vw,2.4rem);font-weight:900;color:var(--ink);letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.2rem}
-.exp-sidebar-title em{font-style:italic;color:var(--orange)}
-.exp-sidebar p{font-size:0.88rem;color:var(--muted);font-weight:400;line-height:1.85}
-.exp-sidebar a{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-family:var(--cond);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(212,80,10,0.3);padding-bottom:0.12rem;transition:border-color 0.2s}
-.exp-sidebar a:hover{border-color:var(--orange)}
-.exp-entries{display:flex;flex-direction:column}
-.exp-row{display:grid;grid-template-columns:96px 1fr;padding:1.8rem 0;border-bottom:1px solid var(--rule)}
-.exp-row:last-child{border-bottom:none}
-.exp-date{font-family:var(--cond);font-size:0.68rem;font-weight:600;color:var(--muted);letter-spacing:0.05em;line-height:1.55;padding-top:0.12rem;text-align:right;padding-right:1.2rem;flex-shrink:0}
-.exp-content{padding-left:1.4rem;border-left:2px solid var(--rule);position:relative}
-.exp-content::before{content:'';position:absolute;left:-5px;top:0.15rem;width:8px;height:8px;border-radius:50%;background:var(--orange);border:2px solid var(--paper)}
-.exp-role{font-family:var(--cond);font-size:1rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);margin-bottom:0.12rem}
-.exp-company{font-size:0.8rem;color:var(--orange);font-weight:600;margin-bottom:0.6rem}
-.exp-li{font-size:0.85rem;color:var(--ink2);padding:0.35rem 0 0.35rem 1rem;position:relative;border-bottom:1px solid var(--rule);font-weight:400;line-height:1.7}
-.exp-li:last-of-type{border-bottom:none}
-.exp-li::before{content:'—';position:absolute;left:0;top:0.38rem;color:var(--rule2)}
-.exp-li strong{color:var(--ink);font-weight:600}
-.exp-tag-row{display:flex;gap:0.3rem;flex-wrap:wrap;margin-top:0.6rem}
-.exp-tag{font-family:var(--cond);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.4rem;border:1px solid var(--rule);color:var(--muted)}
+/* ── EXPERIENCE (line-up) ── */
+#experience{padding:0 var(--gut) var(--gap)}
+#experience>h2{margin-bottom:clamp(40px,5vw,72px);max-width:10em}
+.rows{list-style:none}
+/* each role is one block: title and dates on the left, what I did on the right; blocks alternate in tone */
+.row{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gut);row-gap:.9rem;align-content:start;padding:clamp(1.6rem,3vw,3rem) clamp(1rem,2vw,2rem)}
+.row:nth-child(odd){background:var(--surface)}
+.row h3{grid-column:1 / span 5;grid-row:1;font-size:clamp(1.5rem,1.1rem + 1.6vw,2.25rem);letter-spacing:-0.03em;line-height:1.08}
+.row h3 small{display:block;font-size:var(--step-body);color:var(--accent);letter-spacing:0;margin-top:.6rem;font-weight:500}
+.row .d{grid-column:1 / span 5;grid-row:2;color:var(--ink);font-size:var(--step-body);font-variant-numeric:tabular-nums;align-self:start}
+.row .info{grid-column:7 / span 6;grid-row:1 / span 2}
+.row ul{list-style:none}
+.row li{position:relative;padding:.35rem 0 .35rem 1.4rem;line-height:1.5}
+.row li::before{content:'';position:absolute;left:0;top:.95em;width:.55rem;height:.55rem;background:var(--accent)}
+.row li strong{font-weight:500}
+.row .stack{color:var(--muted);font-size:var(--step-small);margin-top:.6rem}
 
 /* ── AWARDS ── */
-#awards{background:var(--dark);padding:4rem 4vw}
-.awards-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);margin-top:1.8rem}
-.aw-card{background:rgba(255,255,255,0.02);padding:1.4rem 1.2rem;border-top:2px solid transparent;transition:border-color 0.2s,background 0.2s}
-.aw-card:hover{border-top-color:var(--gold);background:rgba(255,255,255,0.04)}
-.aw-card.tier1{background:rgba(212,80,10,0.06);border-top:2px solid var(--orange)}
-.aw-card.tier1 .aw-name{color:white}
-.aw-card.tier1 .aw-org{color:rgba(212,80,10,0.7)}
-.aw-icon{font-size:1rem;margin-bottom:0.5rem}
-.aw-name{font-size:0.85rem;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:0.2rem;line-height:1.3}
-.aw-org{font-family:var(--cond);font-size:0.6rem;font-weight:600;letter-spacing:0.08em;color:rgba(255,255,255,0.28);text-transform:uppercase}
-.awards-cert-note{margin-top:1.2rem;padding:0.75rem 1.2rem;border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.acn-label{font-family:var(--cond);font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);flex-shrink:0}
-.acn-items{display:flex;gap:1.2rem;flex-wrap:wrap}
-.acn-item{font-family:var(--cond);font-size:0.62rem;font-weight:600;letter-spacing:0.06em;color:rgba(255,255,255,0.25)}
+#awards{padding:0 var(--gut) var(--gap)}
+#awards>h2{margin-bottom:clamp(40px,5vw,72px)}
+.aw{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gut)}
+.aw li{background:var(--surface);padding:clamp(1.2rem,1.8vw,1.8rem);display:grid;grid-template-columns:4rem 1fr;gap:1rem;align-items:baseline;transition:background .3s}
+.aw li:hover{background:var(--surface-2)}
+.aw li.big{background:var(--surface-2)}
+.aw .y{color:var(--accent);font-variant-numeric:tabular-nums}
+.aw b{display:block;font-weight:500;font-size:var(--step-lead);letter-spacing:-0.02em;line-height:1.15}
+.aw span{color:var(--muted);font-size:var(--step-small)}
+.cert{margin-top:var(--gut);color:var(--muted);font-size:var(--step-small)}
 
 /* ── CONTACT ── */
-#contact{display:grid;grid-template-columns:1fr 1fr;min-height:52vh}
-.contact-left{background:var(--orange);padding:5rem 3.5rem 5rem 4vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.contact-left::before{content:'"';position:absolute;font-family:var(--head);font-size:26rem;color:rgba(255,255,255,0.06);bottom:-5rem;right:-2rem;line-height:1;pointer-events:none}
-.cl-eyebrow{font-family:var(--cond);font-size:0.65rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1rem}
-.cl-title{font-family:var(--head);font-size:clamp(2rem,3.5vw,3.5rem);font-weight:900;color:white;letter-spacing:-0.03em;line-height:1;margin-bottom:0.9rem}
-.cl-sub{font-size:0.9rem;color:rgba(255,255,255,0.65);max-width:340px;font-weight:300;line-height:1.85}
-.contact-right{background:var(--dark);padding:5rem 4vw 5rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
-.cr-detail{font-family:var(--cond);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.6rem}
-.cr-email-wrap{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.6rem;flex-wrap:wrap}
-.cr-email-label{font-family:var(--head);font-size:clamp(0.95rem,1.8vw,1.5rem);font-weight:700;color:white;border-bottom:2px solid rgba(255,255,255,0.2);padding-bottom:0.2rem;letter-spacing:-0.01em;user-select:all;cursor:text;word-break:break-all}
-.cr-copy-btn{background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.45);font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.7rem;cursor:pointer;transition:all 0.2s;flex-shrink:0}
-.cr-copy-btn:hover{border-color:var(--orange);color:var(--orange)}
-.cr-copy-btn.copied{border-color:#2A6B3C;color:#2A6B3C}
-.cr-socials{display:flex;flex-direction:column;gap:0.5rem}
-.cr-soc{font-family:var(--cond);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
-.cr-soc:hover{color:var(--orange)}
-.cr-soc::before{content:'↗';font-size:0.68rem}
-.cr-resume-btn{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.2rem;background:var(--orange);color:white;text-decoration:none;padding:0.65rem 1.3rem;font-family:var(--cond);font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;transition:background 0.2s;width:fit-content}
-.cr-resume-btn:hover{background:var(--orange2)}
-.cr-phone{font-family:var(--cond);font-size:0.65rem;font-weight:600;letter-spacing:0.06em;color:rgba(255,255,255,0.22);margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.07)}
+#contact{background:var(--field);position:relative;padding:clamp(64px,9vw,140px) var(--gut);display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:center}
+.contact-title{grid-column:1 / span 7;color:var(--bg);font-size:var(--step-head);line-height:.95;letter-spacing:-0.035em}
+.contact-sub{grid-column:1 / span 5;margin-top:1.2rem;color:var(--bg);max-width:26em;font-size:var(--step-lead);line-height:1.3}
+.contact-wrap{grid-column:1 / span 7}
+.card{grid-column:9 / span 4;grid-row:1 / span 2;background:var(--bg);padding:2rem}
+.card h3{font-size:var(--step-lead);letter-spacing:-0.02em;margin-bottom:1.2rem}
+.card .em{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;margin-bottom:1.4rem}
+.card .em-t{font-size:var(--step-body);word-break:break-all;user-select:all}
+.copy{background:var(--surface-2);color:var(--ink);border:0;font-family:var(--font);font-size:var(--step-small);padding:.45em .9em;cursor:pointer;transition:background .25s,color .25s}
+.copy:hover{background:var(--ink);color:var(--bg)}
+.copy.ok{background:var(--accent);color:var(--bg)}
+.soc{list-style:none;display:grid;gap:.2rem;margin-bottom:1.6rem}
+.soc a{text-decoration:none;color:var(--muted);transition:color .25s;display:inline-block;padding:.15rem 0}
+.soc a:hover{color:var(--accent)}
+.card .btn{width:100%;justify-content:center;padding:1em 1.2em}
+.card .ph{margin-top:1.2rem;color:var(--muted);font-size:var(--step-small)}
 
 /* ── FOOTER ── */
-footer{background:var(--bg);border-top:1px solid var(--rule);padding:1.2rem 4vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.8rem}
-.foot-mark{font-family:var(--head);font-size:0.9rem;font-weight:900;color:var(--ink);letter-spacing:-0.01em}
-.foot-mark span{font-style:italic;color:var(--orange)}
-.foot-links{display:flex;gap:1rem;flex-wrap:wrap}
-.foot-links a{font-family:var(--cond);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
-.foot-links a:hover{color:var(--orange)}
-.foot-copy{font-family:var(--cond);font-size:0.58rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--rule2)}
+footer{padding:clamp(48px,7vw,96px) var(--gut) var(--gut);overflow:hidden}
+.foot-links{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;color:var(--muted);font-size:var(--step-small);margin-bottom:clamp(24px,4vw,56px)}
+.foot-links a{text-decoration:none;transition:color .25s}
+.foot-links a:hover{color:var(--accent)}
+.foot-name{font-family:var(--serif);font-size:var(--step-display);line-height:.86;letter-spacing:-0.045em;white-space:nowrap;transform-origin:left bottom;will-change:transform}
+.foot-note{margin-top:1.4rem;color:var(--muted);font-size:var(--step-small)}
+
+.contact-tagline {
+  display: block;           /* Forces it onto a new line under the main title */
+  font-size: 0.65em;        /* Makes it smaller relative to the h2 size */
+  font-weight: 400;         /* Removes bolding (normal weight) */
+  margin-top: 0.4em;        /* Adds a little breathing room below the main title */
+  line-height: 1.4;         /* Keeps the multi-line text easy to read */
+  opacity: 0.85;            /* Optional: softens the text slightly for visual hierarchy */
+}
 
 /* ── LIGHTBOX ── */
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.94);display:none;align-items:center;justify-content:center;z-index:9000;padding:1.5rem;cursor:zoom-out}
+#lightbox{position:fixed;inset:0;background:rgba(246,249,253,.96);display:none;align-items:center;justify-content:center;z-index:900;padding:1.5rem;cursor:zoom-out}
 #lightbox.open{display:flex}
-#lightbox-img{max-width:90vw;max-height:88vh;object-fit:contain;display:block;box-shadow:0 0 80px rgba(0,0,0,0.6)}
-#lightbox-close{position:absolute;top:1.2rem;right:1.5rem;background:none;border:1.5px solid rgba(255,255,255,0.3);color:white;font-family:var(--cond);font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.42rem 0.85rem;cursor:pointer;transition:border-color 0.2s,color 0.2s;z-index:1}
-#lightbox-close:hover{border-color:var(--orange);color:var(--orange)}
-#lightbox-caption{position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);font-family:var(--cond);font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);white-space:nowrap}
+#lightbox-img{max-width:92vw;max-height:84vh;object-fit:contain}
+#lightbox-close{position:absolute;top:1rem;right:var(--gut);background:var(--ink);color:var(--bg);border:0;font-family:var(--font);font-size:var(--step-small);padding:.6em 1.1em;cursor:pointer}
+#lightbox-cap{position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);color:var(--muted);font-size:var(--step-small);white-space:nowrap}
 
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:0.06s}.reveal-d2{transition-delay:0.12s}.reveal-d3{transition-delay:0.18s}
-@keyframes revealSafe{to{opacity:1;transform:translateY(0)}}
-@media(prefers-reduced-motion:no-preference){.reveal{animation:revealSafe 0s 1.5s forwards}.reveal.visible{animation:none}}
+/* ── MOTION ── */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@keyframes revealSafe{to{opacity:1;transform:none}}
+.js .rv{animation:revealSafe 0s 3s forwards}
+.js .rv.in{animation:none}
+.js .rise{opacity:0;transform:translateY(28px);animation:rise 1s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes rise{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv,.js .rise{opacity:1;transform:none;animation:none;transition:none}
+  .hero-photo img,.panel-media img{transform:none!important;transition:none}
+  .hero-name,.foot-name{font-family:var(--serif);transform:none!important}
+}
 
-/* ── RESPONSIVE ── */
-@media(max-width:1200px){#progress-rail{display:none}}
-@media(max-width:1050px){
-  #hero{grid-template-columns:1fr}
-  .hero-right{border-left:none;border-top:1px solid var(--rule)}
-  #about{grid-template-columns:1fr}
-  .about-photo-col{min-height:260px}
-  .about-text-col{padding:3rem 4vw}
-  .exp-layout{grid-template-columns:1fr;gap:2rem}
-  .awards-strip{grid-template-columns:repeat(2,1fr)}
-  #contact{grid-template-columns:1fr}
+/* ── TABLET ── */
+@media(max-width:1000px){
+  .about-photo{grid-column:1 / span 5}
+  .about-text{grid-column:1 / -1}
+  .work-intro h2,.work-intro p{grid-column:1 / -1}
+  .proj-media,.proj.flip .proj-media{grid-column:1 / -1;grid-row:auto;position:static}
+  .proj-body,.proj.flip .proj-body{grid-column:1 / -1;grid-row:auto}
+  .skills-head h2,.skills-head p{grid-column:1 / -1}
+  .itch-pic,.itch-text{grid-column:1 / -1}
+  .skill h3,.skill p{grid-column:1 / -1}
+  .row h3,.row .d{grid-column:1 / -1}
+  .row .info{grid-column:1 / -1;grid-row:3;margin-top:.6rem}
+  .aw{grid-template-columns:1fr}
+  .contact-title,.contact-sub,.contact-wrap,.card{grid-column:1 / -1;grid-row:auto}
+  .card{margin-top:2rem}
+  #numbers h2,#numbers p{grid-column:1 / -1}
 }
-@media(max-width:780px){
-  .proj-entry{grid-template-columns:1fr}
-  .proj-entry:nth-child(even) .proj-media-col,
-  .proj-entry:nth-child(even) .proj-content-col{order:unset}
-  .proj-intro-grid{grid-template-columns:1fr}
-  .skills-header{grid-template-columns:1fr;gap:1.5rem}
-  .skills-matrix{grid-template-columns:1fr 1fr}
-  .exp-row{grid-template-columns:78px 1fr}
+
+/* ── PHONE ── */
+@media(max-width:700px){
+  :root{--step-display:21vw}
+  .bar-links a:not(.btn){display:none}
+  #hero{grid-template-columns:1fr;grid-template-rows:56svh auto;height:auto;min-height:100svh;padding:76px 12px 24px;gap:0}
+  .hero-photo{grid-row:1}
+  .hero-name{position:relative;left:auto;right:auto;bottom:auto;grid-row:2;margin-top:-4.4vw;padding:0 8px;white-space:normal;line-height:.86}
+  .hero-name .br{display:block}
+  .hero-copy{grid-row:3;padding:1.6rem 8px 0}
+  .hero-stats{margin-top:2rem;gap:1.2rem}
+  .hero-stats b{font-size:2rem}
+  .panel{height:84svh}
+  .panel-media{width:100%;-webkit-mask-image:none;mask-image:none}
+  .panel::after{background:linear-gradient(to top,var(--bg) 0,rgba(246,249,253,.94) 28%,rgba(246,249,253,.6) 52%,rgba(246,249,253,0) 80%)}
+  .panel-info{flex-direction:column;align-items:flex-start;gap:1rem;bottom:28px}
+  .panel-meta{text-align:left;grid-auto-flow:column;gap:1.2rem}
+  .creds{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr;gap:8px}
+  .shots{grid-template-columns:repeat(3,1fr);gap:8px}
+  .about-photo{grid-column:1 / -1}
 }
-@media(max-width:540px){
-  .nav-links a:not(.nav-cta-btn){display:none}
-  .skills-matrix{grid-template-columns:1fr}
-  .awards-strip{grid-template-columns:1fr}
-  .about-cred-row{grid-template-columns:1fr}
-  .proj-meta-table{grid-template-columns:1fr}
-  .exp-row{grid-template-columns:1fr}
-  .exp-date{text-align:left;padding-right:0;padding-bottom:0.4rem;border-bottom:2px solid var(--orange);margin-bottom:0.7rem}
-  .exp-content{padding-left:0;border-left:none}
-  .exp-content::before{display:none}
-  .contact-left,.contact-right{padding:3rem 4vw}
+
+
+.about-signature {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border, rgba(128, 128, 128, .25));
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  line-height: 1.3;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  color: var(--text, inherit);
+  max-width: 620px;
+  text-wrap: pretty;
 }
+
 </style>
 </head>
 <body>
 
-<!-- PROGRESS RAIL -->
-<div id="progress-rail">
-  <a class="pr-item" href="#hero"><div class="pr-dot"></div><div class="pr-label">Intro</div></a>
-  <a class="pr-item" href="#about"><div class="pr-dot"></div><div class="pr-label">About</div></a>
-  <a class="pr-item" href="#projects"><div class="pr-dot"></div><div class="pr-label">Projects</div></a>
-  <a class="pr-item" href="#skills"><div class="pr-dot"></div><div class="pr-label">Skills</div></a>
-  <a class="pr-item" href="#experience"><div class="pr-dot"></div><div class="pr-label">Experience</div></a>
-  <a class="pr-item" href="#awards"><div class="pr-dot"></div><div class="pr-label">Awards</div></a>
-  <a class="pr-item" href="#contact"><div class="pr-dot"></div><div class="pr-label">Contact</div></a>
-</div>
-
-<!-- NAV -->
-<nav class="top-nav">
-  <a href="#hero" class="nav-logo">Pray <em>Cristanto</em></a>
-  <div class="nav-links">
-    <a href="#projects">Projects</a>
+<header class="bar">
+  <a href="#hero" class="bar-mark">Pray Cristanto</a>
+  <nav class="bar-links" aria-label="Main">
+    <a href="#work">Games</a>
+    <a href="#about">About</a>
     <a href="#experience">Experience</a>
-    <a id="nav-hire-btn" class="nav-cta-btn" href="#contact">Hire Me ↗</a>
-  </div>
-</nav>
+    <a id="nav-hire-btn" class="btn" href="#contact">Hire me</a>
+  </nav>
+</header>
+
+<main>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow"><div class="he-line"></div><div class="he-text">Game Designer · Lampung, Indonesia</div></div>
-    <h1 class="hero-name">Pray<br><em>Cristanto</em></h1>
-    <div class="hero-role">Systems · Narrative · Feeling</div>
-    <p class="hero-desc">
-      I grew up with <strong>To The Moon</strong> and <strong>A Space for the Unbound</strong> —
-      games that felt like someone reached through the screen and said <em>I see you.</em>
-      That's the only reason I do this.<br><br>
-      Three shipped titles. PC, Nintendo Switch, Mobile.
-      But the number I actually track is how many players felt something true.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-orange">See My Work ↓</a>
-      <a href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" class="btn btn-ghost">Download CV</a>
+<section id="hero" aria-label="Introduction">
+  <div class="hero-photo" id="heroPhoto">
+    <img src="hero-photo.jpg" alt="Key art from one of Pray's games" width="1200" height="1500" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='tssou-screen1.jpg'}else{this.style.display='none'}"/>
+  </div>
+  <div class="hero-copy">
+    <p class="hero-lead rise" style="--d:.1s"><b>Gameplay and systems designer.</b> Three shipped games on PC, iOS, Android and Nintendo Switch, designed to feel calm, fair and kind.</p>
+    <div class="hero-act rise" style="--d:.2s">
+      <a class="btn" href="#contact">Let's makes something</a>
+      <a class="textlink" href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" rel="noopener">Download CV</a>
     </div>
-    <div class="avail-badge">Open to Full-Time Remote Roles</div>
-    <div class="hero-accel-row">
-      <div class="accel-badge"><span class="ab-icon">🚀</span> Google Indie Game Accelerator '22</div>
-      <div class="accel-badge"><span class="ab-icon">💡</span> Xbox Game Camp · Microsoft '24</div>
+    <p class="hero-avail rise" style="--d:.3s">Part-time freelance and contract work, mostly evenings (GMT+7). Google Indie Game Accelerator 2022, Xbox Game Camp 2024.</p>
+    <div class="hero-stats rise" style="--d:.4s">
+      <div><b>500<i>K+</i></b><span>downloads, free game</span></div>
+      <div><b>3</b><span>titles shipped</span></div>
+      <div><b>5<i>+</i></b><span>years designing</span></div>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-stats-title">What the work left behind</div>
-    <div class="stat-block featured">
-      <div class="sb-number">500<sup>K+</sup></div>
-      <div class="sb-label">Community Downloads</div>
-      <div class="sb-detail">The Sun Shines Over Us — free VN. A few players wrote to say it helped them through something hard.</div>
-    </div>
-    <div class="stat-block">
-      <div class="sb-number">5<sup>+</sup></div>
-      <div class="sb-label">Years in One Studio</div>
-      <div class="sb-detail">PT. Eternaldream Games International, 2019 – 2025. Three roles. Each one earned.</div>
-    </div>
-    <div class="stat-block">
-      <div class="sb-number">47</div>
-      <div class="sb-label">Choice Nodes</div>
-      <div class="sb-detail">The Sun Shines Over Us — I didn't want to decide how the story ends. So I didn't. Players do.</div>
-    </div>
-    <div class="stat-block">
-      <div class="sb-number">100<sup>+</sup></div>
-      <div class="sb-label">Hand-Built Events</div>
-      <div class="sb-detail">Matchmaker Agency — each one triggered, tested, and broken before it shipped on Nintendo Switch.</div>
-    </div>
-    <div class="stat-block">
-      <div class="sb-number">2<sup>×</sup></div>
-      <div class="sb-label">Accelerator Alumni</div>
-      <div class="sb-detail">Google Indie Game Accelerator · Microsoft Xbox Camp. Both selected on the strength of shipped work.</div>
-    </div>
-  </div>
+  <h1 class="hero-name" id="heroName">Pray<span class="br"></span> Cristanto</h1>
 </section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator · Alumni 2022</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp · Microsoft Alumni 2024</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game · IGDX 2022</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Bumi Langit · Licensed IP · Official Mobile Tie-In</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Google Indie Game Accelerator · Alumni 2022</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Xbox Game Camp · Microsoft Alumni 2024</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Best Narrative Game · IGDX 2022</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Best Game Designer · Gameloft Indonesia 2023</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> LevelUP KL 2021 · International Finalist</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> PC · Nintendo Switch · iOS · Android · Shipped</span>
-    <span class="marquee-item"><span class="mi-accent">★</span> Bumi Langit · Licensed IP · Official Mobile Tie-In</span>
-  </div>
-</div>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="about-photo-col">
-    <img src="about-photo.png" alt="Pray Cristanto"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-    <div class="about-photo-empty" style="display:none">
-      <div class="ape-icon">👤</div>
+<section id="about" aria-labelledby="about-h">
+  <div class="about-grid">
+    <div class="about-photo rv">
+      <img src="about-photo.png" alt="Portrait of Pray Cristanto" width="800" height="1000" loading="lazy" onerror="this.style.display='none'"/>
     </div>
-  </div>
-  <div class="about-text-col">
-    <div class="section-marker reveal"><div class="sm-num">02</div><div class="sm-rule"></div><div class="sm-label">Who I Am</div></div>
-    <div class="about-pull-quote reveal">Most people think game design is about <em>ideas.</em> It's really about measurement.</div>
-    <div class="about-body">
-      <p class="reveal">
-        I'm an INFP who ended up building invisible machinery for a living —
-        and I think that's actually the whole point, not a contradiction.
-        I came in through programming, shipped a mobile game in my first month as an intern
-        before I really understood what I was doing. Then two years in community,
-        watching players react to systems that weren't quite right.
-        Then design, where I finally had the tools to fix what I kept seeing break.
-      </p>
-      <div class="about-callout reveal">
-        <div class="ac-text">"When a player says 'this felt unfair' — there's a number somewhere that's wrong. I find that number. That's all design is. You're not an artist standing above the work. You're a mechanic underneath it, making sure nothing leaks."</div>
-        <div class="ac-attr">On why systems matter more than vision</div>
+
+    <div class="about-text">
+      <h2 id="about-h" class="rv">Quiet systems, meaningful experiences.</h2>
+
+      <blockquote class="about-quote rv" style="--d:.08s">
+        Most of game design is about understanding how people feel.
+        Knowing when something stops being fun, when a story begins
+        to mean something, or when a small moment becomes a memory.
+      </blockquote>
+
+      <div class="about-body">
+        <p class="rv" style="--d:.12s">
+          I've spent over five years at one studio, working across
+          gameplay systems, narrative, progression, balancing, QA,
+          and player experience. I started out as a programming
+          intern and QA tester, then spent two years as a community
+          manager. Being on the other side of development, listening
+          to players and hearing their stories, gave me a different
+          perspective on what makes a game matter. It eventually
+          led me to game design.
+        </p>
+
+        <div class="more" id="aboutMore">
+          <div>
+            <p>
+              My work often means turning creative ideas into something
+              tangible: writing design documents, working through rules
+              and probabilities in spreadsheets, reviewing implementations
+              with the team, and refining features through playtests and
+              player feedback. I enjoy the details behind making things
+              work, but I'm just as interested in what those things make
+              people feel.
+            </p>
+            <p class="muted">
+              I want to make games that do more than entertain. Games
+              that give people something to remember, help them see
+              themselves a little differently, or bring a smile on a
+              day when they need one. Maybe even remind them of the
+              beauty in life, the things worth being grateful for, and
+              the comfort of knowing they're not alone.
+            </p>
+            <p class="muted">
+              That's probably why I've always been drawn to games like
+              <strong>To the Moon</strong> and
+              <strong>A Space for the Unbound</strong>.
+              They're quiet, personal, and honest. They don't need to
+              be grand to leave a lasting impression. They remind me
+              that sometimes, the smallest stories are the ones we
+              hold onto the longest.
+            </p>
+          </div>
+        </div>
+
+        <button class="more-btn rv" id="aboutToggle" type="button"
+                aria-expanded="false" aria-controls="aboutMore" style="--d:.16s">
+          <span>Read more</span>
+        </button>
+
+        <p class="about-signature rv" style="--d:.24s">
+          I want to make games that people don't just finish,
+          but carry with them.
+        </p>
       </div>
-      <p class="reveal">
-        The games I'm actually chasing are <strong>To The Moon</strong> and
-        <strong>A Space for the Unbound</strong> — small, quiet, honest.
-        The kind that makes you sit with the credits rolling and not want to move yet.
-        I haven't made that game. But every system I balance, every branch I weight,
-        every playtest I run — it's practice for that one.
-      </p>
-      <p class="reveal">
-        I want players to see the world from someone else's eyes and come out of it
-        a little more willing to understand people they don't yet know.
-        That's the ministry underneath the craft.
-        <strong>Rigorous invisible systems, delivering raw visible truth.</strong>
-      </p>
-    </div>
-    <div class="about-cred-row reveal">
-      <div class="acr-item"><div class="acr-name">Google Indie Game Accelerator</div><div class="acr-org">Alumni · 2022</div></div>
-      <div class="acr-item"><div class="acr-name">Xbox Game Camp · Microsoft</div><div class="acr-org">Alumni · 2024</div></div>
-      <div class="acr-item"><div class="acr-name">Best Game Designer</div><div class="acr-org">Gameloft Indonesia · 2023</div></div>
-      <div class="acr-item"><div class="acr-name">Best Narrative Game</div><div class="acr-org">IGDX · 2022</div></div>
+
+      <div class="creds rv" style="--d:.28s">
+        <div><b>Google Indie Game Accelerator</b><span>Alumni, 2022</span></div>
+        <div><b>Xbox Game Camp</b><span>Alumni, 2024</span></div>
+        <div><b>Best Game Designer</b><span>Gameloft Indonesia, 2023</span></div>
+        <div><b>Best Narrative Game</b><span>IGDX, 2022</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-marker reveal"><div class="sm-num">03</div><div class="sm-rule"></div><div class="sm-label">Three Games I Shipped</div></div>
-  <div class="proj-intro-grid">
-    <h2 style="font-family:var(--head);font-size:clamp(1.8rem,3.2vw,3rem);font-weight:900;color:var(--ink);letter-spacing:-0.03em;line-height:1" class="reveal">Three games.<br><em style="color:var(--orange)">Real players.</em></h2>
-    <p style="font-size:0.85rem;color:var(--muted);font-weight:300;line-height:1.85" class="reveal">All three are playable today. Each has a design document behind it — not a retrospective dressed up as a GDD, but the actual working doc I used during production. <strong style="color:var(--ink2)">Click "Read Full GDD" on any project.</strong> Click any screenshot to enlarge.</p>
-  </div>
-  <div class="recruiter-signal reveal">
-    <div class="rs-label">Studio Checklist</div>
-    <div class="rs-items">
-      <div class="rs-item">Shipped on Steam</div>
-      <div class="rs-item">Nintendo Switch</div>
-      <div class="rs-item">iOS + Android</div>
-      <div class="rs-item">500K+ Downloads</div>
-      <div class="rs-item">Award-Winning</div>
-      <div class="rs-item">Licensed IP Work</div>
-      <div class="rs-item">GDD Available</div>
-    </div>
-  </div>
-  <div class="proj-list">
-
-  <!-- PROJECT 1 -->
-  <div class="proj-entry reveal">
-    <div class="proj-media-col">
-      <div class="proj-gif">
-        <img src="tssou-gameplay.gif" alt="TSSOU gameplay" onerror="this.style.display='none'"/>
-        <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
-      </div>
-      <div class="proj-shots">
-        <div class="proj-shot" data-caption="The Sun Shines Over Us — Screen 1">
-          <img src="tssou-screen1.jpg" alt="TSSOU screen 1" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">tssou-screen1.jpg</div>
-        </div>
-        <div class="proj-shot" data-caption="The Sun Shines Over Us — Screen 2">
-          <img src="tssou-screen2.jpg" alt="TSSOU screen 2" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">tssou-screen2.jpg</div>
-        </div>
-        <div class="proj-shot" data-caption="The Sun Shines Over Us — Screen 3">
-          <img src="tssou-screen3.jpg" alt="TSSOU screen 3" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">tssou-screen3.jpg</div>
-        </div>
-      </div>
-    </div>
-    <div class="proj-content-col">
-      <div class="proj-num-label">Project 01 / 03</div>
-      <div class="proj-tags"><span class="proj-tag hl">Visual Novel</span><span class="proj-tag">Unity · C#</span><span class="proj-tag">PC · iOS · Android</span><span class="proj-tag">Free · Community</span></div>
-      <h3 class="proj-name">The Sun Shines Over Us</h3>
-      <p class="proj-logline">A game about bullying and mental health — made because someone in our team needed to make it. My job was to build a branching system where no ending felt like the "right" one, and no player felt their choices were decided before they started.</p>
-      <div class="proj-meta-table">
-        <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Game Designer</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">~8 people</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Duration</div><div class="pmt-v">18 months</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Downloads</div><div class="pmt-v">500K+ (free)</div></div>
-      </div>
-      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Narrative Game — IGDX 2022</strong> · Finalist LevelUP KL 2021</div></div>
-      <ul class="proj-bullets">
-        <li>Built a <strong>47-node branching system</strong> over 18 months — ran 30+ structured playthroughs before each milestone to verify every path held</li>
-        <li>Early playtests showed <strong>80% of players hitting the same two endings</strong> — Act 1 was quietly locking the story. Redistributed the decision weight to midgame. After the fix, all six endings were reached organically.</li>
-        <li>500K+ free downloads through Discord and organic community. A handful of players sent messages saying it helped them talk to someone they'd been avoiding. Those messages are why I still do this.</li>
-      </ul>
-      <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
-      <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
-      <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">All <strong>6 endings feel genuinely reachable</strong> — not hidden behind a guide, not decided by Act 1.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped <strong>47 nodes in Google Sheets</strong> with weighted outcome values per ending. Defined pass/fail criteria for each playtest cycle before running it.</div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>80% of players hit the same two endings.</strong> Act 1 choices were silently narrowing the story — players lost agency before they realised it.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Moved the heaviest decision weight from Act 1 to mid-game. Separated emotional tone flags from outcome flags. <strong>All 6 endings normalised in the next test cycle.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Post-fix playtest: "my choices actually mattered." 500K+ free community downloads. Best Narrative Game, IGDX 2022. And a few DMs that meant more than any award.</div></div>
-      </div></div>
-    </div>
+<!-- WORK -->
+<section id="work" aria-labelledby="work-h">
+  <div class="work-intro">
+    <h2 id="work-h" class="rv">Four games. Real players.</h2>
+    <p class="rv" style="--d:.1s">Three shipped games and one in development. <b>Click any screenshot to enlarge it.</b></p>
   </div>
 
-  <!-- PROJECT 2 -->
-  <div class="proj-entry reveal">
-    <div class="proj-media-col">
-      <div class="proj-gif">
-        <img src="matchmaker-gameplay.gif" alt="Matchmaker gameplay" onerror="this.style.display='none'"/>
-        <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
-      </div>
-      <div class="proj-shots">
-        <div class="proj-shot" data-caption="Matchmaker Agency — Screen 1">
-          <img src="matchmaker-screen1.jpg" alt="" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">matchmaker-screen1.jpg</div>
-        </div>
-        <div class="proj-shot" data-caption="Matchmaker Agency — Screen 2">
-          <img src="matchmaker-screen2.jpg" alt="" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">matchmaker-screen2.jpg</div>
-        </div>
-        <div class="proj-shot" data-caption="Matchmaker Agency — Screen 3">
-          <img src="matchmaker-screen3.jpg" alt="" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">matchmaker-screen3.jpg</div>
-        </div>
-      </div>
-    </div>
-    <div class="proj-content-col">
-      <div class="proj-num-label">Project 02 / 03</div>
-      <div class="proj-tags"><span class="proj-tag hl">Simulation</span><span class="proj-tag">Unity · Machinations</span><span class="proj-tag hl">Nintendo Switch</span><span class="proj-tag">Steam · PC</span></div>
-      <h3 class="proj-name">Matchmaker Agency</h3>
-      <p class="proj-logline">A simulation about attraction and compatibility — which sounds light until you're 40 trait combinations deep trying to understand why one personality type keeps winning everything. I stepped into lead design mid-production and had to diagnose the game before I could finish building it.</p>
-      <div class="proj-meta-table">
-        <div class="pmt-cell"><div class="pmt-l">Role</div><div class="pmt-v">Lead Designer</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Team</div><div class="pmt-v">6 people</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Events</div><div class="pmt-v">100+</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Traits</div><div class="pmt-v">30+</div></div>
-      </div>
-      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Best Game Designer — Gameloft Indonesia 2023</strong> · Shipped Steam + Nintendo Switch</div></div>
-      <ul class="proj-bullets">
-        <li>Discovered "Adventurer" matching at <strong>3× the expected rate</strong> through Machinations simulation — rebuilt the compatibility formula, rebalanced 40+ trait combinations before touching the engine</li>
-        <li>Players were ignoring 80% of the event library because triggers clustered early — <strong>restructured event timing around character familiarity</strong>, not random probability</li>
-        <li>Kept a single centralised GDD in Google Sheets throughout production — <strong>every designer, programmer, and artist reading from the same source</strong>, zero version-conflict incidents</li>
-      </ul>
-      <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
-      <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
-      <div class="case-expand"><div class="case-rows">
-        <div class="case-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Waiting feels <strong>like anticipation, not emptiness.</strong> No trait dominates. Every combination has a plausible path to success.</div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Modelled the full <strong>30+ trait matrix in Machinations before implementation.</strong> Built 100+ events via a content framework. Ran 3 full test cycles with written pass criteria per cycle.</div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text">Two problems surfaced in Cycle 1: <strong>players skipping most events</strong>, and Adventurer matching at 3× rate — a dominant strategy that killed strategic variety.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Tied event triggers to character familiarity milestones instead of timers. <strong>Separated attraction score from compatibility score</strong> — Adventurer's social appeal no longer overrode long-term compatibility.</div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text"><strong>No dominant strategies at ship.</strong> Launched PC and Nintendo Switch. Best Game Designer, Gameloft Indonesia 2023.</div></div>
-      </div></div>
-    </div>
-  </div>
+  <!-- Project 1 -->
+<article>
+<div class="panel"><div class="panel-media"><img src="tssou-panel.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'"/></div><div class="panel-info"><h3 class="t rv">The Sun Shines Over Us <small>(Menggapai Matahari)</small></h3><p class="panel-meta rv" style="--d:.1s"><span>Narrative adventure</span><span>500K+ free downloads</span></p></div></div>
+<div class="proj"><div class="proj-media"><div class="gif rv"><img src="tssou-gameplay.gif" alt="Gameplay from The Sun Shines Over Us (Menggapai Matahari)" width="1280" height="720" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='tssou-screen2.jpg'}else{this.style.display='none'}"/></div><div class="shots rv" style="--d:.08s"><button class="shot" data-caption="The Sun Shines Over Us (Menggapai Matahari), screen 1" aria-label="Enlarge screenshot 1"><img src="tssou-screen1.jpg" alt="Screenshot 1" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button><button class="shot" data-caption="The Sun Shines Over Us (Menggapai Matahari), screen 2" aria-label="Enlarge screenshot 2"><img src="tssou-screen2.jpg" alt="Screenshot 2" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button><button class="shot" data-caption="The Sun Shines Over Us (Menggapai Matahari), screen 3" aria-label="Enlarge screenshot 3"><img src="tssou-screen3.jpg" alt="Screenshot 3" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button></div></div>
+<div class="proj-body"><h3 class="rv">The Sun Shines Over Us <span style="color:var(--muted)">(Menggapai Matahari)</span></h3><p class="logline rv">Contributed to branching narrative and choice design, reviewing story routes, scenes and ending consistency against the design direction.</p><dl class="facts rv"><div><dt>Role</dt><dd>Lead Game Designer</dd></div><div><dt>Platform</dt><dd>Steam, iOS, Android</dd></div><div><dt>Genre</dt><dd>Narrative</dd></div><div><dt>Downloads</dt><dd>500K+ (free)</dd></div></dl><p class="result rv"><b>Best Narrative Game, IGDX 2022.</b> Finalist, LevelUP KL 2021.</p><ul class="points rv"><li>Reviewed story flow and player-facing outcomes across multiple endings.</li><li>Reached <strong>500K+ downloads</strong> as a free game.</li></ul><details class="cs rv"><summary>Full case study</summary><dl class="case"><div><dt>Intention</dt><dd>All <strong>6 endings feel genuinely reachable</strong>: not hidden behind a guide, not decided by Act 1.</dd></div><div><dt>Process</dt><dd>Mapped <strong>47 nodes in Google Sheets</strong> with weighted outcome values per ending, and defined pass/fail criteria for each playtest cycle before running it.</dd></div><div><dt>Challenge</dt><dd><strong>80% of players hit the same two endings.</strong> Act 1 choices were quietly narrowing the story.</dd></div><div><dt>Solution</dt><dd>Moved the heaviest decision weight from Act 1 to mid-game and separated emotional tone flags from outcome flags. <strong>All 6 endings normalised in the next test cycle.</strong></dd></div><div><dt>Outcome</dt><dd>500K+ free downloads and Best Narrative Game at IGDX 2022.</dd></div></dl></details></div></div></article>
+<div style="height:var(--gap)"></div>
+<article>
+<div class="panel"><div class="panel-media"><img src="matchmaker-panel.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'"/></div><div class="panel-info"><h3 class="t rv">Matchmaker Agency</h3><p class="panel-meta rv" style="--d:.1s"><span>Simulation</span><span>Steam and Nintendo Switch</span></p></div></div>
+<div class="proj flip"><div class="proj-media"><div class="gif rv"><img src="matchmaker-gameplay.gif" alt="Gameplay from Matchmaker Agency" width="1280" height="720" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='matchmaker-screen2.jpg'}else{this.style.display='none'}"/></div><div class="shots rv" style="--d:.08s"><button class="shot" data-caption="Matchmaker Agency, screen 1" aria-label="Enlarge screenshot 1"><img src="matchmaker-screen1.jpg" alt="Screenshot 1" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button><button class="shot" data-caption="Matchmaker Agency, screen 2" aria-label="Enlarge screenshot 2"><img src="matchmaker-screen2.jpg" alt="Screenshot 2" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button><button class="shot" data-caption="Matchmaker Agency, screen 3" aria-label="Enlarge screenshot 3"><img src="matchmaker-screen3.jpg" alt="Screenshot 3" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button></div></div>
+<div class="proj-body"><h3 class="rv">Matchmaker Agency</h3><p class="logline rv">A matchmaking simulation where probability rules and trait interactions decide who ends up together, and every outcome should still feel earned.</p><dl class="facts rv"><div><dt>Role</dt><dd>Game Designer</dd></div><div><dt>Platform</dt><dd>Steam, Switch</dd></div><div><dt>Genre</dt><dd>Simulation</dd></div><div><dt>Events</dt><dd>100+</dd></div></dl><p class="result rv"><b>Best Game Designer, Gameloft Indonesia 2023.</b> Shipped on Steam and Nintendo Switch.</p><ul class="points rv"><li>Designed and reviewed <strong>100+ in-game events</strong> using probability rules and trait interactions to support varied outcomes.</li><li>Used <strong>Google Sheets, Machinations and Miro</strong> to document, evaluate and tune systems before and during implementation.</li></ul><details class="cs rv"><summary>Full case study</summary><dl class="case"><div><dt>Intention</dt><dd>Waiting feels <strong>like anticipation, not emptiness.</strong> No trait dominates, and every combination has a plausible path to success.</dd></div><div><dt>Process</dt><dd>Modelled the <strong>trait matrix in Machinations before implementation</strong>, built 100+ events, and ran 3 test cycles with written pass criteria.</dd></div><div><dt>Challenge</dt><dd><strong>Players skipped most events</strong>, and one trait type matched at 3&times; the expected rate, a dominant strategy that killed variety.</dd></div><div><dt>Solution</dt><dd>Tied event triggers to character familiarity instead of timers, and <strong>separated attraction from compatibility</strong> so social appeal no longer overrode long-term fit.</dd></div><div><dt>Outcome</dt><dd><strong>No dominant strategies at ship.</strong> Launched on Steam and Nintendo Switch. Best Game Designer, Gameloft Indonesia 2023.</dd></div></dl></details></div></div></article>
+<div style="height:var(--gap)"></div>
+<article>
+<div class="panel"><div class="panel-media"><img src="virgo-panel.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'"/></div><div class="panel-info"><h3 class="t rv">Virgo and The Sparklings Rhythm of My Life</h3><p class="panel-meta rv" style="--d:.1s"><span>Licensed IP, Visual Novel game</span><span>Mobile</span></p></div></div>
+<div class="proj"><div class="proj-media"><div class="gif rv"><img src="virgo-gameplay.gif" alt="Gameplay from Virgo and The Sparklings Rhythm of My Life" width="1280" height="720" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='virgo-screen2.webp'}else{this.style.display='none'}"/></div><div class="shots rv" style="--d:.08s"><button class="shot" data-caption="Virgo and The Sparklings Rhythm of My Life, screen 1" aria-label="Enlarge screenshot 1"><img src="virgo-screen1.webp" alt="Screenshot 1" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button><button class="shot" data-caption="Virgo and The Sparklings Rhythm of My Life, screen 2" aria-label="Enlarge screenshot 2"><img src="virgo-screen2.webp" alt="Screenshot 2" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button><button class="shot" data-caption="Virgo and The Sparklings Rhythm of My Life, screen 3" aria-label="Enlarge screenshot 3"><img src="virgo-screen3.webp" alt="Screenshot 3" width="800" height="600" loading="lazy" onerror="this.style.display='none'"/></button></div></div>
+<div class="proj-body"><h3 class="rv">Virgo and The Sparklings <span style="color:var(--muted)">Rhythm of My Life</span></h3><p class="logline rv">A visual novel game adapted from an original webtoon, where character, visual and narrative consistency had to be kept intact.</p><dl class="facts rv"><div><dt>Role</dt><dd>Game Designer</dd></div><div><dt>Platform</dt><dd>Mobile</dd></div><div><dt>Type</dt><dd>Licensed IP</dd></div><div><dt>Genre</dt><dd>Visual Novel</dd></div></dl><p class="result rv"><b>Licensed-IP production</b> adapted from the original webtoon.</p><ul class="points rv"><li>Adapted game content from the webtoon with attention to character, visual and narrative consistency.</li><li>Contributed to <strong>player-facing mechanics and progression</strong> within a licensed-IP workflow.</li></ul><details class="cs rv"><summary>Full case study</summary><dl class="case"><div><dt>Intention</dt><dd>Keep <strong>character, visual and narrative consistency</strong> with the original webtoon while giving players something to play.</dd></div><div><dt>Process</dt><dd>Adapted content from the webtoon and worked on mechanics and progression inside a licensed-IP production workflow.</dd></div><div><dt>Challenge</dt><dd><strong>The source material is fixed.</strong> Every mechanic had to respect the original characters and story.</dd></div><div><dt>Solution</dt><dd>Built player-facing mechanics and progression around the established content instead of changing it.</dd></div><div><dt>Outcome</dt><dd>Shipped on mobile as a licensed-IP.</dd></div></dl></details></div></div></article>
+<div style="height:var(--gap)"></div>
+<article>
+<div class="panel"><div class="panel-media"><img src="ragsofrags-cover.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'"/></div><div class="panel-info"><h3 class="t rv">Rags of Racs</h3><p class="panel-meta rv" style="--d:.1s"><span>Co-op action</span><span>In development</span></p></div></div>
+<div class="proj flip"><div class="proj-media"><div class="gif rv"><img src="ragsofrags-cover.jpg" alt="Gameplay from Rags of Racs" width="1280" height="720" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='ragsofrags-cover.jpg'}else{this.style.display='none'}"/></div></div>
+<div class="proj-body"><h3 class="rv">Rags of Racs</h3><p class="logline rv">A co-op concept about escorting and defending a getaway trolley. The loop: Loot, Move Forward, Defend Trolley.</p><dl class="facts rv"><div><dt>Role</dt><dd>Independent Designer</dd></div><div><dt>Status</dt><dd>In development</dd></div><div><dt>Genre</dt><dd>Co-op action</dd></div><div><dt>Loop</dt><dd>Loot, Move, Defend</dd></div></dl><p class="result rv"><b>Independent project.</b> Follow its progress on itch.io.</p><ul class="points rv"><li>Exploring <strong>cooperative roles</strong>, readable chaos and risk/reward decisions.</li><li>Looking for the emergent moments that make friends laugh together.</li></ul><details class="cs rv"><summary>Full case study</summary><dl class="case"><div><dt>Intention</dt><dd>Co-op chaos that stays <strong>readable</strong>, with roles that matter to the whole team.</dd></div><div><dt>Process</dt><dd>Built around one loop: <strong>Loot, Move Forward, Defend Trolley.</strong> Exploring cooperative roles and risk/reward decisions.</dd></div><div><dt>Challenge</dt><dd>Keeping the chaos readable so players always know what is happening and who needs help.</dd></div><div><dt>Solution</dt><dd>Still being prototyped and playtested. Each role and risk/reward choice is tuned around emergent player moments.</dd></div><div><dt>Outcome</dt><dd>In development. Progress is posted on itch.io.</dd></div></dl></details><div class="proj-links rv"><a class="textlink" data-itch="profile" href="#" target="_blank" rel="noopener" hidden>Play on itch.io</a></div></div></div></article>
+</section>
 
-  <!-- PROJECT 3 -->
-  <div class="proj-entry reveal">
-    <div class="proj-media-col">
-      <div class="proj-gif">
-        <img src="virgo-gameplay.gif" alt="Virgo gameplay" onerror="this.style.display='none'"/>
-        <div class="proj-gif-ph"><div class="pgp-icon">▶</div></div>
-      </div>
-      <div class="proj-shots">
-        <div class="proj-shot" data-caption="Virgo & The Sparklings — Screen 1">
-          <img src="virgo-screen1.webp" alt="" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">virgo-screen1.webp</div>
-        </div>
-        <div class="proj-shot" data-caption="Virgo & The Sparklings — Screen 2">
-          <img src="virgo-screen2.webp" alt="" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">virgo-screen2.webp</div>
-        </div>
-        <div class="proj-shot" data-caption="Virgo & The Sparklings — Screen 3">
-          <img src="virgo-screen3.webp" alt="" onerror="this.style.display='none'"/>
-          <div class="proj-shot-ph">virgo-screen3.webp</div>
-        </div>
-      </div>
-    </div>
-    <div class="proj-content-col">
-      <div class="proj-num-label">Project 03 / 03</div>
-      <div class="proj-tags"><span class="proj-tag hl">Licensed IP</span><span class="proj-tag">Unity</span><span class="proj-tag">Mobile</span><span class="proj-tag">Bumi Langit</span></div>
-      <h3 class="proj-name">Virgo &amp; The Sparklings</h3>
-      <p class="proj-logline">The story was already written. Bumi Langit owned it. My job was to build player agency inside a locked room — mechanics that gave people something to do with a narrative I couldn't change. That turned out to be the most interesting design constraint I've worked inside.</p>
-      <div class="proj-meta-table">
-        <div class="pmt-cell"><div class="pmt-l">Client</div><div class="pmt-v">Bumi Langit</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Platform</div><div class="pmt-v">Mobile</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Type</div><div class="pmt-v">Licensed IP</div></div>
-        <div class="pmt-cell"><div class="pmt-l">Engine</div><div class="pmt-v">Unity</div></div>
-      </div>
-      <div class="proj-result"><div class="pr-icon">★</div><div class="pr-body"><strong>Official Bumi Langit IP</strong> · Cross-media tie-in for Indonesia's largest superhero release</div></div>
-      <ul class="proj-bullets">
-        <li>Designed a <strong>dress-up mechanic ruleset</strong> that created full player agency in the spaces the IP hadn't defined — zero narrative conflicts in the approval rounds</li>
-        <li>Built and balanced a <strong>point and progression system</strong> — every scene cross-checked against the source comic before build handoff</li>
-        <li>First external licensed client project for the studio — learned to <strong>argue for design decisions with evidence through an IP approval pipeline,</strong> not just instinct</li>
-      </ul>
-      <a class="proj-gdd-link" href="#" target="_blank">↗ Read Full Design Document</a>
-      <button class="cs-toggle" onclick="toggleCS(this)"><span class="cs-arrow">▶</span> Full Case Study</button>
-      <div class="case-expand"><div class="case-rows">
-        <div class="class-row"><div class="cr-lbl int">Intention</div><div class="cr-text">Satisfy fans who know the IP and players discovering it for the first time — <strong>without rewriting a single line of story.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl proc">Process</div><div class="cr-text">Mapped every scene against the source comic first. Designed the dress-up ruleset and point system in the <strong>narrative gaps — spaces Bumi Langit had not defined.</strong></div></div>
-        <div class="case-row"><div class="cr-lbl chal">Challenge</div><div class="cr-text"><strong>The story is fixed and immovable.</strong> Every mechanic had to create a sense of agency without touching the protected narrative — or the approval round would reject it.</div></div>
-        <div class="case-row"><div class="cr-lbl sol">Solution</div><div class="cr-text">Focused entirely on between-scene moments and costume expression — <strong>what the IP left unsaid became the play space.</strong> Presented every mechanic with a written rationale for approval.</div></div>
-        <div class="case-row"><div class="cr-lbl out">Outcome</div><div class="cr-text">Delivered through Bumi Langit's full approval pipeline. <strong>First licensed IP project shipped by the studio.</strong> Taught me that constraints aren't limits — they're the frame.</div></div>
-      </div></div>
-    </div>
-  </div>
-
-  </div><!-- /proj-list -->
+<!-- NUMBERS -->
+<section id="numbers" aria-labelledby="numbers-h">
+  <h2 id="numbers-h" class="rv"><span class="acc">500K+</span> players.<br>One free game.</h2>
+  <p class="rv" style="--d:.1s">Three shipped games on PC, iOS, Android, Steam and Nintendo&nbsp;Switch, <b>100+&nbsp;events</b> designed in one simulation, and a branching story that reached 500K+ players.</p>
 </section>
 
 <!-- SKILLS -->
-<section id="skills">
-  <div class="skills-header">
-    <div>
-      <div class="section-marker reveal">
-        <div class="sm-num" style="color:rgba(255,255,255,0.4)">04</div>
-        <div class="sm-rule" style="opacity:0.2"></div>
-        <div class="sm-label" style="color:rgba(255,255,255,0.25)">What I Do</div>
-      </div>
-    </div>
-    <div>
-      <div class="sh-display reveal">How I<br><em>think.</em></div>
-      <p class="sh-body reveal">Six things I've actually done across three shipped games. I keep design documents for all of them — ask and I'll share the working files, not just the outcomes.</p>
-    </div>
+<section id="skills" aria-labelledby="skills-h">
+  <div class="skills-head">
+    <h2 id="skills-h" class="rv">How I think about design.</h2>
+    <p class="rv" style="--d:.1s">Skills from my résumé, each used on the games above.</p>
   </div>
-  <div class="skills-matrix">
-    <div class="skill-card reveal reveal-d1">
-      <div class="sc-name">Systems Design</div>
-      <div class="sc-desc">I build the math before the game is built. Economies, trait matrices, progression curves — modelled in Sheets and Machinations first, because finding the broken number after it's in the engine costs everyone time and goodwill.</div>
-    </div>
-    <div class="skill-card reveal reveal-d2">
-      <div class="sc-name">Narrative Mechanics</div>
-      <div class="sc-desc">Branching dialogue is just a weighted tree. The craft is making every branch feel like it was the only one. I've built a 47-node system and then broken it on purpose during testing — I know where these structures fail before players do.</div>
-    </div>
-    <div class="skill-card reveal reveal-d3">
-      <div class="sc-name">Quality Assurance</div>
-      <div class="sc-desc">I started as QA. I still think like one. Every test cycle I run has a hypothesis before it starts and a written resolution after — not a verbal summary. I don't ship anything I haven't broken first.</div>
-    </div>
-    <div class="skill-card reveal reveal-d1">
-      <div class="sc-name">Licensed IP Production</div>
-      <div class="sc-desc">Working with Bumi Langit meant arguing for every mechanic through a client approval pipeline. You learn fast to separate your instincts from your evidence. That habit travels to any team.</div>
-    </div>
-    <div class="skill-card reveal reveal-d2">
-      <div class="sc-name">UX &amp; Onboarding</div>
-      <div class="sc-desc">The first five minutes of a game are a different design problem than everything after them. I've spent a lot of time on those five minutes — how a player forms their first mental model, and whether it's the right one.</div>
-    </div>
-    <div class="skill-card reveal reveal-d3">
-      <div class="sc-name">Unity + C#</div>
-      <div class="sc-desc">I can prototype my own ideas before involving a programmer. I'm not a programmer — but I know enough to test whether a mechanic actually works, not just whether it sounds good in a doc.</div>
-    </div>
-  </div>
-  <div class="tools-strip">
-    <span class="tool-pill">Unity</span>
-    <span class="tool-pill">C#</span>
-    <span class="tool-pill">Machinations</span>
-    <span class="tool-pill">Google Sheets</span>
-    <span class="tool-pill">Miro</span>
-    <span class="tool-pill">Steam</span>
-    <span class="tool-pill">Nintendo Switch</span>
-    <span class="tool-pill">Play Store</span>
-    <span class="tool-pill">App Store</span>
-    <span class="tool-pill">Adobe Premiere</span>
-    <span class="tool-pill">Photoshop</span>
-    <span class="tool-pill">Discord</span>
-    <span class="tool-pill">Audacity</span>
-    <span class="tool-pill">Corel Draw</span>
-  </div>
+  <div class="skill-grid"><div class="skill rv"><h3>Gameplay &amp; systems</h3><p>Core loops, mechanics, feature design, progression, rules and player-facing systems.</p></div><div class="skill rv"><h3>Balancing &amp; analysis</h3><p>Probability, trait interactions, event tuning, spreadsheets and playtest-informed iteration.</p></div><div class="skill rv"><h3>Narrative &amp; player experience</h3><p>Branching narrative, choice design, emotional pacing, UX and onboarding.</p></div><div class="skill rv"><h3>Production collaboration</h3><p>GDDs, feature documentation, design reviews and cross-discipline communication.</p></div><div class="skill rv"><h3>QA &amp; validation</h3><p>Manual testing, test cases, bug reporting, implementation review and consistency checks.</p></div><div class="skill rv"><h3>Unity and C#</h3><p>Technical literacy: enough to prototype and review implementation with programmers.</p></div></div>
+  <p class="tools rv" aria-label="Tools"><span>Unity</span><span>C# (technical literacy)</span><span>Google Sheets</span><span>Machinations</span><span>Miro</span><span>Microsoft Office</span><span>Photoshop</span><span>Premiere</span></p>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience">
-  <div class="exp-layout">
-    <div class="exp-sidebar">
-      <div class="section-marker reveal"><div class="sm-num">05</div><div class="sm-rule"></div><div class="sm-label">Work History</div></div>
-      <div class="exp-sidebar-title reveal">One studio.<br><em>Three jobs.</em></div>
-      <p class="reveal">I didn't plan to stay five years. But each role taught me something the next one needed — and I kept needing the next one.</p>
-      <a href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" class="reveal">Download Full CV ↗</a>
-    </div>
-    <div class="exp-entries">
-
-      <div class="exp-row reveal">
-        <div class="exp-date">Feb 2025<br>— Present</div>
-        <div class="exp-content">
-          <div class="exp-role">Independent Game Developer & Researcher <strong>(Career Break)</strong></div>
-          <div class="exp-company">Self-Employed</div>
-          <div class="exp-li">Dedicated time to analyzing advanced game design frameworks, focusing on AAA combat design systems and player engagement models.</div>
-          <div class="exp-li">Prototyping experimental gameplay mechanics and narrative branches using Unity and C#.</div>
-          </div>
-      </div>
-      
-      <div class="exp-row reveal">
-        <div class="exp-date">Aug 2021<br>— Jan 2025</div>
-        <div class="exp-content">
-          <div class="exp-role">Game Designer</div>
-          <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Shipped <strong>3 commercial titles</strong> as systems and narrative designer — PC, Mobile, and Nintendo Switch</div>
-          <div class="exp-li">Stepped into <strong>lead designer on Matchmaker Agency mid-production</strong> — inherited a partially-built system, diagnosed two balance failures, and shipped without dominant strategies</div>
-          <div class="exp-li">Designed 47-node branching system and <strong>caught the path lock-in bug in playtesting</strong> before it ever reached players</div>
-          <div class="exp-li">Every iteration has a <strong>written hypothesis and resolution criteria</strong> — not just "it felt better this time"</div>
-          <div class="exp-li">Delivered <strong>Virgo &amp; The Sparklings through Bumi Langit's IP approval pipeline</strong> — first licensed external client project the studio had taken on</div>
-          <div class="exp-tag-row"><span class="exp-tag">Systems</span><span class="exp-tag">QA</span><span class="exp-tag">Narrative</span><span class="exp-tag">Unity</span><span class="exp-tag">Machinations</span><span class="exp-tag">Licensed IP</span></div>
-        </div>
-      </div>
-
-      <div class="exp-row reveal">
-        <div class="exp-date">Jan 2020<br>— Jul 2022</div>
-        <div class="exp-content">
-          <div class="exp-role">Community Manager</div>
-          <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">Grew the player community from zero — <strong>500K+ total downloads across X, Instagram, Facebook, and Discord</strong>, no paid acquisition</div>
-          <div class="exp-li">Two years of daily content moderation taught me to make <strong>consistent rule-based decisions at scale</strong> without letting individual cases drift the policy</div>
-          <div class="exp-li">Turned player feedback into structured design briefs that directly shaped <strong>post-launch patches</strong> — the first time community data drove design decisions at the studio</div>
-          <div class="exp-tag-row"><span class="exp-tag">Community</span><span class="exp-tag">Content Review</span><span class="exp-tag">Player Research</span><span class="exp-tag">Premiere</span><span class="exp-tag">Photoshop</span></div>
-        </div>
-      </div>
-
-      <div class="exp-row reveal">
-        <div class="exp-date">Jun 2019<br>— Jan 2020</div>
-        <div class="exp-content">
-          <div class="exp-role">Programmer Intern + QA</div>
-          <div class="exp-company">PT. Eternaldream Games International · Lampung, Indonesia</div>
-          <div class="exp-li">First month: <strong>built and published a complete mobile game</strong> on Google Play Store. I didn't fully know what I was doing. It shipped anyway.</div>
-          <div class="exp-li">Ran manual testing with <strong>defined protocols and written reports from day one</strong> — the habit that stayed through every role after</div>
-          <div class="exp-tag-row"><span class="exp-tag">Unity</span><span class="exp-tag">C#</span><span class="exp-tag">Manual QA</span><span class="exp-tag">Android</span></div>
-        </div>
-      </div>
-
-      <div class="exp-row reveal">
-        <div class="exp-date">2016–2021</div>
-        <div class="exp-content">
-          <div class="exp-role">Education</div>
-          <div class="exp-company" style="color:var(--muted)">Indonesia Teknokrat University · Lampung</div>
-          <div class="exp-li"><strong>Bachelor of Informatics Engineering</strong> · GPA 3.48 / 4.00</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+<section id="experience" aria-labelledby="exp-h"><h2 id="exp-h" class="rv">One studio. Three roles.</h2><ol class="rows">
+<li class="row rv"><span class="d">Aug 2021 to Jan 2025</span><h3>Game Designer<small>PT Eternaldream Games International</small></h3><div class="info"><ul><li>Designed and iterated <strong>gameplay features and systems</strong> for indie titles, turning creative direction into rules, documentation and team tasks.</li><li>Worked with programmers, artists, writers and QA to review implementation and resolve design inconsistencies.</li><li>Designed and reviewed <strong>randomized events, trait interactions, progression and balancing</strong> with spreadsheets.</li><li>Shaped narrative structure and branching choices across multiple endings.</li></ul></div></li>
+<li class="row rv"><span class="d">Jan 2020 to Jul 2022</span><h3>Community Manager &amp; Player Feedback Analyst<small>PT Eternaldream Games International</small></h3><div class="info"><ul><li>Managed communities on social platforms and Discord, organizing events.</li><li>Collected, categorized and summarized <strong>player feedback</strong> and recurring issues for the dev team.</li><li>Used community behavior to find friction points and chances to improve player experience.</li></ul></div></li>
+<li class="row rv"><span class="d">Jun 2019 to Jan 2020</span><h3>QA Tester &amp; Programmer Intern<small>PT Eternaldream Games International</small></h3><div class="info"><ul><li>Manual testing on game builds, documenting bugs and checking expected against actual behavior.</li><li><strong>Built and published a mobile game</strong> on Google Play within one month, working independently.</li></ul></div></li>
+<li class="row rv"><span class="d">2016 to 2021</span><h3>Education<small>Universitas Teknokrat Indonesia</small></h3><div class="info"><ul><li><strong>B.Eng. in Informatics Engineering</strong>, GPA 3.48</li></ul></div></li>
+</ol></section>
 
 <!-- AWARDS -->
-<section id="awards">
-  <div class="section-marker reveal">
-    <div class="sm-num" style="color:rgba(255,255,255,0.4)">06</div>
-    <div class="sm-rule" style="opacity:0.2"></div>
-    <div class="sm-label" style="color:rgba(255,255,255,0.25)">Recognition</div>
-  </div>
-  <div class="awards-strip">
-    <div class="aw-card tier1 reveal reveal-d1"><div class="aw-icon">🚀</div><div class="aw-name">Google Indie Game Accelerator Alumni</div><div class="aw-org">Google · 2022</div></div>
-    <div class="aw-card tier1 reveal reveal-d2"><div class="aw-icon">💡</div><div class="aw-name">Xbox Game Camp Alumni</div><div class="aw-org">Microsoft · 2024</div></div>
-    <div class="aw-card reveal reveal-d3"><div class="aw-icon">🏆</div><div class="aw-name">Best Game Designer</div><div class="aw-org">Gameloft Indonesia · 2023</div></div>
-    <div class="aw-card reveal" style="transition-delay:0.24s"><div class="aw-icon">🎖️</div><div class="aw-name">Best Narrative Game</div><div class="aw-org">IGDX · 2022</div></div>
-    <div class="aw-card reveal reveal-d1"><div class="aw-icon">🌏</div><div class="aw-name">International Finalist</div><div class="aw-org">LevelUP KL · 2021</div></div>
-    <div class="aw-card reveal reveal-d2"><div class="aw-icon">🎯</div><div class="aw-name">Best Pitch</div><div class="aw-org">Selasar Game Design POV · 2023</div></div>
-    <div class="aw-card reveal reveal-d3"><div class="aw-icon">🌟</div><div class="aw-name">Future of Game Design</div><div class="aw-org">MDEC Malaysia</div></div>
-  </div>
-  <div class="awards-cert-note reveal">
-    <div class="acn-label">Certifications</div>
-    <div class="acn-items">
-      <div class="acn-item">Foundations of UX Design · Coursera / Google</div>
-    </div>
-  </div>
+<section id="awards" aria-labelledby="aw-h">
+  <h2 id="aw-h" class="rv">Recognition.</h2>
+  <ul class="aw">
+    <li class="big rv"><span class="y">2022</span><div><b>Google Indie Game Accelerator Alumni</b><span>Google</span></div></li>
+    <li class="big rv" style="--d:.06s"><span class="y">2024</span><div><b>Xbox Game Camp Alumni</b><span>Microsoft</span></div></li>
+    <li class="rv"><span class="y">2023</span><div><b>Best Game Designer</b><span>Gameloft Indonesia Game Design Connect 3</span></div></li>
+    <li class="rv" style="--d:.06s"><span class="y">2022</span><div><b>Best Narrative Game</b><span>IGDX</span></div></li>
+    <li class="rv"><span class="y">2021</span><div><b>International Finalist</b><span>LevelUP KL</span></div></li>
+    <li class="rv" style="--d:.06s"><span class="y">2023</span><div><b>Best Pitch</b><span>Selasar Game Design POV</span></div></li>
+    <li class="rv"><span class="y">&nbsp;</span><div><b>Future of Game Design</b><span>MDEC Malaysia</span></div></li>
+  </ul>
+  
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="contact-left">
-    <div class="cl-eyebrow">07 / Let's Make Something</div>
-    <div class="cl-title">I want to build<br>games that heal.</div>
-    <p class="cl-sub">I'm looking for a studio that cares about the emotional side of games as much as the technical side. Remote works — I'm in Indonesia but I keep focused hours and I respond the same day.</p>
-  </div>
-  <div class="contact-right">
-    <div class="cr-detail">Write to me directly</div>
-    <div class="cr-email-wrap">
-      <span class="cr-email-label" id="contact-email-link">Loading…</span>
-      <button class="cr-copy-btn" id="copy-email-btn" title="Copy email" onclick="
-        var txt=document.getElementById('contact-email-link').textContent;
-        navigator.clipboard.writeText(txt).then(function(){
-          var b=document.getElementById('copy-email-btn');
-          b.textContent='✓ Copied';b.classList.add('copied');
-          setTimeout(function(){b.textContent='Copy';b.classList.remove('copied')},2000);
-        });
-      ">Copy</button>
+<section id="contact" aria-labelledby="contact-h">
+  <h2 class="contact-title" id="contact-h"><b>I create games to make people feel.</b>
+    <span class="contact-tagline">Not just to play, but to remember. Not just to escape, but to discover. Not just to have FUN, but to feel less alone.</span>
+  </h2>
+  <p class="contact-sub">Open to part-time freelance and contract projects, mostly evenings (GMT+7). Remote from Indonesia, and I reply the same day.</p>
+  <div class="card">
+    <h3>Write to me directly</h3>
+    <div class="em">
+      <span class="em-t" id="contact-email-link">Loading…</span>
+      <button class="copy" id="copy-email-btn" type="button">Copy</button>
     </div>
-    <div class="cr-socials">
-      <a class="cr-soc" href="https://linkedin.com/in/praycristanto" target="_blank">LinkedIn</a>
-      <a class="cr-soc" href="https://x.com/praycristanto" target="_blank">X / Twitter</a>
-      <a class="cr-soc" href="https://instagram.com/praycristan" target="_blank">Instagram</a>
-    </div>
-    <a class="cr-resume-btn" href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank">↗ Download Full Resume PDF</a>
-    <div class="cr-phone" id="contact-phone">+62 822 7911 7619 · Lampung, Indonesia · Open to remote worldwide</div>
+    <ul class="soc">
+      <li><a href="https://linkedin.com/in/praycristanto" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://x.com/praycristanto" target="_blank" rel="noopener">X / Twitter</a></li>
+      <li><a href="https://instagram.com/praycristan" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a data-itch="profile" href="#" target="_blank" rel="noopener" hidden>itch.io</a></li>
+    </ul>
+    <a class="btn" href="https://drive.google.com/file/d/1NSVHmteTCuMwPHSBPvOF1K8RUVKNOnUX/view?usp=sharing" target="_blank" rel="noopener">Download full resume (PDF)</a>
+    <p class="ph" id="contact-phone">+62 822 7911 7619 · Lampung, Indonesia · Open to remote work worldwide</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+</main>
+
 <footer>
-  <div class="foot-mark">Pray <span>Cristanto</span></div>
-  <div class="foot-links">
-    <a href="#hero">Top</a><a href="#projects">Projects</a><a href="#about">About</a>
-    <a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
-  </div>
-  <div class="foot-copy">Game Designer · Lampung, ID · Looking for the studio that cares about both</div>
+  <nav class="foot-links" aria-label="Footer">
+    <a href="#hero">Top</a><a href="#work">Games</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="foot-name" id="footName" aria-hidden="true">Pray Cristanto</div>
+  <p class="foot-note">Freelance gameplay &amp; systems designer, Lampung, Indonesia.</p>
 </footer>
 
-<!-- LIGHTBOX -->
-<div id="lightbox">
-  <button id="lightbox-close">✕ Close</button>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button id="lightbox-close" type="button">Close</button>
   <img id="lightbox-img" src="" alt=""/>
-  <div id="lightbox-caption"></div>
+  <div id="lightbox-cap"></div>
 </div>
 
 <script>
-/* ── EMAIL ── */
-(function() {
-  var u = 'praycristanto';
-  var d = 'gmail' + '.' + 'com';
-  var full = u + '\u0040' + d;
-  var emailSpan = document.getElementById('contact-email-link');
-  if (emailSpan) { emailSpan.textContent = full; }
-  var hireBtn = document.getElementById('nav-hire-btn');
-  if (hireBtn) { hireBtn.href = '#contact'; }
+/* ── ITCH.IO LINKS: paste your two addresses here, the buttons appear by themselves ── */
+var ITCH = {
+  profile: 'https://dekiru.itch.io',   // e.g. 'https://yourname.itch.io'
+  game:    ''    // e.g. 'https://yourname.itch.io/rags-of-rags'
+};
+document.querySelectorAll('[data-itch]').forEach(function(a){
+  var u=ITCH[a.getAttribute('data-itch')];
+  if(u){a.href=u;a.hidden=false;var li=a.closest('li');if(li)li.hidden=false}
+});
+document.querySelectorAll('.soc li').forEach(function(li){if(li.querySelector('[data-itch]')&&!ITCH.profile)li.hidden=true});
+/* email, assembled at runtime so it is not a plain string in the source */
+(function(){
+  var full='praycristanto'+'@'+'gmail'+'.'+'com';
+  var s=document.getElementById('contact-email-link');
+  if(s) s.textContent=full;
+  var b=document.getElementById('copy-email-btn');
+  if(b) b.addEventListener('click',function(){
+    function done(){b.textContent='Copied';b.classList.add('ok');setTimeout(function(){b.textContent='Copy';b.classList.remove('ok')},2000)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(full).then(done,function(){})}
+  });
 })();
 
-/* ── SCROLL REVEAL ── */
-var obs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+/* entrances: each part of a section arrives once, in reading order */
+(function(){
+  var els=document.querySelectorAll('.rv,.hero-photo,.panel');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){io.observe(e)});
+  setTimeout(function(){var h=document.getElementById('heroPhoto');if(h)h.classList.add('in')},60);
+})();
 
-/* ── PROGRESS RAIL ── */
-var sections = ['hero','about','projects','skills','experience','awards','contact'];
-var railItems = document.querySelectorAll('.pr-item');
-window.addEventListener('scroll', function() {
-  var active = 'hero';
-  sections.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el && window.scrollY >= el.offsetTop - 200) active = id;
-  });
-  railItems.forEach(function(item) {
-    item.classList.toggle('active', item.getAttribute('href') === '#' + active);
-  });
-}, { passive: true });
+/* signature move: the wordmark scales with the scroll, heavy and slow */
+(function(){
+  var name=document.getElementById('heroName'),foot=document.getElementById('footName');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ticking=false;
+  function clamp(v,a,b){return Math.min(b,Math.max(a,v))}
+  function update(){
+    ticking=false;
+    var vh=window.innerHeight,y=window.scrollY;
+    if(name){var p=clamp(y/vh,0,1);name.style.transform='scale('+(1-p*0.07).toFixed(4)+')'}
+    if(foot){
+      var r=foot.getBoundingClientRect();
+      var q=clamp((vh-r.top)/(vh*0.9),0,1);
+      foot.style.transform='scale('+(0.94+q*0.06).toFixed(4)+')';
+    }
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
 
-/* ── CASE STUDY TOGGLE (cross-browser fix) ── */
-function toggleCS(btn) {
-  var body = btn.nextElementSibling;
-  var open = body.classList.toggle('open');
-  btn.classList.toggle('open', open);
-  btn.querySelector('.cs-arrow').textContent = open ? '▼' : '▶';
-  var nodes = Array.prototype.slice.call(btn.childNodes);
-  nodes.forEach(function(n) {
-    if (n.nodeType === 3 && n.textContent.trim())
-      n.textContent = open ? ' Close Case Study' : ' Full Case Study';
+/* about: read more / show less */
+(function(){
+  var b=document.getElementById('aboutToggle'),m=document.getElementById('aboutMore');
+  if(!b||!m) return;
+  b.addEventListener('click',function(){
+    var open=m.classList.toggle('open');
+    b.setAttribute('aria-expanded',open);
+    b.firstElementChild.textContent=open?'Show less':'Read more';
   });
-}
+})();
 
-/* ── LIGHTBOX (guard against empty slots) ── */
-(function() {
-  var lb = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lightbox-img');
-  var lbCap = document.getElementById('lightbox-caption');
-  var lbClose = document.getElementById('lightbox-close');
-
-  document.querySelectorAll('.proj-shot').forEach(function(shot) {
-    shot.addEventListener('click', function() {
-      var img = shot.querySelector('img');
-      if (!img) return;
-      var src = (img.style.display === 'none' || !img.complete || img.naturalWidth === 0) ? '' : img.src;
-      if (!src || src === window.location.href) return;
-      lbImg.src = src;
-      lbImg.alt = img.alt || '';
-      lbCap.textContent = shot.dataset.caption || '';
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
+/* lightbox */
+(function(){
+  var lb=document.getElementById('lightbox'),img=document.getElementById('lightbox-img'),cap=document.getElementById('lightbox-cap'),x=document.getElementById('lightbox-close');
+  document.querySelectorAll('.shot').forEach(function(s){
+    s.addEventListener('click',function(){
+      var i=s.querySelector('img');
+      if(!i||i.style.display==='none'||!i.complete||i.naturalWidth===0) return;
+      img.src=i.currentSrc||i.src;img.alt=i.alt||'';cap.textContent=s.getAttribute('data-caption')||'';
+      lb.classList.add('open');document.body.style.overflow='hidden';x.focus();
     });
   });
-
-  function close() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-    lbImg.src = '';
-  }
-
-  lbClose.addEventListener('click', close);
-  lb.addEventListener('click', function(e) {
-    if (e.target === lb || e.target === lbImg) close();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') close();
-  });
+  function close(){lb.classList.remove('open');document.body.style.overflow='';img.removeAttribute('src')}
+  x.addEventListener('click',close);
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target===img)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
 })();
 </script>
 </body>
