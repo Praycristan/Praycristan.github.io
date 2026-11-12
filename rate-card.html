@@ -89,6 +89,7 @@ h2{font-size:var(--step-h2);max-width:14em}
 .grp-h h3{font-size:var(--step-lead)}
 .grp-h button{background:none;border:0;cursor:pointer;font-size:var(--step-small);color:var(--muted);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.25em;text-decoration-thickness:2px}
 .grp-h button:hover{color:var(--accent)}
+.grp-n{margin:-.4rem 0 1rem;max-width:34em;color:var(--muted);font-size:var(--step-small)}
 .opts{display:grid;gap:var(--gut)}
 .opt{background:var(--surface);transition:background .25s;position:relative}
 .opt:not(.sel):hover{background:#D0E1F5}
@@ -460,7 +461,7 @@ function setWeek(i,focus){
 
 /* ── packages ── */
 function perText(p){
-  var t=p.type==='monthly'?'per month':p.type==='consult'?'per session':'per project';
+  var t=p.type==='monthly'?'per month':p.type==='consult'?'per session':'one-time, per deliverable';
   var extra=[];
   if(p.type==='monthly'&&p.hours)extra.push('up to '+p.hours+' hours');
   if(p.dur)extra.push(p.dur);
@@ -484,13 +485,13 @@ function renderPackages(){
   /* drop selections that no longer exist in the sheet */
   if(sel.monthly&&!byId(sel.monthly))sel.monthly=null;
   Object.keys(sel.items).forEach(function(k){if(!byId(k))delete sel.items[k]});
-  function grp(el,title,list,clear){
+  function grp(el,title,list,clear,note){
     el.hidden=!list.length;
-    el.innerHTML=list.length?'<div class="grp-h"><h3>'+title+'</h3>'+(clear?'<button type="button" data-act="clear">No retainer</button>':'')+'</div><div class="opts">'+list.map(optHTML).join('')+'</div>':'';
+    el.innerHTML=list.length?'<div class="grp-h"><h3>'+title+'</h3>'+(clear?'<button type="button" data-act="clear">No retainer</button>':'')+'</div>'+(note?'<p class="grp-n">'+esc(note)+'</p>':'')+'<div class="opts">'+list.map(optHTML).join('')+'</div>':'';
   }
   grp($('#gMonthly'),'Monthly retainer',g.monthly,true);
   grp($('#gConsult'),'Consultation',g.consult,false);
-  grp($('#gProject'),'Project-based, indicative',g.project,false);
+  grp($('#gProject'),esc(S('project_title')||'One-off work, fixed scope'),g.project,false,S('project_note')||'You pay once for one defined deliverable. This is not the price of building a whole game, and it does not include ongoing work.');
 }
 function syncOpts(){
   $$('.opt').forEach(function(o){
@@ -509,7 +510,7 @@ function lines(){
   pk().forEach(function(p){
     if(p.type==='monthly'||!(p.id in sel.items))return;
     var n=p.type==='consult'?sel.items[p.id]:1;
-    L.push({key:'i:'+p.id,name:p.name,sub:p.type==='consult'?plural(n,'session')+' × '+range(p.min,p.max):'Indicative range',min:p.min*n,max:p.max*n});
+    L.push({key:'i:'+p.id,name:p.name,sub:p.type==='consult'?plural(n,'session')+' × '+range(p.min,p.max):'One-time deliverable',min:p.min*n,max:p.max*n});
   });
   return L;
 }
